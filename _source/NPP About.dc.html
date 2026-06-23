@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .val:hover{transform:translateY(-4px);box-shadow:0 22px 48px -28px rgba(20,18,14,.4)}
+  .val{transition:transform .2s ease, box-shadow .2s ease}
+  .sec:hover{background:#15140F;color:#fff}
+  .sec:hover .seci{color:#fff}
+  .sec{transition:background .2s ease, color .2s ease}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- ===== HEADER ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1140px;margin:0 auto;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;white-space:nowrap;overflow:hidden">
+      <span style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الثلاثاء، ٢٤ يونيو ٢٠٢٦ · القدس ٢٩°</span>
+      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer">{{ langBtn }}</button>
+    </div>
+  </div>
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.93);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1140px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:13px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:46px;width:auto;display:block"/>
+        <div style="line-height:1.15"><div style="font-weight:700;font-size:15px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#B0122A">PALESTINIAN PRESS · NPP</div></div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:2px">
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">معالجات اخبارية</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">تحليلات وآراء</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في أرقام</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في صور</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">ميديا</a>
+      </nav>
+      <span style="width:120px"></span>
+    </div>
+  </div>
+
+  <!-- ===== MANIFESTO HERO ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:60px 32px 50px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
+      <span style="width:26px;height:5px;border-radius:3px;background:#B0122A"></span>
+      <span style="width:26px;height:5px;border-radius:3px;background:#1F6B43"></span>
+      <span style="width:26px;height:5px;border-radius:3px;background:#161513"></span>
+      <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.22em;color:#8A857E;margin-inline-start:8px">من نحن</span>
+    </div>
+    <h1 style="margin:0 0 28px;font-size:54px;line-height:1.28;font-weight:700;letter-spacing:-.02em;max-width:20ch;text-wrap:balance">نروي القصّة الفلسطينية كما هي — بمهنيّة وموضوعية لا تساوم.</h1>
+    <p style="margin:0;font-size:20px;line-height:1.85;color:#57534E;font-weight:300;max-width:64ch">شبكة الصحافة الفلسطينية منصّة إخبارية مستقلّة تقدّم المعالجات والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تحريرية تركّز على الدقّة والسياق.</p>
+  </section>
+
+  <!-- ===== STATS BAND (count-up) ===== -->
+  <section ref="{{ statsRef }}" style="background:#15140F;color:#fff">
+    <div style="max-width:1140px;margin:0 auto;padding:46px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <div><div style="font-family:Inter,sans-serif;font-weight:800;font-size:46px;line-height:1;color:#fff"><span ref="{{ n0 }}">٠</span></div><div style="margin-top:10px;font-size:14px;color:#9b948a">سنة من العمل الصحفي</div></div>
+      <div><div style="font-family:Inter,sans-serif;font-weight:800;font-size:46px;line-height:1;color:#cdbf6a"><span ref="{{ n1 }}">٠</span></div><div style="margin-top:10px;font-size:14px;color:#9b948a">معالجة وتحليلاً منشوراً</div></div>
+      <div><div style="font-family:Inter,sans-serif;font-weight:800;font-size:46px;line-height:1;color:#B0122A"><span ref="{{ n2 }}">٠</span></div><div style="margin-top:10px;font-size:14px;color:#9b948a">خرقاً موثّقاً تحت الرصد</div></div>
+      <div><div style="font-family:Inter,sans-serif;font-weight:800;font-size:46px;line-height:1;color:#1F8A5B"><span ref="{{ n3 }}">٠</span><span style="font-size:28px">ألف</span></div><div style="margin-top:10px;font-size:14px;color:#9b948a">متابع عبر المنصّات</div></div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:60px 32px">
+    <div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:start">
+      <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-.01em;line-height:1.4">رسالتنا<span style="display:block;width:48px;height:4px;background:#B0122A;border-radius:3px;margin-top:16px"></span></h2>
+      <div>
+        <p style="margin:0 0 22px;font-size:18.5px;line-height:2;color:#2A2825">نؤمن أنّ الخبر لا يكتمل دون سياقه. لذلك لا نكتفي بنقل الحدث، بل نضعه ضمن خلفيّته الكاملة حتى لا يُساء فهمه أو توظيفه. نعمل على تفكيك الخطاب، والتحقّق من المصادر، وتقديم صورة متوازنة تحترم عقل القارئ.</p>
+        <blockquote style="margin:0;padding:4px 26px;border-inline-start:4px solid #1F6B43"><p style="margin:0;font-size:23px;line-height:1.7;font-weight:600;color:#161513">«المهنية ليست ترفاً في زمن التضليل، بل هي خطّ الدفاع الأول عن الحقيقة.»</p></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:10px 32px 60px">
+    <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:28px"><h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em">خطّنا التحريري</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <div class="val" style="background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+        <div style="width:50px;height:50px;border-radius:14px;background:#F4EEEA;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 style="margin:0 0 8px;font-size:18px;font-weight:700">الاستقلالية</h3>
+        <p style="margin:0;font-size:14px;line-height:1.75;color:#57534E">قرارنا التحريري مستقلّ، لا يخضع لأجندات أو ضغوط.</p>
+      </div>
+      <div class="val" style="background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+        <div style="width:50px;height:50px;border-radius:14px;background:#E9F0EC;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3 style="margin:0 0 8px;font-size:18px;font-weight:700">التحقّق</h3>
+        <p style="margin:0;font-size:14px;line-height:1.75;color:#57534E">لا ننشر قبل التأكّد من المصادر وتقاطع المعلومات.</p>
+      </div>
+      <div class="val" style="background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+        <div style="width:50px;height:50px;border-radius:14px;background:#F1EEE7;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#161513" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg></div>
+        <h3 style="margin:0 0 8px;font-size:18px;font-weight:700">الموضوعية</h3>
+        <p style="margin:0;font-size:14px;line-height:1.75;color:#57534E">نقدّم الصورة كاملة بعيداً عن الإثارة والانحياز.</p>
+      </div>
+      <div class="val" style="background:#fff;border-radius:18px;padding:26px 24px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+        <div style="width:50px;height:50px;border-radius:14px;background:#F4EEEA;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><path d="M12 3v18M3 7h18M5 7l2 6a3 3 0 0 1-4 0zm14 0l2 6a3 3 0 0 1-4 0z"/></svg></div>
+        <h3 style="margin:0 0 8px;font-size:18px;font-weight:700">العدل</h3>
+        <p style="margin:0;font-size:14px;line-height:1.75;color:#57534E">نمنح كلّ طرف حقّه في الردّ والتوضيح.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK (workflow) ===== -->
+  <section style="background:#EBE6DE">
+    <div style="max-width:1140px;margin:0 auto;padding:56px 32px">
+      <div style="text-align:center;margin-bottom:42px"><span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;color:#B0122A">EDITORIAL WORKFLOW</span><h2 style="margin:8px 0 0;font-size:28px;font-weight:700;letter-spacing:-.01em">كيف نعمل داخل الغرفة</h2></div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+        <span style="position:absolute;top:27px;inset-inline:60px;height:2px;background:repeating-linear-gradient(90deg,#C9C3B9 0 6px,transparent 6px 12px)"></span>
+        <div style="position:relative;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:#15140F;color:#fff;font-family:Inter,sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">٠١</div><h3 style="margin:0 0 8px;font-size:17px;font-weight:700">الرصد</h3><p style="margin:0;font-size:13.5px;line-height:1.7;color:#57534E">متابعة دقيقة للأحداث والمصادر على مدار الساعة.</p></div>
+        <div style="position:relative;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:#15140F;color:#fff;font-family:Inter,sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">٠٢</div><h3 style="margin:0 0 8px;font-size:17px;font-weight:700">التحقّق</h3><p style="margin:0;font-size:13.5px;line-height:1.7;color:#57534E">تقاطع المعلومة عبر أكثر من مصدر قبل أي نشر.</p></div>
+        <div style="position:relative;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:#15140F;color:#fff;font-family:Inter,sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">٠٣</div><h3 style="margin:0 0 8px;font-size:17px;font-weight:700">المعالجة</h3><p style="margin:0;font-size:13.5px;line-height:1.7;color:#57534E">وضع الحدث في سياقه وتحليله بعمق ومسؤولية.</p></div>
+        <div style="position:relative;text-align:center"><div style="width:56px;height:56px;border-radius:50%;background:#B0122A;color:#fff;font-family:Inter,sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">٠٤</div><h3 style="margin:0 0 8px;font-size:17px;font-weight:700">النشر</h3><p style="margin:0;font-size:13.5px;line-height:1.7;color:#57534E">تقديم القصّة بقوالب واضحة عبر كل المنصّات.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MILESTONES ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:60px 32px">
+    <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:30px"><h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em">محطّات في مسيرتنا</h2></div>
+    <div style="position:relative;padding-inline-start:8px">
+      <span style="position:absolute;top:8px;bottom:8px;inset-inline-start:7px;width:2px;background:#E2DDD5"></span>
+      <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="4">
+        <div style="position:relative;padding-inline-start:36px;padding-bottom:28px">
+          <span style="position:absolute;top:4px;inset-inline-start:0;width:16px;height:16px;border-radius:50%;background:{{ m.dot }};border:3px solid #F2EFEA;box-shadow:0 0 0 1px {{ m.dot }}"></span>
+          <div style="font-family:Inter,sans-serif;font-weight:800;font-size:15px;color:#B0122A;margin-bottom:5px">{{ m.year }}</div>
+          <h3 style="margin:0 0 6px;font-size:18.5px;font-weight:700;color:#161513">{{ m.t }}</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.75;color:#57534E;max-width:70ch">{{ m.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== COVERAGE SECTIONS ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:10px 32px 60px">
+    <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:26px"><h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em">ماذا نغطّي</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+        <a href="#" class="sec" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border-radius:16px;padding:22px 24px;text-decoration:none;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <span style="font-size:17px;font-weight:600;color:inherit">{{ s.x }}</span>
+          <svg class="seci" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9C3B9" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:0 32px 70px">
+    <div style="background:#15140F;border-radius:24px;padding:48px 44px;color:#fff;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 14px,transparent 14px 28px)"></div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px">
+        <div style="max-width:54ch">
+          <h2 style="margin:0 0 12px;font-size:30px;font-weight:700;letter-spacing:-.01em">عندك قصّة أو معلومة تستحقّ النشر؟</h2>
+          <p style="margin:0;font-size:16px;line-height:1.8;color:#9b948a">نستقبل البلاغات والوثائق بسرّية تامّة، ونلتزم بحماية مصادرنا. تواصل مع غرفة التحرير.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-shrink:0">
+          <button style="display:flex;align-items:center;gap:8px;background:#B0122A;color:#fff;border:none;padding:13px 26px;border-radius:26px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:15px;font-weight:600">تواصل معنا<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg></button>
+          <button style="background:transparent;color:#fff;border:1px solid #3a372f;padding:13px 24px;border-radius:26px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:15px;font-weight:600">السياسة التحريرية</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1140px;margin:0 auto;padding:34px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px"><img src="assets/npp-logo.webp" alt="" style="height:42px;width:auto"/><div><div style="color:#fff;font-weight:700;font-size:14px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div></div>
+      <span style="font-size:12.5px;color:#6f6a60">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1140,&quot;height&quot;:1000}}">
+const MILES = [
+  {year:'٢٠١٤', t:'انطلاق الشبكة', d:'تأسيس شبكة الصحافة الفلسطينية كمنصّة إخبارية مستقلّة تركّز على الشأن الفلسطيني.', dot:'#B0122A'},
+  {year:'٢٠١٨', t:'توسّع التغطية', d:'إطلاق أقسام التحليلات المعمّقة والقصة في أرقام لتقديم قراءات أعمق للحدث.', dot:'#1F6B43'},
+  {year:'٢٠٢٢', t:'الوسائط المتعدّدة', d:'توسيع الإنتاج المرئي والمسموع عبر قسم ميديا والتحقيقات التلفزيونية.', dot:'#161513'},
+  {year:'٢٠٢٦', t:'الصحافة المدعومة بالذكاء الاصطناعي', d:'إطلاق الموجز الصوتي اليومي والملخّصات الذكية لتجربة قراءة أحدث.', dot:'#B0122A'}
+];
+const SECTIONS = [
+  {x:'معالجات اخبارية'},{x:'تحليلات وآراء'},{x:'القصة في أرقام'},
+  {x:'القصة في صور'},{x:'ميديا والتحقيقات'},{x:'تغطية تفاعلية'}
+];
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  statsRef = React.createRef();
+  n0=React.createRef(); n1=React.createRef(); n2=React.createRef(); n3=React.createRef();
+  state = { lang:'ar' };
+  targets=[12, 2480, 3269, 32];
+  done=false;
+
+  componentDidMount(){
+    this.io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting && !this.done){ this.done=true; this.runCounts(); } }); },{threshold:.15});
+    if(this.statsRef.current) this.io.observe(this.statsRef.current);
+    // fallback: if observer hasn't fired (e.g. already in view or odd scroll container), count anyway
+    this.fb=setTimeout(()=>{ if(!this.done){ this.done=true; this.runCounts(); } }, 1400);
+  }
+  componentWillUnmount(){ if(this.io) this.io.disconnect(); clearInterval(this.cnt); clearTimeout(this.fb); }
+
+  toAr(n){ const f=Math.round(n).toLocaleString('en-US'); return f.replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]).replace(/,/g,'٬'); }
+  runCounts(){
+    const refs=[this.n0,this.n1,this.n2,this.n3];
+    const start=Date.now(), dur=1300;
+    clearInterval(this.cnt);
+    this.cnt=setInterval(()=>{ let p=Math.min((Date.now()-start)/dur,1); const e=1-Math.pow(1-p,3);
+      refs.forEach((r,i)=>{ if(r.current) r.current.textContent=this.toAr(this.targets[i]*e); });
+      if(p>=1) clearInterval(this.cnt);
+    },40);
+  }
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+
+  renderVals(){
+    return {
+      rootRef:this.rootRef, statsRef:this.statsRef, n0:this.n0, n1:this.n1, n2:this.n2, n3:this.n3,
+      langBtn:this.state.lang==='ar'?'EN':'ع', toggleLang:this.toggleLang,
+      milestones:MILES, sections:SECTIONS
+    };
+  }
+}
+</script>
+</body>
+</html>

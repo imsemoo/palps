@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  .ch:hover{transform:translateY(-3px);box-shadow:0 20px 44px -26px rgba(20,18,14,.4)}
+  .ch{transition:transform .2s ease, box-shadow .2s ease}
+  .fld:focus{outline:none;border-color:#161513}
+  .fld{transition:border-color .15s ease}
+  textarea.fld{resize:vertical}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- ===== HEADER ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1140px;margin:0 auto;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;white-space:nowrap;overflow:hidden">
+      <span style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الثلاثاء، ٢٤ يونيو ٢٠٢٦ · القدس ٢٩°</span>
+      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer">{{ langBtn }}</button>
+    </div>
+  </div>
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.93);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1140px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:13px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:46px;width:auto;display:block"/>
+        <div style="line-height:1.15"><div style="font-weight:700;font-size:15px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#B0122A">PALESTINIAN PRESS · NPP</div></div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:2px">
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">معالجات اخبارية</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">تحليلات وآراء</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في أرقام</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في صور</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">ميديا</a>
+      </nav>
+      <span style="width:120px"></span>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section style="max-width:1140px;margin:0 auto;padding:54px 32px 30px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+      <span style="width:26px;height:5px;border-radius:3px;background:#B0122A"></span><span style="width:26px;height:5px;border-radius:3px;background:#1F6B43"></span><span style="width:26px;height:5px;border-radius:3px;background:#161513"></span>
+      <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.22em;color:#8A857E;margin-inline-start:8px">CONTACT</span>
+    </div>
+    <h1 style="margin:0 0 16px;font-size:46px;line-height:1.25;font-weight:700;letter-spacing:-.02em;max-width:20ch">تواصل مع غرفة التحرير</h1>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <p style="margin:0;font-size:19px;line-height:1.7;color:#57534E;font-weight:300;max-width:54ch">سواء عندك بلاغ، أو وثيقة، أو ملاحظة تحريرية — نحن نصغي. اختر القناة المناسبة وسنردّ في أقرب وقت.</p>
+      <span style="display:flex;align-items:center;gap:8px;background:#E9F0EC;color:#1F6B43;font-size:13.5px;font-weight:600;padding:8px 15px;border-radius:22px;flex-shrink:0"><span style="width:9px;height:9px;border-radius:50%;background:#1F6B43"></span>نردّ عادةً خلال ٢٤ ساعة</span>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <div style="max-width:1140px;margin:0 auto;padding:0 32px">
+    <div style="display:grid;grid-template-columns:minmax(0,1.4fr) 1fr;gap:30px;align-items:start">
+
+      <!-- FORM CARD -->
+      <div style="background:#fff;border-radius:22px;padding:30px 32px;box-shadow:0 1px 3px rgba(20,18,14,.06)">
+        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h2 style="margin:0 0 6px;font-size:22px;font-weight:700">أرسل رسالتك</h2>
+            <p style="margin:0 0 22px;font-size:14px;color:#8A857E">كل الحقول المعلّمة بـ<span style="color:#B0122A">*</span> مطلوبة.</p>
+
+            <!-- purpose segmented -->
+            <div style="font-size:13.5px;font-weight:600;margin-bottom:10px">نوع الرسالة</div>
+            <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px">
+              <sc-for list="{{ purposes }}" as="p" hint-placeholder-count="4">
+                <button onClick="{{ p.pick }}" style="display:flex;align-items:center;gap:8px;border:1px solid {{ p.bd }};background:{{ p.bg }};color:{{ p.fg }};padding:9px 15px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px;font-weight:600">{{ p.label }}</button>
+              </sc-for>
+            </div>
+
+            <!-- secure toggle -->
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FAF8F4;border:1px solid #EFEAE2;border-radius:14px;padding:15px 18px;margin-bottom:20px">
+              <div style="display:flex;align-items:flex-start;gap:11px">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                <div><div style="font-size:14.5px;font-weight:600;color:#161513">إرسال بسرّية تامّة</div><div style="font-size:12.5px;color:#57534E;line-height:1.6;margin-top:2px">نخفي اسمك وبريدك ونلتزم بحماية مصدرك.</div></div>
+              </div>
+              <button onClick="{{ toggleSecure }}" role="switch" style="position:relative;width:50px;height:28px;border-radius:16px;border:none;cursor:pointer;background:{{ secureTrack }};flex-shrink:0;transition:background .2s">
+                <span style="position:absolute;top:3px;inset-inline-start:{{ secureKnobStart }};width:22px;height:22px;border-radius:50%;background:#fff;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)"></span>
+              </button>
+            </div>
+
+            <!-- name + email (hidden when secure) -->
+            <sc-if value="{{ notSecure }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">الاسم <span style="color:#B0122A">*</span></label>
+                  <input ref="{{ nameRef }}" onInput="{{ onField }}" data-f="name" placeholder="اسمك الكامل" class="fld" style="width:100%;height:48px;border:1.5px solid {{ nameBd }};border-radius:12px;background:#fff;font-family:'IBM Plex Sans Arabic';font-size:14.5px;padding:0 14px"/>
+                  <sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;color:#B0122A;margin-top:6px">{{ errName }}</div></sc-if>
+                </div>
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">البريد الإلكتروني <span style="color:#B0122A">*</span></label>
+                  <input ref="{{ emailRef }}" onInput="{{ onField }}" data-f="email" placeholder="name@example.com" class="fld" style="width:100%;height:48px;border:1.5px solid {{ emailBd }};border-radius:12px;background:#fff;font-family:Inter,sans-serif;font-size:14.5px;padding:0 14px;direction:ltr;text-align:right"/>
+                  <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;color:#B0122A;margin-top:6px">{{ errEmail }}</div></sc-if>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ secure }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:9px;background:#15140F;color:#cfe6da;border-radius:12px;padding:13px 16px;margin-bottom:16px;font-size:13px;animation:fadeUp .2s ease"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>الوضع السرّي مُفعّل — لن نطلب أيّ بيانات تعريفية.</div>
+            </sc-if>
+
+            <!-- subject -->
+            <div style="margin-bottom:16px">
+              <label style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">الموضوع <span style="color:#B0122A">*</span></label>
+              <input ref="{{ subjectRef }}" onInput="{{ onField }}" data-f="subject" placeholder="عنوان مختصر لرسالتك" class="fld" style="width:100%;height:48px;border:1.5px solid {{ subjectBd }};border-radius:12px;background:#fff;font-family:'IBM Plex Sans Arabic';font-size:14.5px;padding:0 14px"/>
+              <sc-if value="{{ errSubject }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;color:#B0122A;margin-top:6px">{{ errSubject }}</div></sc-if>
+            </div>
+            <!-- message -->
+            <div style="margin-bottom:16px">
+              <label style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">الرسالة <span style="color:#B0122A">*</span></label>
+              <textarea ref="{{ msgRef }}" onInput="{{ onField }}" data-f="message" placeholder="اكتب تفاصيل رسالتك هنا…" class="fld" style="width:100%;min-height:130px;border:1.5px solid {{ msgBd }};border-radius:12px;background:#fff;font-family:'IBM Plex Sans Arabic';font-size:14.5px;padding:13px 14px;line-height:1.7"></textarea>
+              <sc-if value="{{ errMsg }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;color:#B0122A;margin-top:6px">{{ errMsg }}</div></sc-if>
+            </div>
+            <!-- attach -->
+            <div style="display:flex;align-items:center;gap:10px;border:1.5px dashed #D6D0C6;border-radius:12px;padding:14px 16px;margin-bottom:22px;cursor:pointer;color:#57534E">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><path d="M21.4 11.05 12.25 20.2a5 5 0 0 1-7.07-7.07l9.19-9.19a3 3 0 1 1 4.24 4.24l-9.2 9.19a1 1 0 0 1-1.41-1.41l8.49-8.49"/></svg>
+              <span style="font-size:13.5px">إرفاق وثيقة أو صورة <span style="color:#8A857E">(اختياري · حتى ٢٥ ميجابايت)</span></span>
+            </div>
+
+            <button onClick="{{ submit }}" style="width:100%;height:54px;background:#161513;color:#fff;border:none;border-radius:14px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px">إرسال الرسالة<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+          </div>
+        </sc-if>
+
+        <!-- SUCCESS -->
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:30px 10px;animation:fadeUp .3s ease">
+            <div style="width:78px;height:78px;border-radius:50%;background:#E9F0EC;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:pop .4s ease"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h2 style="margin:0 0 10px;font-size:24px;font-weight:700">تمّ استلام رسالتك</h2>
+            <p style="margin:0 0 18px;font-size:15px;line-height:1.8;color:#57534E;max-width:46ch;margin-inline:auto">شكراً لتواصلك مع غرفة التحرير. سنراجع رسالتك ونردّ عليك في أقرب وقت ممكن.</p>
+            <div style="display:inline-flex;align-items:center;gap:9px;background:#FAF8F4;border:1px solid #EFEAE2;border-radius:12px;padding:12px 18px;margin-bottom:24px"><span style="font-size:13px;color:#8A857E">رقم المرجع</span><span style="font-family:Inter,sans-serif;font-size:14px;font-weight:700;color:#161513;letter-spacing:.02em">{{ refNo }}</span></div>
+            <div><button onClick="{{ reset }}" style="background:none;border:1px solid #E2DDD5;color:#161513;padding:11px 22px;border-radius:24px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:14px;font-weight:600">إرسال رسالة أخرى</button></div>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- CHANNELS SIDEBAR -->
+      <aside style="display:flex;flex-direction:column;gap:16px">
+        <div class="ch" style="background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 1px 2px rgba(20,18,14,.05);cursor:pointer">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:8px"><span style="width:40px;height:40px;border-radius:11px;background:#F4EEEA;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg></span><span style="font-size:15.5px;font-weight:700">غرفة الأخبار</span></div>
+          <div style="font-family:Inter,sans-serif;font-size:13.5px;color:#57534E;direction:ltr;text-align:right">newsroom@palps.net</div>
+        </div>
+        <div class="ch" style="background:#15140F;border-radius:18px;padding:20px 22px;cursor:pointer;color:#EDE8E0">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:8px"><span style="width:40px;height:40px;border-radius:11px;background:#26241f;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span style="font-size:15.5px;font-weight:700;color:#fff">البلاغات والوثائق</span></div>
+          <div style="font-size:13px;line-height:1.7;color:#9b948a">قناة آمنة لإرسال الوثائق والتسريبات بسرّية تامّة وحماية كاملة للمصدر.</div>
+        </div>
+        <div class="ch" style="background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 1px 2px rgba(20,18,14,.05);cursor:pointer">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:8px"><span style="width:40px;height:40px;border-radius:11px;background:#E9F0EC;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span><span style="font-size:15.5px;font-weight:700">الإعلانات والشراكات</span></div>
+          <div style="font-family:Inter,sans-serif;font-size:13.5px;color:#57534E;direction:ltr;text-align:right">partners@palps.net</div>
+        </div>
+        <!-- office -->
+        <div style="background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:14.5px;font-weight:700;margin-bottom:12px">المكتب الرئيسي</div>
+          <div style="display:flex;gap:10px;margin-bottom:12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8" style="flex-shrink:0;margin-top:2px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span style="font-size:13.5px;line-height:1.7;color:#57534E">رام الله، فلسطين — شارع الإرسال، عمارة الإعلام</span></div>
+          <div style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span style="font-size:13.5px;line-height:1.7;color:#57534E">الأحد–الخميس · ٩ص – ٦م</span></div>
+          <div style="display:flex;gap:9px;margin-top:16px">
+            <span style="width:38px;height:38px;border-radius:50%;border:1px solid #E2DDD5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-weight:700;font-size:14px;color:#3a3833">𝕏</span>
+            <span style="width:38px;height:38px;border-radius:50%;border:1px solid #E2DDD5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-weight:700;font-size:14px;color:#3a3833">f</span>
+            <span style="width:38px;height:38px;border-radius:50%;border:1px solid #E2DDD5;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#3a3833"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 2.9 11.6c-.9.4-.9 1.2 0 1.5l4.9 1.5 1.9 5.8c.2.5.4.6.8.6s.6-.2 1-.5l2.5-2.4 5 3.7c.5.3 1.1.1 1.3-.6l3.4-15.9c.2-.9-.4-1.3-1.3-1z"/></svg></span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- FAQ -->
+    <section style="padding:54px 0 20px">
+      <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:22px"><h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em">أسئلة شائعة</h2></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+          <div style="background:#fff;border-radius:16px;box-shadow:0 1px 2px rgba(20,18,14,.05);overflow:hidden">
+            <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:none;border:none;cursor:pointer;padding:20px 24px;text-align:start;font-family:'IBM Plex Sans Arabic'">
+              <span style="font-size:16.5px;font-weight:600;color:#161513">{{ f.q }}</span>
+              <span style="width:30px;height:30px;border-radius:50%;background:#F2EFEA;display:flex;align-items:center;justify-content:center;flex-shrink:0;transform:{{ f.rot }};transition:transform .2s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 24px 22px;animation:fadeUp .2s ease"><p style="margin:0;font-size:14.5px;line-height:1.85;color:#57534E;max-width:86ch">{{ f.a }}</p></div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <div style="height:50px"></div>
+  </div>
+
+  <!-- footer -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1140px;margin:0 auto;padding:34px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px"><img src="assets/npp-logo.webp" alt="" style="height:42px;width:auto"/><div><div style="color:#fff;font-weight:700;font-size:14px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div></div>
+      <span style="font-size:12.5px;color:#6f6a60">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1140,&quot;height&quot;:1000}}">
+const PURPOSES=[{key:'general',label:'استفسار عام'},{key:'tip',label:'بلاغ سرّي'},{key:'ad',label:'إعلان وشراكة'},{key:'complaint',label:'شكوى تحريرية'}];
+const FAQS=[
+  {q:'كيف أرسل وثيقة أو تسريباً بسرّية؟', a:'فعّل خيار «إرسال بسرّية تامّة» في النموذج، أو راسلنا عبر قناة البلاغات الآمنة. لا نطلب أيّ بيانات تعريفية، ونلتزم بحماية المصدر بشكل كامل.'},
+  {q:'كم يستغرق الردّ على رسالتي؟', a:'نردّ عادةً خلال ٢٤ ساعة في أيام العمل. البلاغات العاجلة تُعطى أولوية أعلى من قبل غرفة التحرير.'},
+  {q:'كيف أبلّغ عن خطأ في مادة منشورة؟', a:'اختر «شكوى تحريرية» كنوع للرسالة، واذكر رابط المادة وموضع الخطأ. نراجع كل الملاحظات وننشر التصويبات عند الحاجة.'},
+  {q:'هل يمكنني إعادة نشر موادّكم؟', a:'يمكن إعادة النشر مع الإشارة الواضحة إلى المصدر. للاستخدامات التجارية أو الشراكات، تواصل معنا عبر قناة الإعلانات والشراكات.'}
+];
+
+class Component extends DCLogic {
+  rootRef=React.createRef();
+  nameRef=React.createRef(); emailRef=React.createRef(); subjectRef=React.createRef(); msgRef=React.createRef();
+  state={ lang:'ar', purpose:'general', secure:false, errors:{}, submitted:false, refNo:'', faqOpen:0 };
+
+  pickPurpose=(k)=> this.setState({purpose:k, secure:k==='tip'?true:this.state.secure});
+  toggleSecure=()=> this.setState(s=>({secure:!s.secure, errors:{...s.errors,name:'',email:''}}));
+  onField=(e)=>{ const f=e.target.getAttribute('data-f'); if(this.state.errors[f]) this.setState(s=>({errors:{...s.errors,[f]:''}})); };
+  toggleFaq=(i)=> this.setState(s=>({faqOpen:s.faqOpen===i?-1:i}));
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+
+  submit=()=>{
+    const er={};
+    const v=(r)=> r.current? r.current.value.trim():'';
+    if(!this.state.secure){
+      if(!v(this.nameRef)) er.name='الرجاء إدخال الاسم.';
+      const em=v(this.emailRef); if(!em) er.email='الرجاء إدخال البريد.'; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) er.email='صيغة البريد غير صحيحة.';
+    }
+    if(!v(this.subjectRef)) er.subject='الرجاء إدخال الموضوع.';
+    const msg=v(this.msgRef); if(!msg) er.message='الرجاء كتابة الرسالة.'; else if(msg.length<10) er.message='الرسالة قصيرة جداً (١٠ أحرف على الأقل).';
+    if(Object.keys(er).length){ this.setState({errors:er}); return; }
+    const ref='NPP-2026-'+Math.floor(1000+Math.random()*9000);
+    this.setState({submitted:true, refNo:ref, errors:{}});
+  };
+  reset=()=>{ [this.nameRef,this.emailRef,this.subjectRef,this.msgRef].forEach(r=>{ if(r.current) r.current.value=''; }); this.setState({submitted:false, refNo:'', errors:{}}); };
+
+  renderVals(){
+    const S=this.state, E=S.errors;
+    const bd=(f)=> E[f]? '#B0122A':'#E2DDD5';
+    return {
+      rootRef:this.rootRef, langBtn:S.lang==='ar'?'EN':'ع', toggleLang:this.toggleLang,
+      nameRef:this.nameRef, emailRef:this.emailRef, subjectRef:this.subjectRef, msgRef:this.msgRef, onField:this.onField,
+      purposes:PURPOSES.map(p=>({ label:p.label, pick:()=>this.pickPurpose(p.key),
+        bg:S.purpose===p.key?'#161513':'#fff', fg:S.purpose===p.key?'#fff':'#3a3833', bd:S.purpose===p.key?'#161513':'#E2DDD5' })),
+      secure:S.secure, toggleSecure:this.toggleSecure,
+      secureTrack:S.secure?'#1F6B43':'#D6D0C6', secureKnobStart:S.secure?'25px':'3px',
+      nameBd:bd('name'), emailBd:bd('email'), subjectBd:bd('subject'), msgBd:bd('message'),
+      errName:E.name||'', errEmail:E.email||'', errSubject:E.subject||'', errMsg:E.message||'',
+      submit:this.submit, submitted:S.submitted, notSubmitted:!S.submitted, notSecure:!S.secure, refNo:S.refNo, reset:this.reset,
+      faqs:FAQS.map((f,i)=>({ q:f.q, a:f.a, open:S.faqOpen===i, toggle:()=>this.toggleFaq(i), rot:S.faqOpen===i?'rotate(45deg)':'rotate(0deg)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

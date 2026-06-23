@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(176,18,42,.55)}70%{box-shadow:0 0 0 8px rgba(176,18,42,0)}100%{box-shadow:0 0 0 0 rgba(176,18,42,0)}}
+  @keyframes pulseG{0%{box-shadow:0 0 0 0 rgba(31,107,67,.5)}70%{box-shadow:0 0 0 10px rgba(31,107,67,0)}100%{box-shadow:0 0 0 0 rgba(31,107,67,0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- ===== UPPER BAR ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1320px;margin:0 auto;padding:0 32px;height:40px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;letter-spacing:.01em">
+      <div style="display:flex;align-items:center;gap:18px;white-space:nowrap;overflow:hidden">
+        <span style="display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          {{ T.date }}
+        </span>
+        <span style="opacity:.45">|</span>
+        <span style="display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+          {{ T.weather }}
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;white-space:nowrap;flex-shrink:0">
+        <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:4px 11px;border-radius:20px;cursor:pointer;letter-spacing:.04em;flex-shrink:0">{{ T.langBtn }}</button>
+        <span style="display:flex;align-items:center;gap:6px;cursor:pointer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CFC9C0" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        </span>
+        <span style="cursor:pointer;color:#CFC9C0">{{ T.signin }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STICKY: NAV + TICKER ===== -->
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1320px;margin:0 auto;padding:0 32px;height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:14px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:50px;width:auto;display:block"/>
+        <div style="line-height:1.15">
+          <div style="font-weight:700;font-size:16px;letter-spacing:-.01em">شبكة الصحافة الفلسطينية</div>
+          <div style="font-family:Inter,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.22em;color:#B0122A">PALESTINIAN PRESS · NPP</div>
+        </div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:4px">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
+          <a href="#" style="position:relative;padding:8px 15px;font-size:15px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px;transition:background .15s,color .15s" style-hover="background:#EBE6DE;color:#161513">{{ item }}</a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+        <button style="display:flex;align-items:center;gap:8px;background:#161513;color:#fff;border:none;padding:9px 16px;border-radius:24px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:14px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+          بحث
+        </button>
+      </div>
+    </div>
+
+    <!-- breaking ticker -->
+    <div onMouseEnter="{{ pauseTicker }}" onMouseLeave="{{ resumeTicker }}" style="background:#161513;color:#F2EFEA;height:46px;display:flex;align-items:stretch;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:9px;background:#B0122A;color:#fff;padding:0 18px;font-weight:700;font-size:13.5px;letter-spacing:.02em;flex-shrink:0;position:relative;z-index:2">
+        <span style="width:9px;height:9px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite"></span>
+        {{ T.breaking }}
+      </div>
+      <div style="flex:1;overflow:hidden;position:relative;display:flex;align-items:center">
+        <div ref="{{ tickerRef }}" style="display:flex;align-items:center;white-space:nowrap;animation:marquee 38s linear infinite;will-change:transform">
+          <sc-for list="{{ breaking }}" as="b" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:12px;padding:0 26px;font-size:14px">
+              <span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:600;color:#9b958b;border:1px solid #3a3833;padding:2px 8px;border-radius:4px">{{ b.t }}</span>
+              <span style="color:#E9E4DC">{{ b.x }}</span>
+              <span style="color:#3a3833">◆</span>
+            </span>
+          </sc-for>
+          <sc-for list="{{ breaking }}" as="b" hint-placeholder-count="4">
+            <span style="display:inline-flex;align-items:center;gap:12px;padding:0 26px;font-size:14px">
+              <span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:600;color:#9b958b;border:1px solid #3a3833;padding:2px 8px;border-radius:4px">{{ b.t }}</span>
+              <span style="color:#E9E4DC">{{ b.x }}</span>
+              <span style="color:#3a3833">◆</span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO: INTELLIGENCE CENTER ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:34px 32px 16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <div style="display:flex;align-items:baseline;gap:14px">
+        <h2 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-.01em;color:#161513">{{ T.ic }}</h2>
+        <span style="font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;color:#B0122A">INTELLIGENCE CENTER</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#57534E">
+        <span style="width:8px;height:8px;border-radius:50%;background:#1F6B43;animation:pulseG 1.8s infinite"></span>
+        {{ T.icLive }} · <span style="font-family:Inter,monospace;letter-spacing:.04em">{{ clock }}</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1.85fr 1fr;gap:20px;align-items:stretch">
+      <!-- LEFT: Zone A main story + Zone C/D row -->
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <!-- Zone A featured immersive -->
+        <article style="position:relative;border-radius:20px;overflow:hidden;flex:1;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(160deg,#2a2721,#141310);box-shadow:0 24px 60px -28px rgba(20,18,14,.5);cursor:pointer">
+          <span style="position:absolute;top:18px;inset-inline-start:18px;z-index:3;display:flex;align-items:center;gap:7px;background:rgba(15,13,10,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:11px;font-weight:600;letter-spacing:.06em;padding:5px 11px;border-radius:20px;font-family:Inter,sans-serif">ZONE A · القصة الرئيسية</span>
+          <img ref="{{ heroImgRef }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.82)"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,13,10,.94) 0%,rgba(15,13,10,.5) 48%,rgba(15,13,10,.15) 78%)"></div>
+          <div style="position:relative;padding:36px 40px">
+            <span style="display:inline-block;background:#B0122A;color:#fff;font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:6px;margin-bottom:16px">{{ lead.cat }}</span>
+            <h1 style="margin:0 0 16px;font-size:36px;line-height:1.32;font-weight:700;color:#fff;letter-spacing:-.01em;max-width:34ch;text-wrap:balance">{{ lead.x }}</h1>
+            <p style="margin:0 0 18px;font-size:15.5px;line-height:1.8;color:#cdc7bd;max-width:60ch">{{ lead.d }}</p>
+            <div style="display:flex;align-items:center;gap:16px;font-size:13.5px;color:#a59f95;font-family:Inter,sans-serif">
+              <span style="color:#E9E4DC;font-family:'IBM Plex Sans Arabic'">{{ lead.by }}</span>
+              <span>•</span><span>{{ lead.t }}</span>
+              <span style="display:flex;align-items:center;gap:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a59f95" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{ lead.r }} {{ T.read }}</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Zone C audio + Zone D video -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <!-- Zone C compact audio brief -->
+          <div style="position:relative;background:linear-gradient(140deg,#1b1a15,#221f18);border-radius:18px;padding:20px;display:flex;flex-direction:column;box-shadow:0 18px 44px -28px rgba(20,18,14,.5)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+              <span style="font-size:10px;font-weight:600;letter-spacing:.06em;color:#0f0d0a;background:#cdbf6a;padding:2px 8px;border-radius:4px;font-family:Inter,sans-serif">AI · ZONE C</span>
+              <span style="font-size:12px;color:#9b948a">{{ T.s_audio }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <button onClick="{{ togglePlay }}" style="width:48px;height:48px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#161513"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></sc-if>
+                <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}" not><svg width="20" height="20" viewBox="0 0 24 24" fill="#161513" style="margin-inline-start:3px"><path d="M7 5v14l12-7z"/></svg></sc-if>
+              </button>
+              <div style="min-width:0;flex:1">
+                <div style="font-size:14px;font-weight:600;color:#EDE8E0;line-height:1.45;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">موجز اليوم الصوتي</div>
+                <div style="font-family:Inter,sans-serif;font-size:11.5px;color:#8a847a">{{ cur }} / 8:42</div>
+              </div>
+            </div>
+            <div style="margin-top:14px;height:4px;border-radius:3px;background:#34302a;overflow:hidden"><div style="height:100%;width:{{ progPct }};background:#B0122A;border-radius:3px"></div></div>
+          </div>
+
+          <!-- Zone D compact visual coverage -->
+          <article onClick="{{ zoneVid.open }}" style="position:relative;border-radius:18px;overflow:hidden;min-height:150px;cursor:pointer;background:#1b1a15;box-shadow:0 18px 44px -28px rgba(20,18,14,.5)">
+            <img ref="{{ zoneVidImgRef }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.72)"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,13,9,.92),rgba(15,13,9,.1) 60%)"></div>
+            <span style="position:absolute;top:14px;inset-inline-start:14px;z-index:2;background:rgba(15,13,10,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;font-family:Inter,sans-serif">ZONE D · مرئيات</span>
+            <span style="position:absolute;top:14px;inset-inline-end:14px;z-index:2;background:rgba(15,13,10,.7);color:#fff;font-size:11px;font-family:Inter,sans-serif;padding:3px 8px;border-radius:5px">{{ zoneVid.dur }}</span>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;z-index:2"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:2px"><path d="M7 5v14l12-7z"/></svg></div>
+            <h3 style="position:absolute;bottom:0;z-index:2;margin:0;padding:16px;font-size:14px;line-height:1.5;font-weight:600;color:#fff">{{ zoneVid.x }}</h3>
+          </article>
+        </div>
+      </div>
+
+      <!-- ZONE B: live intelligence feed (dark terminal) -->
+      <aside style="background:#15140F;border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;box-shadow:0 24px 60px -30px rgba(20,18,14,.45)">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid #2a2823">
+          <div style="display:flex;align-items:center;gap:9px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#1F6B43;animation:pulseG 1.8s infinite"></span>
+            <span style="color:#fff;font-weight:600;font-size:15px">{{ T.feedTitle }}</span>
+          </div>
+          <span style="font-family:Inter,monospace;font-size:12.5px;color:#1F8A5B;letter-spacing:.05em">{{ clock }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;margin-top:6px">
+          <sc-for list="{{ feed }}" as="f" hint-placeholder-count="5">
+            <div style="position:relative;padding:15px 18px 15px 0;border-bottom:1px solid #211f1a;cursor:pointer;transition:background .15s" style-hover="background:#1c1b16">
+              <div style="position:absolute;top:18px;right:5px;width:8px;height:8px;border-radius:50%;background:#332f28;border:2px solid #4a463d"></div>
+              <div style="position:absolute;top:26px;bottom:-1px;right:8px;width:1px;background:#26241f"></div>
+              <div style="padding-right:22px">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+                  <span style="font-size:11px;font-weight:600;color:#fff;background:{{ f.c }};padding:2px 8px;border-radius:4px">{{ f.tag }}</span>
+                  <span style="font-family:Inter,sans-serif;font-size:11.5px;color:#7d7669">{{ f.t }}</span>
+                </div>
+                <div style="font-size:14px;line-height:1.6;color:#d8d2c8">{{ f.x }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#" style="margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#1F8A5B;font-size:14px;font-weight:600;text-decoration:none">عرض البث الكامل
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== DAILY AUDIO BRIEF ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:40px 32px">
+    <div style="background:linear-gradient(135deg,#1b1a15 0%,#221f18 100%);border-radius:24px;overflow:hidden;box-shadow:0 30px 70px -34px rgba(20,18,14,.6)">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:0">
+        <!-- cover -->
+        <div style="position:relative;background:linear-gradient(155deg,#B0122A,#7d0d1f);min-height:300px;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.07) 0 14px,transparent 14px 28px)"></div>
+          <div style="position:relative;text-align:center;color:#fff">
+            <div style="width:78px;height:78px;border-radius:50%;border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h1a2 2 0 0 1 2 2zM3 19a2 2 0 0 0 2 2h1v-7H5a2 2 0 0 0-2 2z"/></svg>
+            </div>
+            <div style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:.28em;opacity:.85">DAILY BRIEF</div>
+          </div>
+        </div>
+        <!-- player -->
+        <div style="padding:30px 36px;color:#EDE8E0;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.04em;color:#0f0d0a;background:#cdbf6a;padding:3px 10px;border-radius:5px;font-family:Inter,sans-serif">AI</span>
+            <span style="font-size:13px;color:#9b948a">{{ T.audioKicker }} · {{ T.s_audio }}</span>
+          </div>
+          <h2 style="margin:0 0 8px;font-size:25px;font-weight:700;color:#fff;line-height:1.4">موجز اليوم: حراك ٢٦ يونيو وتغييرات فتح والخروقات المستمرة</h2>
+          <p style="margin:0 0 20px;font-size:14.5px;line-height:1.75;color:#a59f95;max-width:70ch">{{ T.audioDesc }}</p>
+
+          <!-- waveform -->
+          <div onClick="{{ seek }}" style="display:flex;align-items:flex-end;gap:2px;height:60px;cursor:pointer;margin-bottom:14px">
+            <sc-for list="{{ wf }}" as="bar" hint-placeholder-count="40">
+              <span style="flex:1;border-radius:2px;height:{{ bar.h }};background:{{ bar.col }};min-height:3px"></span>
+            </sc-for>
+          </div>
+
+          <!-- controls -->
+          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+            <button onClick="{{ togglePlay }}" style="width:54px;height:54px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#161513"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              </sc-if>
+              <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}" not>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#161513" style="margin-inline-start:3px"><path d="M7 5v14l12-7z"/></svg>
+              </sc-if>
+            </button>
+            <div style="display:flex;align-items:center;gap:8px;font-family:Inter,sans-serif;font-size:13px;color:#cdc7bd">
+              <span>{{ cur }}</span><span style="color:#5f5a51">/</span><span style="color:#8a847a">{{ rem }}</span>
+            </div>
+            <button onClick="{{ cycleSpeed }}" style="background:#2a2821;color:#EDE8E0;border:none;padding:8px 14px;border-radius:20px;cursor:pointer;font-family:Inter,sans-serif;font-size:13px;font-weight:600">{{ speedLabel }}</button>
+            <div style="display:flex;align-items:center;gap:8px;color:#8a847a">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8a847a" stroke-width="1.7"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
+            </div>
+            <div style="flex:1"></div>
+            <button style="display:flex;align-items:center;gap:7px;background:none;border:1px solid #3a3830;color:#cdc7bd;padding:8px 15px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#cdc7bd" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>{{ T.download }}
+            </button>
+            <button style="display:flex;align-items:center;gap:7px;background:none;border:1px solid #3a3830;color:#cdc7bd;padding:8px 15px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#cdc7bd" stroke-width="1.7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>{{ T.share }}
+            </button>
+          </div>
+
+          <!-- transcript preview -->
+          <div style="margin-top:22px;padding-top:18px;border-top:1px solid #2c2a23">
+            <div style="font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#7d7669;margin-bottom:8px">{{ T.transcript }}</div>
+            <p style="margin:0;font-size:14px;line-height:1.85;color:#9b948a;max-width:90ch">«في موجز اليوم نتوقّف عند تفاعلات حراك ٢٦ يونيو في غزة، وما رافقه من جدل حول المنشورات والأهداف، ثم ننتقل إلى تداعيات تغييرات فتح بعد المؤتمر الثامن، قبل أن نختم بأرقام الخروقات المتواصلة لاتفاق وقف إطلاق النار…»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:34px 32px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:26px">
+      <h2 style="margin:0;font-size:27px;font-weight:700;letter-spacing:-.01em">{{ T.s_latest }}</h2>
+      <a href="#" style="display:flex;align-items:center;gap:6px;color:#B0122A;font-size:14px;font-weight:600;text-decoration:none">{{ T.viewAll }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <sc-for list="{{ latest }}" as="a" hint-placeholder-count="6">
+        <article style="background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,18,14,.4)">
+          <div style="position:relative;aspect-ratio:16/10;background:#E9E4DC;overflow:hidden">
+            <img src="{{ a.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/>
+            <span style="position:absolute;top:13px;inset-inline-start:13px;z-index:2;background:rgba(22,21,19,.86);color:#fff;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:6px">{{ a.cat }}</span>
+          </div>
+          <div style="padding:18px 18px 20px">
+            <h3 style="margin:0 0 14px;font-size:17px;line-height:1.55;font-weight:600;color:#161513">{{ a.x }}</h3>
+            <div style="display:flex;align-items:center;gap:12px;font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif">
+              <span>{{ a.t }}</span><span>•</span><span>{{ a.r }} {{ T.minRead }}</span>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== ANALYSIS (magazine) ===== -->
+  <section style="background:#15140F;margin-top:24px">
+    <div style="max-width:1320px;margin:0 auto;padding:48px 32px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #2e2b24;padding-bottom:12px;margin-bottom:30px">
+        <h2 style="margin:0;font-size:27px;font-weight:700;color:#fff;letter-spacing:-.01em">{{ T.s_analysis }}</h2>
+        <a href="#" style="display:flex;align-items:center;gap:6px;color:#1F8A5B;font-size:14px;font-weight:600;text-decoration:none">{{ T.viewAll }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:32px">
+        <article style="cursor:pointer">
+          <div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#1b1a15;margin-bottom:20px">
+            <img ref="{{ anaImgRef }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.88)"/>
+            <span style="position:absolute;top:15px;inset-inline-start:15px;z-index:2;background:#1F6B43;color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:6px">{{ lead.cat }}</span>
+          </div>
+          <h3 style="margin:0 0 12px;font-size:28px;line-height:1.4;font-weight:700;color:#fff;letter-spacing:-.01em;text-wrap:balance">{{ lead.x }}</h3>
+          <p style="margin:0 0 14px;font-size:15px;line-height:1.8;color:#a59f95">{{ lead.d }}</p>
+          <div style="font-size:13px;color:#7d7669;font-family:Inter,sans-serif">{{ lead.by }} · {{ lead.t }}</div>
+        </article>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ analysis }}" as="a" hint-placeholder-count="3">
+            <article style="padding:20px 0;border-bottom:1px solid #28261f;cursor:pointer;display:flex;gap:16px" style-hover="opacity:.82">
+              <div style="width:96px;height:72px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#1b1a15"><img src="{{ a.img }}" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(.92)"/></div>
+              <div>
+                <h4 style="margin:0 0 9px;font-size:16px;line-height:1.5;font-weight:600;color:#EDE8E0">{{ a.x }}</h4>
+                <div style="font-size:12px;color:#7d7669;font-family:Inter,sans-serif">{{ a.by }} · {{ a.t }}</div>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IN NUMBERS ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:48px 32px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:26px">
+      <h2 style="margin:0;font-size:27px;font-weight:700;letter-spacing:-.01em">{{ T.s_numbers }}</h2>
+      <a href="#" style="display:flex;align-items:center;gap:6px;color:#B0122A;font-size:14px;font-weight:600;text-decoration:none">{{ T.viewAll }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <sc-for list="{{ numbers }}" as="n" hint-placeholder-count="3">
+        <div style="background:#fff;border-radius:18px;padding:34px 30px;box-shadow:0 1px 2px rgba(20,18,14,.04)">
+          <div style="font-family:Inter,sans-serif;font-weight:800;font-size:60px;line-height:1;color:{{ n.c }};letter-spacing:-.03em">{{ n.v }}</div>
+          <div style="margin-top:16px;width:42px;height:3px;background:{{ n.c }};border-radius:2px"></div>
+          <div style="margin-top:16px;font-size:16px;line-height:1.6;color:#3a3833;font-weight:500">{{ n.l }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== IN PICTURES (horizontal) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:14px 32px 48px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:26px">
+      <h2 style="margin:0;font-size:27px;font-weight:700;letter-spacing:-.01em">{{ T.s_pictures }}</h2>
+      <a href="#" style="display:flex;align-items:center;gap:6px;color:#B0122A;font-size:14px;font-weight:600;text-decoration:none">{{ T.viewAll }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <sc-for list="{{ pictures }}" as="p" hint-placeholder-count="2">
+        <article style="display:grid;grid-template-columns:380px 1fr;gap:28px;background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04);transition:box-shadow .2s" style-hover="box-shadow:0 18px 44px -24px rgba(20,18,14,.4)">
+          <div style="position:relative;aspect-ratio:16/10;background:#E6E1D9;overflow:hidden">
+            <img src="{{ p.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/>
+            <span style="position:absolute;bottom:13px;inset-inline-start:13px;z-index:2;display:flex;align-items:center;gap:6px;background:rgba(22,21,19,.86);color:#fff;font-size:11.5px;padding:4px 10px;border-radius:6px">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>{{ p.n }}</span>
+          </div>
+          <div style="padding:26px 28px 26px 0;display:flex;flex-direction:column;justify-content:center">
+            <h3 style="margin:0 0 12px;font-size:22px;line-height:1.5;font-weight:700;color:#161513;letter-spacing:-.005em">{{ p.x }}</h3>
+            <p style="margin:0 0 16px;font-size:15px;line-height:1.8;color:#57534E;max-width:62ch">{{ p.d }}</p>
+            <div style="font-size:13px;color:#8A857E;font-family:Inter,sans-serif">{{ p.t }}</div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO (visual stories) ===== -->
+  <section style="background:#15140F">
+    <div style="max-width:1320px;margin:0 auto;padding:48px 32px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #2e2b24;padding-bottom:12px;margin-bottom:28px">
+        <div>
+          <div style="font-size:12.5px;font-weight:600;letter-spacing:.1em;color:#1F8A5B;margin-bottom:6px;font-family:Inter,sans-serif">MEDIA · ميديا</div>
+          <h2 style="margin:0;font-size:27px;font-weight:700;color:#fff;letter-spacing:-.01em">{{ T.s_video }}</h2>
+        </div>
+        <a href="#" style="display:flex;align-items:center;gap:6px;color:#1F8A5B;font-size:14px;font-weight:600;text-decoration:none">{{ T.viewAll }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+        <sc-for list="{{ videos }}" as="v" hint-placeholder-count="4">
+          <article onClick="{{ v.open }}" style="cursor:pointer">
+            <div style="position:relative;aspect-ratio:9/12;border-radius:16px;overflow:hidden;background:#1b1a15;transition:transform .2s" style-hover="transform:translateY(-4px)">
+              <img src="{{ v.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.8)"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,13,9,.92),rgba(15,13,9,.1) 55%,rgba(15,13,9,.25))"></div>
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:3px"><path d="M7 5v14l12-7z"/></svg>
+              </div>
+              <span style="position:absolute;top:13px;inset-inline-start:13px;background:rgba(22,21,19,.8);color:#fff;font-size:11px;font-weight:500;padding:3px 9px;border-radius:5px">{{ v.cat }}</span>
+              <span style="position:absolute;top:13px;inset-inline-end:13px;background:rgba(22,21,19,.8);color:#fff;font-size:11px;font-family:Inter,sans-serif;padding:3px 8px;border-radius:5px">{{ v.dur }}</span>
+              <h3 style="position:absolute;bottom:0;margin:0;padding:18px;font-size:15.5px;line-height:1.55;font-weight:600;color:#fff">{{ v.x }}</h3>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE COVERAGE ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:48px 32px">
+    <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:26px">
+      <h2 style="margin:0 0 6px;font-size:27px;font-weight:700;letter-spacing:-.01em">{{ T.s_cover }}</h2>
+      <p style="margin:0;font-size:14.5px;color:#57534E">{{ T.coverDesc }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:22px">
+      <!-- map -->
+      <div style="position:relative;border-radius:18px;overflow:hidden;min-height:380px;background:#EAE5DD;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 24px,transparent 24px 48px),repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0 24px,transparent 24px 48px)">
+        <span style="position:absolute;top:16px;inset-inline-start:18px;font-family:Inter,monospace;font-size:10.5px;letter-spacing:.18em;color:#a39d92">INTERACTIVE MAP · فلسطين</span>
+        <!-- hotspots -->
+        <div style="position:absolute;top:34%;left:46%;text-align:center">
+          <span style="display:block;width:14px;height:14px;border-radius:50%;background:#B0122A;animation:pulse 2s infinite;margin:0 auto"></span>
+          <span style="display:inline-block;margin-top:7px;background:#161513;color:#fff;font-size:11.5px;padding:3px 9px;border-radius:5px">غزة · ٣٢٦٩</span>
+        </div>
+        <div style="position:absolute;top:52%;left:62%;text-align:center">
+          <span style="display:block;width:11px;height:11px;border-radius:50%;background:#1F6B43;animation:pulseG 2.4s infinite;margin:0 auto"></span>
+          <span style="display:inline-block;margin-top:7px;background:#161513;color:#fff;font-size:11.5px;padding:3px 9px;border-radius:5px">رام الله</span>
+        </div>
+        <div style="position:absolute;top:24%;left:66%;text-align:center">
+          <span style="display:block;width:11px;height:11px;border-radius:50%;background:#1F6B43;animation:pulseG 2.8s infinite;margin:0 auto"></span>
+          <span style="display:inline-block;margin-top:7px;background:#161513;color:#fff;font-size:11.5px;padding:3px 9px;border-radius:5px">جنين</span>
+        </div>
+        <div style="position:absolute;bottom:18px;inset-inline-end:18px;display:flex;gap:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(4px);padding:9px 15px;border-radius:10px;font-size:12px;color:#3a3833">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#B0122A"></span>عاجل</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#1F6B43"></span>متابعة</span>
+        </div>
+      </div>
+      <!-- timeline + stats -->
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="background:#fff;border-radius:18px;padding:24px;box-shadow:0 1px 2px rgba(20,18,14,.04)">
+          <div style="font-size:15px;font-weight:600;margin-bottom:18px">الخط الزمني — اليوم</div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <div style="position:relative;padding:0 22px 18px 0;border-inline-end:none">
+              <span style="position:absolute;top:3px;inset-inline-start:6px;width:11px;height:11px;border-radius:50%;background:#B0122A"></span>
+              <span style="position:absolute;top:14px;bottom:0;inset-inline-start:11px;width:1px;background:#E2DDD5"></span>
+              <div style="padding-inline-start:30px"><div style="font-family:Inter,sans-serif;font-size:12px;color:#8A857E;margin-bottom:3px">١٠:٤٢</div><div style="font-size:14px;line-height:1.5;color:#161513">رصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</div></div>
+            </div>
+            <div style="position:relative;padding:0 22px 18px 0">
+              <span style="position:absolute;top:3px;inset-inline-start:6px;width:11px;height:11px;border-radius:50%;background:#1F6B43"></span>
+              <span style="position:absolute;top:14px;bottom:0;inset-inline-start:11px;width:1px;background:#E2DDD5"></span>
+              <div style="padding-inline-start:30px"><div style="font-family:Inter,sans-serif;font-size:12px;color:#8A857E;margin-bottom:3px">٠٩:١٥</div><div style="font-size:14px;line-height:1.5;color:#161513">وقفات احتجاجية ضد الاعتقال السياسي في الضفة</div></div>
+            </div>
+            <div style="position:relative;padding:0 22px 0 0">
+              <span style="position:absolute;top:3px;inset-inline-start:6px;width:11px;height:11px;border-radius:50%;background:#C9C3B9"></span>
+              <div style="padding-inline-start:30px"><div style="font-family:Inter,sans-serif;font-size:12px;color:#8A857E;margin-bottom:3px">٠٨:٣٠</div><div style="font-size:14px;line-height:1.5;color:#161513">تحذير من انهيار المستشفيات في الضفة الغربية</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="background:#15140F;border-radius:16px;padding:20px"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:30px;color:#fff;line-height:1">٢٤٥</div><div style="font-size:12.5px;color:#9b948a;margin-top:6px">يوماً من الرصد</div></div>
+          <div style="background:#15140F;border-radius:16px;padding:20px"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:30px;color:#fff;line-height:1">٣</div><div style="font-size:12.5px;color:#9b948a;margin-top:6px">محافظات تحت التغطية</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MOST READ + TRENDING ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:14px 32px 52px">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:42px">
+      <div>
+        <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:8px"><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em">{{ T.s_most }}</h2></div>
+        <sc-for list="{{ mostRead }}" as="m" hint-placeholder-count="5">
+          <article style="display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid #E2DDD5;cursor:pointer" style-hover="opacity:.7">
+            <span style="font-family:Inter,sans-serif;font-weight:800;font-size:30px;color:#D6D0C6;flex-shrink:0;width:46px">{{ m.n }}</span>
+            <div>
+              <h3 style="margin:0 0 6px;font-size:16.5px;line-height:1.5;font-weight:600;color:#161513">{{ m.x }}</h3>
+              <span style="font-size:12px;color:#B0122A;font-weight:500">{{ m.t }}</span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <div>
+        <div style="border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:20px"><h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em">{{ T.s_trend }}</h2></div>
+        <div style="display:flex;flex-wrap:wrap;gap:11px">
+          <sc-for list="{{ trending }}" as="t" hint-placeholder-count="8">
+            <a href="#" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E2DDD5;padding:10px 15px;border-radius:24px;text-decoration:none;cursor:pointer;transition:border-color .15s,transform .15s" style-hover="border-color:#161513;transform:translateY(-2px)">
+              <span style="color:#B0122A;font-weight:700;font-family:Inter,sans-serif">#</span>
+              <span style="font-size:14px;color:#161513;font-weight:500">{{ t.x }}</span>
+              <span style="font-family:Inter,sans-serif;font-size:11.5px;color:#8A857E;background:#F2EFEA;padding:2px 8px;border-radius:12px">{{ t.n }}</span>
+            </a>
+          </sc-for>
+        </div>
+        <div style="margin-top:28px;background:linear-gradient(135deg,#1F6B43,#16502f);border-radius:18px;padding:26px;color:#fff">
+          <div style="font-size:17px;font-weight:700;margin-bottom:6px">{{ T.nl }}</div>
+          <p style="margin:0 0 16px;font-size:13.5px;line-height:1.7;color:#cfe6da">{{ T.nlDesc }}</p>
+          <div style="display:flex;gap:8px">
+            <input placeholder="{{ T.emailPh }}" style="flex:1;border:none;border-radius:10px;padding:11px 14px;font-family:'IBM Plex Sans Arabic';font-size:13.5px;background:rgba(255,255,255,.92)"/>
+            <button style="background:#fff;color:#16502f;border:none;border-radius:10px;padding:0 18px;font-weight:700;font-family:'IBM Plex Sans Arabic';font-size:13.5px;cursor:pointer">{{ T.subscribe }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1320px;margin:0 auto;padding:54px 32px 30px">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid #26241f">
+        <div>
+          <div style="display:flex;align-items:center;gap:13px;margin-bottom:16px">
+            <img src="assets/npp-logo.webp" alt="" style="height:54px;width:auto;filter:drop-shadow(0 0 1px rgba(255,255,255,.4))"/>
+            <div><div style="color:#fff;font-weight:700;font-size:16px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.2em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div>
+          </div>
+          <p style="margin:0 0 18px;font-size:13.5px;line-height:1.85;max-width:46ch">نقدّم المعالجات الإخبارية والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تركّز على المهنية والموضوعية.</p>
+          <div style="display:flex;gap:10px">
+            <sc-for list="{{ trending }}" as="t" hint-placeholder-count="0"></sc-for>
+            <span style="width:36px;height:36px;border-radius:50%;border:1px solid #2e2b24;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-size:13px;color:#cfc9c0">f</span>
+            <span style="width:36px;height:36px;border-radius:50%;border:1px solid #2e2b24;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-size:13px;color:#cfc9c0">X</span>
+            <span style="width:36px;height:36px;border-radius:50%;border:1px solid #2e2b24;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-size:11px;color:#cfc9c0">YT</span>
+            <span style="width:36px;height:36px;border-radius:50%;border:1px solid #2e2b24;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-size:11px;color:#cfc9c0">IG</span>
+            <span style="width:36px;height:36px;border-radius:50%;border:1px solid #2e2b24;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-size:11px;color:#cfc9c0">TG</span>
+          </div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:600;font-size:14px;margin-bottom:16px">{{ T.f_sections }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:13.5px">
+            <a href="#" style="color:#A39D92;text-decoration:none">معالجات اخبارية</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">تحليلات وآراء</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">القصة في أرقام</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">القصة في صور</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">ميديا</a>
+          </div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:600;font-size:14px;margin-bottom:16px">{{ T.f_about }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:13.5px">
+            <a href="#" style="color:#A39D92;text-decoration:none">{{ T.f_about }}</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">{{ T.f_policy }}</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">{{ T.s_audio }}</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">{{ T.s_video }}</a>
+            <a href="#" style="color:#A39D92;text-decoration:none">{{ T.f_contact }}</a>
+          </div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:600;font-size:14px;margin-bottom:16px">{{ T.nl }}</div>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.7">{{ T.nlDesc }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <input placeholder="{{ T.emailPh }}" style="border:1px solid #2e2b24;background:#1a1813;border-radius:10px;padding:11px 14px;font-family:'IBM Plex Sans Arabic';font-size:13px;color:#fff"/>
+            <button style="background:#B0122A;color:#fff;border:none;border-radius:10px;padding:11px;font-weight:600;font-family:'IBM Plex Sans Arabic';font-size:13.5px;cursor:pointer">{{ T.subscribe }}</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-wrap:wrap;gap:12px">
+        <span style="font-size:12.5px;color:#6f6a60">{{ T.rights }}</span>
+        <div style="display:flex;gap:20px;font-size:12.5px">
+          <a href="#" style="color:#6f6a60;text-decoration:none">{{ T.f_policy }}</a>
+          <a href="#" style="color:#6f6a60;text-decoration:none">{{ T.f_contact }}</a>
+          <a href="#" style="color:#6f6a60;text-decoration:none">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING MINI PLAYER ===== -->
+  <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:22px;inset-inline-start:22px;z-index:80;width:340px;max-width:calc(100vw - 44px);background:#15140F;border-radius:16px;box-shadow:0 24px 60px -20px rgba(0,0,0,.55);overflow:hidden;animation:fadeUp .3s ease">
+      <div style="height:3px;background:#34302a"><div style="height:100%;width:{{ progPct }};background:#B0122A"></div></div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 15px">
+        <div style="width:46px;height:46px;border-radius:11px;flex-shrink:0;background:linear-gradient(155deg,#B0122A,#7d0d1f);display:flex;align-items:center;justify-content:center">
+          <span style="display:flex;align-items:flex-end;gap:2px;height:18px">
+            <span style="width:2.5px;background:#fff;border-radius:2px;height:100%;transform-origin:bottom;animation:eq .9s ease-in-out infinite"></span>
+            <span style="width:2.5px;background:#fff;border-radius:2px;height:100%;transform-origin:bottom;animation:eq .9s ease-in-out infinite .25s"></span>
+            <span style="width:2.5px;background:#fff;border-radius:2px;height:100%;transform-origin:bottom;animation:eq .9s ease-in-out infinite .5s"></span>
+            <span style="width:2.5px;background:#fff;border-radius:2px;height:100%;transform-origin:bottom;animation:eq .9s ease-in-out infinite .15s"></span>
+          </span>
+        </div>
+        <div style="min-width:0;flex:1">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:#1F8A5B;font-family:Inter,sans-serif;margin-bottom:3px">{{ T.nowPlaying }}</div>
+          <div style="font-size:13.5px;font-weight:600;color:#EDE8E0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">موجز اليوم الصوتي · {{ cur }}</div>
+        </div>
+        <button onClick="{{ togglePlay }}" style="width:40px;height:40px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#161513"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        </button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <sc-if value="{{ videoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeVideo }}" style="position:fixed;inset:0;z-index:90;background:rgba(10,9,7,.78);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:40px;animation:fadeUp .25s ease">
+      <div onClick="{{ stop }}" style="width:min(1100px,100%);max-height:90vh;overflow:auto;background:#15140F;border-radius:22px;box-shadow:0 40px 100px -30px rgba(0,0,0,.7)">
+        <div style="position:relative;aspect-ratio:16/9;background:#0c0b08;display:flex;align-items:center;justify-content:center;border-radius:22px 22px 0 0;overflow:hidden">
+          <img src="{{ current.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(.6)"/>
+          <div style="width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:4px"><path d="M7 5v14l12-7z"/></svg>
+          </div>
+          <button onClick="{{ closeVideo }}" style="position:absolute;top:16px;inset-inline-end:16px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div style="padding:26px 30px 32px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="background:#B0122A;color:#fff;font-size:11.5px;font-weight:600;padding:3px 11px;border-radius:5px">{{ current.cat }}</span>
+            <span style="font-family:Inter,sans-serif;font-size:12.5px;color:#8a847a">{{ current.dur }}</span>
+          </div>
+          <h2 style="margin:0 0 18px;font-size:24px;line-height:1.45;font-weight:700;color:#fff">{{ current.x }}</h2>
+          <!-- tabs -->
+          <div style="display:flex;gap:8px;margin-bottom:18px">
+            <button onClick="{{ setWatch }}" style="background:{{ watchBg }};color:{{ watchFg }};border:1px solid #2e2b24;padding:8px 18px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px;font-weight:500">{{ T.watch }}</button>
+            <button onClick="{{ setScript }}" style="background:{{ scriptBg }};color:{{ scriptFg }};border:1px solid #2e2b24;padding:8px 18px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px;font-weight:500">{{ T.script }}</button>
+            <div style="flex:1"></div>
+            <button style="display:flex;align-items:center;gap:7px;background:none;border:1px solid #2e2b24;color:#cdc7bd;padding:8px 16px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13.5px">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#cdc7bd" stroke-width="1.7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg>{{ T.share }}
+            </button>
+          </div>
+          <sc-if value="{{ isScript }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+              <sc-for list="{{ scriptLines }}" as="line" hint-placeholder-count="3">
+                <p style="margin:0;font-size:14.5px;line-height:1.85;color:#a59f95">{{ line }}</p>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div style="font-size:13px;font-weight:600;color:#7d7669;margin-bottom:14px">{{ T.related }}</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+            <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+              <article onClick="{{ r.open }}" style="cursor:pointer">
+                <div style="position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#1b1a15;margin-bottom:9px">
+                  <img src="{{ r.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(.7)"/>
+                  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;z-index:2"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:2px"><path d="M7 5v14l12-7z"/></svg></div>
+                  <span style="position:absolute;bottom:8px;inset-inline-end:8px;background:rgba(0,0,0,.6);color:#fff;font-size:10.5px;font-family:Inter;padding:2px 7px;border-radius:4px">{{ r.dur }}</span>
+                </div>
+                <h4 style="margin:0;font-size:13px;line-height:1.5;font-weight:500;color:#cdc7bd">{{ r.x }}</h4>
+              </article>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+const DICT = {
+  ar: {
+    date:'الثلاثاء، ٢٣ يونيو ٢٠٢٦', weather:'القدس ٢٩°', signin:'تسجيل الدخول', langBtn:'EN',
+    nav:['معالجات اخبارية','تحليلات وآراء','القصة في أرقام','القصة في صور','ميديا'],
+    breaking:'عاجل', live:'بث مباشر', updated:'آخر تحديث', viewAll:'عرض الكل',
+    feedTitle:'مركز الرصد المباشر', read:'دقائق قراءة', by:'بقلم', ic:'مركز المعلومات', icLive:'مباشر', nowPlaying:'يُبثّ الآن', listen:'استمع',
+    s_latest:'أحدث المعالجات', s_analysis:'تحليلات وآراء', s_numbers:'القصة في أرقام',
+    s_pictures:'القصة في صور', s_most:'الأكثر قراءة', s_audio:'الموجز الصوتي اليومي',
+    s_video:'قصص مرئية', s_cover:'تغطية تفاعلية', s_trend:'الأكثر تداولاً',
+    audioKicker:'مُولّد بالذكاء الاصطناعي', audioDesc:'موجز صوتي يومي يلخّص أبرز ما نشرته الشبكة خلال الساعات الأربع والعشرين الماضية، بصوتٍ اصطناعي واضح.',
+    transcript:'النصّ الكامل', speed:'السرعة', duration:'المدة', download:'تحميل', share:'مشاركة',
+    watch:'مشاهدة', script:'النص', related:'مقاطع ذات صلة', closeBtn:'إغلاق',
+    coverDesc:'تتبّع الأحداث على الخريطة وعبر الخط الزمني، مع مؤشرات محدّثة لحظياً.',
+    nl:'النشرة البريدية', nlDesc:'أبرز المعالجات والتحليلات في بريدك صباح كل يوم.', subscribe:'اشتراك',
+    emailPh:'بريدك الإلكتروني', minRead:'د قراءة',
+    f_about:'عن الشبكة', f_policy:'السياسة التحريرية', f_sections:'الأقسام', f_media:'وسائط', f_contact:'تواصل',
+    rights:'© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.'
+  },
+  en: {
+    date:'Tuesday, 23 June 2026', weather:'Jerusalem 29°', signin:'Sign in', langBtn:'ع',
+    nav:['News','Analysis','In Numbers','In Pictures','Media'],
+    breaking:'BREAKING', live:'LIVE', updated:'Updated', viewAll:'View all',
+    feedTitle:'Live Monitoring Desk', read:'min read', by:'By', ic:'Intelligence Center', icLive:'Live', nowPlaying:'Now playing', listen:'Listen',
+    s_latest:'Latest Coverage', s_analysis:'Analysis & Opinion', s_numbers:'The Story in Numbers',
+    s_pictures:'The Story in Pictures', s_most:'Most Read', s_audio:'Daily Audio Brief',
+    s_video:'Visual Stories', s_cover:'Interactive Coverage', s_trend:'Trending',
+    audioKicker:'AI-generated', audioDesc:'A daily spoken brief summarising the network’s key reporting from the past 24 hours in a clear synthetic voice.',
+    transcript:'Full transcript', speed:'Speed', duration:'Duration', download:'Download', share:'Share',
+    watch:'Watch', script:'Transcript', related:'Related clips', closeBtn:'Close',
+    coverDesc:'Follow events across the map and along the timeline, with indicators updated in real time.',
+    nl:'Newsletter', nlDesc:'Top coverage and analysis in your inbox every morning.', subscribe:'Subscribe',
+    emailPh:'Your email', minRead:'min',
+    f_about:'About', f_policy:'Editorial policy', f_sections:'Sections', f_media:'Media', f_contact:'Contact',
+    rights:'© 2026 Palestinian Press Network. All rights reserved.'
+  }
+};
+
+const WAVE = Array.from({length:76},(_,i)=> 0.22 + 0.78*Math.abs(Math.sin(i*0.45)*Math.cos(i*0.12) + 0.25*Math.sin(i*0.9)));
+
+const BREAKING = [
+  {t:'١٠:٤٢', x:'المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة'},
+  {t:'٠٩:١٥', x:'تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية'},
+  {t:'٠٨:٣٠', x:'إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة'},
+  {t:'٠٧:٥٠', x:'انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن'}
+];
+
+const FEED = [
+  {t:'منذ ٤ د', tag:'عاجل', c:'#B0122A', x:'ضربة قاسية لـ«شبكة أفيخاي» قبل حراك ٢٦ يونيو التخريبي في غزة'},
+  {t:'منذ ١٨ د', tag:'تحليل', c:'#1F6B43', x:'عبد العاطي ويوسف ياسر يشعلان الغضب في غزة.. ماذا وراء المنشورات؟'},
+  {t:'منذ ٣٥ د', tag:'متابعة', c:'#8A857E', x:'من كشف أهداف الحراك إلى الترويج له.. أمجد أبو كوش يواجه انتقادات واسعة'},
+  {t:'منذ ٥٢ د', tag:'موجز AI', c:'#1F6B43', x:'ملخّص آلي: ثلاثة محاور رئيسية في النقاش حول حراك ٢٦ يونيو ومآلاته'},
+  {t:'منذ ١ س', tag:'أرقام', c:'#8A857E', x:'خروقات الاحتلال لاتفاق وقف إطلاق النار تتواصل لليوم ٢٤٥'}
+];
+
+const LATEST = [
+  {cat:'معالجات اخبارية', x:'لماذا ستفشل دعوات الفوضى في غزة عبر حراك ٢٦ يونيو؟', t:'٢٣ يونيو', r:'٦'},
+  {cat:'معالجات اخبارية', x:'وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي', t:'٢٣ يونيو', r:'٥'},
+  {cat:'معالجات اخبارية', x:'تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة', t:'٢٣ يونيو', r:'٨'},
+  {cat:'معالجات اخبارية', x:'استعراض فاشل للقوة من العميل محمد جرغون لن يحميه من مصيره', t:'٢٣ يونيو', r:'٤'},
+  {cat:'معالجات اخبارية', x:'شبكة أفيخاي تثير غضباً واسعاً بمنشورات تستهدف المقاومة', t:'٢٣ يونيو', r:'٥'},
+  {cat:'معالجات اخبارية', x:'إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة', t:'٢٣ يونيو', r:'٧'}
+];
+
+const ANALYSIS_LEAD = {cat:'تحليل معمّق', x:'ما وراء تغييرات فتح؟.. اتهامات بالفساد وإقصاء قيادات وتثبيت نفوذ أسماء بارزة', t:'٢٣ يونيو ٢٠٢٦', r:'١٢', by:'هيئة التحرير', d:'قال القيادي الفتحاوي سميح خلف إن المؤتمر الحركي الأخير أعاد رسم موازين القوى داخل الحركة، وسط تساؤلات حول مستقبل التمثيل وآليات القرار.'};
+const ANALYSIS = [
+  {x:'السفير أشرف دبور يكشف تفاصيل قضية مالية مرتبطة بياسر عباس في لبنان', t:'٢٠ يونيو', by:'مكتب بيروت'},
+  {x:'إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة الغربية', t:'٢٣ يونيو', by:'وحدة التحقيقات'},
+  {x:'انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن', t:'١٨ مايو', by:'القسم السياسي'}
+];
+
+const NUMBERS = [
+  {v:'٣٢٦٩', l:'خرقاً لاتفاق وقف إطلاق النار في غزة', c:'#B0122A'},
+  {v:'٢٤٥', l:'يوماً من الخروقات المتواصلة', c:'#161513'},
+  {v:'٣٧٧', l:'خرقاً موثّقاً خلال أبريل وحده', c:'#1F6B43'}
+];
+
+const PICTURES = [
+  {x:'أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة', d:'نظّم أهالي المعتقلين السياسيين في جنين وقفة احتجاجية للتنديد باستمرار الاعتقال والقمع.', t:'٣١ مارس ٢٠٢٦', n:'١٤ صورة'},
+  {x:'المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد', d:'في ظل أزمة مالية خانقة، يواصل المعلمون مطالبتهم بحقوقهم المالية الكاملة.', t:'١ ديسمبر ٢٠٢٥', n:'٩ صور'}
+];
+
+const MOSTREAD = [
+  {n:'٠١', x:'ما وراء تغييرات فتح؟.. اتهامات بالفساد وإقصاء قيادات', t:'تحليلات'},
+  {n:'٠٢', x:'من كشف أهداف الحراك إلى الترويج له.. أمجد أبو كوش', t:'معالجات'},
+  {n:'٠٣', x:'عبد العاطي ويوسف ياسر يشعلان الغضب في غزة', t:'معالجات'},
+  {n:'٠٤', x:'استعراض فاشل للقوة من العميل محمد جرغون', t:'معالجات'},
+  {n:'٠٥', x:'ضربة قاسية لـ«شبكة أفيخاي» قبل حراك ٢٦ يونيو', t:'عاجل'}
+];
+
+const TRENDING = [
+  {x:'حراك ٢٦ يونيو', n:'٤٨'},{x:'فتح', n:'٣١'},{x:'غزة', n:'٢٧'},
+  {x:'شبكة أفيخاي', n:'١٩'},{x:'المعتقلون السياسيون', n:'١٥'},
+  {x:'وقف إطلاق النار', n:'١٢'},{x:'الضفة الغربية', n:'٩'},{x:'خلافة عباس', n:'٧'}
+];
+
+const VIDEOS = [
+  {x:'فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة', cat:'تحقيق', dur:'١٢:٤٠'},
+  {x:'مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة', cat:'وثائقي', dur:'٠٨:١٥'},
+  {x:'الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي', cat:'تحليل', dur:'٠٦:٣٢'},
+  {x:'شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال', cat:'ميديا', dur:'٠٥:٥٠'}
+];
+
+const SCRIPT_LINES = [
+  'في هذه الحلقة نتتبّع خيوط التمويل التي تقف خلف حملات التشويه المنظّمة، ونكشف الأسماء والأدوار.',
+  'الوثائق التي حصلت عليها الشبكة تشير إلى شبكة علاقات تمتدّ بين أجهزة السلطة وعدد من المنصّات.',
+  'نعرض شهادات حصرية وتسلسلاً زمنياً يوضّح كيف تطوّرت الحملة خلال الأشهر الماضية.'
+];
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  tickerRef = React.createRef();
+  heroImgRef = React.createRef();
+  anaImgRef = React.createRef();
+  zoneVidImgRef = React.createRef();
+  state = { lang:'ar', playing:false, progress:0.34, clock:new Date(), video:null, vtab:'watch', speedIdx:1 };
+  audioTotal = 522;
+  speeds = [0.75, 1, 1.25, 1.5];
+
+  componentDidMount(){ this.clock = setInterval(()=>this.setState({clock:new Date()}),1000); this.syncImgs(); }
+  componentDidUpdate(){ this.syncImgs(); }
+  syncImgs(){ const set=(r,u)=>{ if(r.current && (r.current.getAttribute('src')||'').indexOf('picsum')<0) r.current.src=u; };
+    const lead='https://picsum.photos/seed/npp-lead/1400/1000';
+    set(this.heroImgRef,lead); set(this.anaImgRef,lead);
+    set(this.zoneVidImgRef,'https://picsum.photos/seed/npp-vid0/700/900'); }
+  componentWillUnmount(){ clearInterval(this.clock); clearInterval(this.audioTimer); }
+
+  togglePlay = ()=>{
+    this.setState(s=>{
+      const playing=!s.playing; clearInterval(this.audioTimer);
+      if(playing){
+        const step = 0.45 * this.speeds[this.state.speedIdx];
+        this.audioTimer=setInterval(()=>{
+          this.setState(st=>{ let p=st.progress+step/this.audioTotal;
+            if(p>=1){ clearInterval(this.audioTimer); return {progress:1,playing:false}; }
+            return {progress:p}; });
+        },100);
+      }
+      return {playing};
+    });
+  };
+  setProgress=(p)=> this.setState({progress:Math.max(0,Math.min(1,p))});
+  seekFromEvent=(e)=>{ const r=e.currentTarget.getBoundingClientRect(); let x=(e.clientX-r.left)/r.width; if(this.state.lang==='ar') x=1-x; this.setProgress(x); };
+  cycleSpeed=()=> this.setState(s=>({speedIdx:(s.speedIdx+1)%this.speeds.length}));
+
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+  openVideo=(i)=>{ this.setState({video:i, vtab:'watch'}); try{document.body.style.overflow='hidden';}catch(e){} };
+  closeVideo=()=>{ this.setState({video:null}); try{document.body.style.overflow='';}catch(e){} };
+  stop=(e)=>{ e.stopPropagation(); };
+  pauseTicker=()=>{ if(this.tickerRef.current) this.tickerRef.current.style.animationPlayState='paused'; };
+  resumeTicker=()=>{ if(this.tickerRef.current) this.tickerRef.current.style.animationPlayState='running'; };
+  fmt(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60), s=sec%60; return m+':'+String(s).padStart(2,'0'); }
+
+  renderVals(){
+    const L=this.state.lang, T=DICT[L], prog=this.state.progress;
+    const pic=(s,w,h)=>'https://picsum.photos/seed/npp-'+s+'/'+w+'/'+h;
+    const wf = WAVE.map((h,i)=>({ h:(h*100).toFixed(1)+'%', col: (i/WAVE.length)<=prog ? '#B0122A' : '#D8D3CA' }));
+    const videos = VIDEOS.map((v,i)=>({...v, img:pic('vid'+i,700,900), open:()=>this.openVideo(i)}));
+    const cur = this.state.video;
+    const current = cur==null?null:videos[cur];
+    const related = videos.filter((_,i)=>i!==cur);
+    const lead = {...ANALYSIS_LEAD, img:pic('lead',1400,1000)};
+    const latest = LATEST.map((a,i)=>({...a, img:pic('lt'+i,800,520)}));
+    const analysis = ANALYSIS.map((a,i)=>({...a, img:pic('an'+i,400,300)}));
+    const pictures = PICTURES.map((p,i)=>({...p, img:pic('pic'+i,900,600)}));
+    return {
+      T, nav:T.nav, dir:L==='ar'?'rtl':'ltr', rootRef:this.rootRef, tickerRef:this.tickerRef,
+      breaking:BREAKING, feed:FEED, latest, analysis, lead,
+      numbers:NUMBERS, pictures, mostRead:MOSTREAD, trending:TRENDING, videos,
+      playing:this.state.playing, togglePlay:this.togglePlay, wf, progPct:(prog*100).toFixed(1)+'%', zoneVid:videos[0],
+      heroImgRef:this.heroImgRef, anaImgRef:this.anaImgRef, zoneVidImgRef:this.zoneVidImgRef,
+      cur:this.fmt(prog*this.audioTotal), rem:'-'+this.fmt(this.audioTotal-prog*this.audioTotal),
+      seek:this.seekFromEvent, speedLabel:'×'+this.speeds[this.state.speedIdx], cycleSpeed:this.cycleSpeed,
+      clock:this.state.clock.toLocaleTimeString(L==='ar'?'ar-EG':'en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),
+      toggleLang:this.toggleLang, pauseTicker:this.pauseTicker, resumeTicker:this.resumeTicker,
+      videoOpen:this.state.video!=null, current, related, scriptLines:SCRIPT_LINES,
+      isWatch:this.state.vtab==='watch', isScript:this.state.vtab==='script',
+      setWatch:()=>this.setState({vtab:'watch'}), setScript:()=>this.setState({vtab:'script'}),
+      watchBg:this.state.vtab==='watch'?'#fff':'transparent', watchFg:this.state.vtab==='watch'?'#161513':'#cdc7bd',
+      scriptBg:this.state.vtab==='script'?'#fff':'transparent', scriptFg:this.state.vtab==='script'?'#161513':'#cdc7bd',
+      stop:this.stop, closeVideo:this.closeVideo
+    };
+  }
+}
+</script>
+</body>
+</html>

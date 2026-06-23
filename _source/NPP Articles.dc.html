@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .res:hover{transform:translateY(-4px);box-shadow:0 22px 48px -26px rgba(20,18,14,.42)}
+  .res{transition:transform .2s ease, box-shadow .2s ease}
+  .fct:hover{background:#F0ECE5}
+  .fct{transition:background .15s ease}
+  .chip:hover{border-color:#161513}
+  .chip{transition:border-color .15s ease, transform .15s ease}
+  .sug:hover{background:#161513;color:#fff;border-color:#161513}
+  .sug{transition:all .15s ease}
+  input::placeholder{color:#9b958b}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- ===== HEADER ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;white-space:nowrap;overflow:hidden">
+      <span style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الثلاثاء، ٢٤ يونيو ٢٠٢٦ · القدس ٢٩°</span>
+      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer">{{ langBtn }}</button>
+    </div>
+  </div>
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.93);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:13px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:46px;width:auto;display:block"/>
+        <div style="line-height:1.15"><div style="font-weight:700;font-size:15px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#B0122A">PALESTINIAN PRESS · NPP</div></div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:2px">
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">معالجات اخبارية</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">تحليلات وآراء</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في أرقام</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في صور</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">ميديا</a>
+      </nav>
+      <span style="width:120px"></span>
+    </div>
+  </div>
+
+  <!-- ===== SEARCH HERO ===== -->
+  <section style="background:#15140F;color:#fff">
+    <div style="max-width:1280px;margin:0 auto;padding:46px 32px 40px">
+      <div style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.22em;color:#B0122A;margin-bottom:10px">ARCHIVE · الأرشيف</div>
+      <h1 style="margin:0 0 26px;font-size:44px;font-weight:700;letter-spacing:-.015em;line-height:1.2">استكشف كل المعالجات والتحليلات</h1>
+      <!-- big search -->
+      <div style="position:relative;max-width:760px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="2" style="position:absolute;top:50%;inset-inline-start:20px;transform:translateY(-50%)"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input ref="{{ searchRef }}" value="{{ query }}" onInput="{{ onQuery }}" placeholder="ابحث في العناوين، الوسوم، الكُتّاب…" style="width:100%;height:62px;border:none;border-radius:16px;background:#26241f;color:#fff;font-family:'IBM Plex Sans Arabic';font-size:17px;padding:0 56px;outline:none"/>
+        <sc-if value="{{ query }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clearQuery }}" style="position:absolute;top:50%;inset-inline-end:18px;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;background:#3a372f;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#cdc7bd" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </sc-if>
+      </div>
+      <!-- quick suggestions -->
+      <div style="display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap">
+        <span style="font-size:13px;color:#7d7669">بحث شائع:</span>
+        <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="5">
+          <button class="sug" onClick="{{ s.go }}" style="background:transparent;border:1px solid #3a372f;color:#cdc7bd;padding:6px 13px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px">{{ s.x }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px">
+    <div style="display:grid;grid-template-columns:288px minmax(0,1fr);gap:32px;align-items:start">
+
+      <!-- FACET SIDEBAR -->
+      <aside style="position:sticky;top:96px;padding-top:30px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:16px;font-weight:700">تصفية النتائج</span>
+          <button onClick="{{ reset }}" style="background:none;border:none;color:#B0122A;font-size:13px;font-weight:600;cursor:pointer;font-family:'IBM Plex Sans Arabic'">مسح الكل</button>
+        </div>
+        <!-- category -->
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:13.5px;font-weight:700;color:#161513;margin-bottom:12px">التصنيف</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{ catRows }}" as="c" hint-placeholder-count="6">
+              <button class="fct" onClick="{{ c.pick }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;border:none;background:{{ c.bg }};cursor:pointer;padding:9px 11px;border-radius:10px;text-align:start;font-family:'IBM Plex Sans Arabic'">
+                <span style="display:flex;align-items:center;gap:9px;font-size:14px;color:{{ c.fg }};font-weight:{{ c.fw }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.label }}</span>
+                <span style="font-family:Inter,sans-serif;font-size:12px;color:#9b958b">{{ c.count }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <!-- content type -->
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:13.5px;font-weight:700;color:#161513;margin-bottom:12px">نوع المحتوى</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ typeRows }}" as="t" hint-placeholder-count="4">
+              <label onClick="{{ t.toggle }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                <span style="width:20px;height:20px;border-radius:6px;border:2px solid {{ t.bd }};background:{{ t.box }};display:flex;align-items:center;justify-content:center;flex-shrink:0"><sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></sc-if></span>
+                <span style="font-size:14px;color:#3a3833">{{ t.label }}</span>
+              </label>
+            </sc-for>
+          </div>
+        </div>
+        <!-- time -->
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:13.5px;font-weight:700;color:#161513;margin-bottom:12px">الفترة الزمنية</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ timeRows }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.pick }}" style="border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};padding:7px 13px;border-radius:18px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px;font-weight:500">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RESULTS -->
+      <main style="padding-top:30px;min-width:0">
+        <!-- toolbar -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px">
+          <div style="font-size:15px;color:#57534E"><b style="color:#161513;font-size:18px;font-family:Inter,sans-serif">{{ count }}</b> نتيجة</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="display:flex;align-items:center;gap:7px">
+              <span style="font-size:13px;color:#8A857E">ترتيب:</span>
+              <sc-for list="{{ sortRows }}" as="s" hint-placeholder-count="3">
+                <button onClick="{{ s.pick }}" style="border:none;background:{{ s.bg }};color:{{ s.fg }};padding:7px 13px;border-radius:18px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px;font-weight:600">{{ s.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:3px;background:#E7E2DA;padding:3px;border-radius:11px">
+              <button onClick="{{ viewGrid }}" title="شبكة" style="width:36px;height:34px;border:none;border-radius:8px;background:{{ gridBg }};cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="{{ gridFg }}" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+              <button onClick="{{ viewList }}" title="قائمة" style="width:36px;height:34px;border:none;border-radius:8px;background:{{ listBg }};cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="{{ listFg }}" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- active filter chips -->
+        <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-bottom:22px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="0">
+              <button class="chip" onClick="{{ c.remove }}" style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E2DDD5;padding:7px 13px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px;color:#161513">{{ c.label }}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- GRID VIEW -->
+        <sc-if value="{{ isGrid }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px;animation:fadeUp .3s ease">
+            <sc-for list="{{ results }}" as="a" hint-placeholder-count="6">
+              <article class="res" style="background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04);display:flex;flex-direction:column">
+                <div style="position:relative;aspect-ratio:16/9;background:#E9E4DC;overflow:hidden">
+                  <img src="{{ a.img }}" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/>
+                  <span style="position:absolute;top:13px;inset-inline-start:13px;background:rgba(22,21,19,.86);color:#fff;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:6px">{{ a.cat }}</span>
+                  <sc-if value="{{ a.isMedia }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:2px"><path d="M7 5v14l12-7z"/></svg></span></sc-if>
+                </div>
+                <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+                  <h3 style="margin:0 0 12px;font-size:18px;line-height:1.5;font-weight:600;color:#161513">{{ a.x }}</h3>
+                  <p style="margin:0 0 16px;font-size:13.5px;line-height:1.7;color:#57534E">{{ a.d }}</p>
+                  <div style="margin-top:auto;display:flex;align-items:center;gap:11px;font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif"><span style="font-family:'IBM Plex Sans Arabic'">{{ a.by }}</span><span>•</span><span>{{ a.date }}</span><span>•</span><span>{{ a.read }} د</span></div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- LIST VIEW -->
+        <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px;animation:fadeUp .3s ease">
+            <sc-for list="{{ results }}" as="a" hint-placeholder-count="6">
+              <article class="res" style="display:grid;grid-template-columns:240px 1fr;gap:22px;background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04)">
+                <div style="position:relative;aspect-ratio:16/11;background:#E9E4DC;overflow:hidden">
+                  <img src="{{ a.img }}" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/>
+                  <span style="position:absolute;top:12px;inset-inline-start:12px;background:rgba(22,21,19,.86);color:#fff;font-size:11px;font-weight:500;padding:3px 9px;border-radius:5px">{{ a.cat }}</span>
+                </div>
+                <div style="padding:22px 24px 22px 0;display:flex;flex-direction:column;justify-content:center">
+                  <h3 style="margin:0 0 10px;font-size:21px;line-height:1.45;font-weight:700;color:#161513;letter-spacing:-.005em">{{ a.x }}</h3>
+                  <p style="margin:0 0 14px;font-size:14.5px;line-height:1.75;color:#57534E;max-width:64ch">{{ a.d }}</p>
+                  <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:#8A857E;font-family:Inter,sans-serif"><span style="font-family:'IBM Plex Sans Arabic'">{{ a.by }}</span><span>•</span><span>{{ a.date }}</span><span>•</span><span>{{ a.read }} دقائق</span></div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- EMPTY STATE -->
+        <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:70px 20px;animation:fadeUp .3s ease">
+            <div style="width:74px;height:74px;border-radius:50%;background:#E7E2DA;display:flex;align-items:center;justify-content:center;margin:0 auto 18px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg></div>
+            <div style="font-size:19px;font-weight:700;margin-bottom:8px">لا توجد نتائج مطابقة</div>
+            <p style="margin:0 0 18px;font-size:14.5px;color:#57534E">جرّب تعديل كلمات البحث أو إزالة بعض الفلاتر.</p>
+            <button onClick="{{ reset }}" style="background:#161513;color:#fff;border:none;padding:11px 22px;border-radius:24px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:14px;font-weight:600">مسح كل الفلاتر</button>
+          </div>
+        </sc-if>
+
+        <div style="height:60px"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1280px;margin:0 auto;padding:34px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px"><img src="assets/npp-logo.webp" alt="" style="height:42px;width:auto"/><div><div style="color:#fff;font-weight:700;font-size:14px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div></div>
+      <span style="font-size:12.5px;color:#6f6a60">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:1000}}">
+const CATS = [
+  {key:'all', label:'كل التصنيفات', dot:'#8A857E'},
+  {key:'news', label:'معالجات اخبارية', dot:'#B0122A'},
+  {key:'analysis', label:'تحليلات وآراء', dot:'#1F6B43'},
+  {key:'numbers', label:'القصة في أرقام', dot:'#161513'},
+  {key:'pictures', label:'القصة في صور', dot:'#C99A2E'},
+  {key:'media', label:'ميديا', dot:'#2A6FDB'}
+];
+const CATLABEL = Object.fromEntries(CATS.map(c=>[c.key,c.label]));
+const TYPES = [{key:'article',label:'مقال'},{key:'video',label:'فيديو'},{key:'audio',label:'صوتي'},{key:'graphic',label:'رسم بياني'}];
+const TIMES = [{key:'any',label:'أي وقت'},{key:'today',label:'اليوم'},{key:'week',label:'هذا الأسبوع'},{key:'month',label:'هذا الشهر'}];
+const SORTS = [{key:'new',label:'الأحدث'},{key:'read',label:'الأكثر قراءة'},{key:'rel',label:'الأكثر صلة'}];
+const SUGS = ['حراك ٢٦ يونيو','فتح','غزة','المعتقلون السياسيون','وقف إطلاق النار'];
+
+const DATA = [
+  {x:'لماذا ستفشل دعوات الفوضى في غزة عبر «حراك ٢٦ يونيو»؟', d:'قراءة في خلفيات الحراك وأهدافه المعلنة والخفيّة وحدود تأثيره على المشهد الميداني.', cat:'news', type:'article', by:'هيئة التحرير', days:0, read:6, reads:9800, tags:['حراك ٢٦ يونيو','غزة']},
+  {x:'ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة', d:'المؤتمر الأخير أعاد رسم موازين القوى داخل الحركة وسط تساؤلات حول مستقبل التمثيل.', cat:'analysis', type:'article', by:'القسم السياسي', days:4, read:12, reads:14200, tags:['فتح','خلافة عباس']},
+  {x:'وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي', d:'قرار وقف المخصصات يضع مئات الأسرى المحرّرين أمام واقع معيشي قاسٍ.', cat:'news', type:'article', by:'مكتب رام الله', days:1, read:5, reads:7300, tags:['المعتقلون السياسيون']},
+  {x:'تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة', d:'وثائق وشهادات حصرية تكشف شبكة العلاقات والتمويل بين العصابات وأجهزة الاحتلال.', cat:'media', type:'video', by:'وحدة التحقيقات', days:2, read:13, reads:18600, tags:['غزة','تحقيق']},
+  {x:'٣٢٦٩ خرقاً موثّقاً لاتفاق وقف إطلاق النار في غزة', d:'رصد بصري لتطوّر الخروقات على مدى ٢٤٥ يوماً عبر رسوم بيانية تفاعلية.', cat:'numbers', type:'graphic', by:'قسم البيانات', days:0, read:4, reads:11200, tags:['وقف إطلاق النار','غزة']},
+  {x:'أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة', d:'وقفة احتجاجية في جنين تسلّط الضوء على ملف الاعتقال السياسي والتعذيب.', cat:'pictures', type:'graphic', by:'عدسة الشبكة', days:6, read:3, reads:5400, tags:['المعتقلون السياسيون','جنين']},
+  {x:'موجز صوتي: حراك ٢٦ يونيو وتغييرات فتح والخروقات المستمرة', d:'تلخيص صوتي مولّد بالذكاء الاصطناعي لأبرز ما نشرته الشبكة خلال ٢٤ ساعة.', cat:'news', type:'audio', by:'الموجز اليومي', days:0, read:9, reads:6100, tags:['حراك ٢٦ يونيو','فتح']},
+  {x:'إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة', d:'أزمة مالية خانقة تهدّد الخدمات الصحية في عدة محافظات بالضفة الغربية.', cat:'news', type:'article', by:'وحدة التحقيقات', days:1, read:7, reads:8900, tags:['الضفة الغربية','صحة']},
+  {x:'الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي', d:'تحليل لأبعاد الخطوة وتداعياتها على موازين القوى في المنطقة.', cat:'analysis', type:'video', by:'القسم السياسي', days:9, read:6, reads:7700, tags:['إقليمي']},
+  {x:'تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة', d:'وقفات احتجاجية متفرّقة في جنين ونابلس تطالب بإطلاق سراح المعتقلين.', cat:'news', type:'article', by:'مكتب رام الله', days:3, read:5, reads:6800, tags:['الضفة الغربية','المعتقلون السياسيون']},
+  {x:'خروقات الاحتلال في أرقام: أبريل الأعنف منذ بدء الرصد', d:'٣٧٧ خرقاً موثّقاً خلال أبريل وحده في عرض بياني مقارن.', cat:'numbers', type:'graphic', by:'قسم البيانات', days:14, read:4, reads:9300, tags:['وقف إطلاق النار','أرقام']},
+  {x:'شبكة أفيخاي تثير غضباً واسعاً بمنشورات تستهدف المقاومة', d:'كيف تحوّلت حسابات بعينها إلى أداة لتوجيه الرأي العام قبل الحراك؟', cat:'analysis', type:'article', by:'وحدة الرصد', days:2, read:5, reads:10400, tags:['شبكة أفيخاي','حراك ٢٦ يونيو']}
+];
+const SEEDS = DATA.map((_,i)=>'art'+i);
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  searchRef = React.createRef();
+  state = { lang:'ar', query:'', cat:'all', types:[], time:'any', sort:'new', view:'grid' };
+
+  onQuery=(e)=> this.setState({query:e.target.value});
+  clearQuery=()=>{ this.setState({query:''}); if(this.searchRef.current) this.searchRef.current.value=''; };
+  pickCat=(k)=> this.setState({cat:k});
+  toggleType=(k)=> this.setState(s=>({types: s.types.includes(k)? s.types.filter(t=>t!==k): [...s.types,k]}));
+  pickTime=(k)=> this.setState({time:k});
+  pickSort=(k)=> this.setState({sort:k});
+  reset=()=>{ this.setState({query:'',cat:'all',types:[],time:'any'}); if(this.searchRef.current) this.searchRef.current.value=''; };
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+
+  baseFiltered(ignore){
+    const {query,cat,types,time}=this.state;
+    const q=query.trim();
+    return DATA.filter(a=>{
+      if(ignore!=='cat' && cat!=='all' && a.cat!==cat) return false;
+      if(ignore!=='type' && types.length && !types.includes(a.type)) return false;
+      if(ignore!=='time' && time!=='any'){ const lim=time==='today'?0:time==='week'?7:31; if(a.days>lim) return false; }
+      if(q){ const hay=(a.x+' '+a.d+' '+a.by+' '+a.tags.join(' ')); if(!hay.includes(q)) return false; }
+      return true;
+    });
+  }
+
+  renderVals(){
+    const S=this.state;
+    let results=this.baseFiltered(null).slice();
+    if(S.sort==='new') results.sort((a,b)=>a.days-b.days);
+    else if(S.sort==='read') results.sort((a,b)=>b.reads-a.reads);
+    else results.sort((a,b)=>b.reads-a.reads);
+    const fmtDate=(d)=> d===0?'اليوم': d===1?'أمس': 'منذ '+d+' يوم';
+    const idx=(x)=>DATA.indexOf(x);
+
+    const catCounts=k=> this.baseFiltered('cat').filter(a=>k==='all'||a.cat===k).length;
+    const catRows=CATS.map(c=>({ label:c.label, dot:c.dot, count:catCounts(c.key), pick:()=>this.pickCat(c.key),
+      bg:S.cat===c.key?'#F4EEEA':'transparent', fg:S.cat===c.key?'#B0122A':'#3a3833', fw:S.cat===c.key?'700':'500' }));
+    const typeRows=TYPES.map(t=>({ label:t.label, on:S.types.includes(t.key), toggle:()=>this.toggleType(t.key),
+      box:S.types.includes(t.key)?'#B0122A':'#fff', bd:S.types.includes(t.key)?'#B0122A':'#D6D0C6' }));
+    const timeRows=TIMES.map(t=>({ label:t.label, pick:()=>this.pickTime(t.key),
+      bg:S.time===t.key?'#161513':'#fff', fg:S.time===t.key?'#fff':'#3a3833', bd:S.time===t.key?'#161513':'#E2DDD5' }));
+    const sortRows=SORTS.map(s=>({ label:s.label, pick:()=>this.pickSort(s.key),
+      bg:S.sort===s.key?'#161513':'transparent', fg:S.sort===s.key?'#fff':'#57534E' }));
+
+    const chips=[];
+    if(S.query.trim()) chips.push({label:'«'+S.query.trim()+'»', remove:this.clearQuery});
+    if(S.cat!=='all') chips.push({label:CATLABEL[S.cat], remove:()=>this.pickCat('all')});
+    S.types.forEach(k=>{ const t=TYPES.find(x=>x.key===k); chips.push({label:t.label, remove:()=>this.toggleType(k)}); });
+    if(S.time!=='any'){ const t=TIMES.find(x=>x.key===S.time); chips.push({label:t.label, remove:()=>this.pickTime('any')}); }
+
+    return {
+      rootRef:this.rootRef, searchRef:this.searchRef, langBtn:S.lang==='ar'?'EN':'ع', toggleLang:this.toggleLang,
+      query:S.query, onQuery:this.onQuery, clearQuery:this.clearQuery,
+      suggestions:SUGS.map(x=>({x, go:()=>{ this.setState({query:x}); if(this.searchRef.current) this.searchRef.current.value=x; }})),
+      catRows, typeRows, timeRows, sortRows, reset:this.reset,
+      count:results.length, empty:results.length===0,
+      isGrid:S.view==='grid', isList:S.view==='list', viewGrid:()=>this.setState({view:'grid'}), viewList:()=>this.setState({view:'list'}),
+      gridBg:S.view==='grid'?'#fff':'transparent', gridFg:S.view==='grid'?'#161513':'#8A857E',
+      listBg:S.view==='list'?'#fff':'transparent', listFg:S.view==='list'?'#161513':'#8A857E',
+      hasChips:chips.length>0, chips,
+      results:results.map(a=>({ x:a.x, d:a.d, cat:CATLABEL[a.cat], by:a.by, date:fmtDate(a.days), read:a.read,
+        isMedia:a.type==='video', img:'https://picsum.photos/seed/npp-'+SEEDS[idx(a)]+'/700/450' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

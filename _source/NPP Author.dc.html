@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .res:hover{transform:translateY(-4px);box-shadow:0 22px 48px -26px rgba(20,18,14,.42)}
+  .res{transition:transform .2s ease, box-shadow .2s ease}
+  .hc:hover{transform:scale(1.35)}
+  .hc{transition:transform .12s ease}
+  .soc:hover{background:#2a2821;border-color:#2a2821;color:#fff}
+  .soc{transition:all .15s ease}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- ===== HEADER ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;white-space:nowrap;overflow:hidden">
+      <span style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الثلاثاء، ٢٤ يونيو ٢٠٢٦ · القدس ٢٩°</span>
+      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer">{{ langBtn }}</button>
+    </div>
+  </div>
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.93);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:13px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:46px;width:auto;display:block"/>
+        <div style="line-height:1.15"><div style="font-weight:700;font-size:15px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#B0122A">PALESTINIAN PRESS · NPP</div></div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:2px">
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">معالجات اخبارية</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">تحليلات وآراء</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في أرقام</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في صور</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">ميديا</a>
+      </nav>
+      <span style="width:120px"></span>
+    </div>
+  </div>
+
+  <!-- ===== AUTHOR HERO ===== -->
+  <section style="background:#15140F;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 14px,transparent 14px 28px)"></div>
+    <div style="position:relative;max-width:1180px;margin:0 auto;padding:50px 32px 130px">
+      <div style="display:flex;align-items:flex-start;gap:30px;flex-wrap:wrap">
+        <div style="position:relative;flex-shrink:0">
+          <div style="width:140px;height:140px;border-radius:24px;overflow:hidden;background:#26241f;border:1px solid #2e2b24"><img src="https://picsum.photos/seed/npp-author/400/400" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/></div>
+          <span style="position:absolute;bottom:-8px;inset-inline-start:-8px;width:34px;height:34px;border-radius:50%;background:#1F6B43;border:3px solid #15140F;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+        </div>
+        <div style="flex:1;min-width:280px">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:8px">
+            <span style="font-family:Inter,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.16em;color:#cdbf6a">محرّر سياسي أول</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:#5f5a51"></span>
+            <span style="font-size:13px;color:#9b948a;display:flex;align-items:center;gap:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b948a" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>رام الله، فلسطين</span>
+          </div>
+          <h1 style="margin:0 0 14px;font-size:42px;font-weight:700;letter-spacing:-.015em">سميح خلف</h1>
+          <p style="margin:0 0 22px;font-size:16.5px;line-height:1.85;color:#cdc7bd;max-width:62ch">محرّر ومحلّل سياسي متخصّص في الشأن الفلسطيني الداخلي وملفّات الحركات الوطنية. يكتب في المعالجات الإخبارية والتحليلات المعمّقة منذ أكثر من عشر سنوات.</p>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button onClick="{{ toggleFollow }}" style="display:flex;align-items:center;gap:8px;background:{{ followBg }};color:{{ followFg }};border:1px solid {{ followBd }};padding:11px 24px;border-radius:26px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:15px;font-weight:600">
+              <sc-if value="{{ following }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#161513" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></sc-if>
+              {{ followLabel }}
+            </button>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="soc" style="width:42px;height:42px;border-radius:50%;border:1px solid #3a372f;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-weight:700;font-size:15px;color:#cfc9c0">𝕏</span>
+              <span class="soc" style="width:42px;height:42px;border-radius:50%;border:1px solid #3a372f;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter;font-weight:700;font-size:15px;color:#cfc9c0">f</span>
+              <span class="soc" style="width:42px;height:42px;border-radius:50%;border:1px solid #3a372f;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#cfc9c0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS (overlap card) ===== -->
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="margin-top:-66px;position:relative;z-index:2;background:#fff;border-radius:20px;padding:6px;box-shadow:0 26px 60px -34px rgba(20,18,14,.5);display:grid;grid-template-columns:repeat(4,1fr)">
+      <div style="padding:24px 26px;border-inline-end:1px solid #EFEAE2"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:34px;color:#161513;line-height:1">٢٤٨</div><div style="margin-top:6px;font-size:13.5px;color:#8A857E">مقالاً منشوراً</div></div>
+      <div style="padding:24px 26px;border-inline-end:1px solid #EFEAE2"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:34px;color:#B0122A;line-height:1">١٫٤<span style="font-size:20px">م</span></div><div style="margin-top:6px;font-size:13.5px;color:#8A857E">قراءة إجمالية</div></div>
+      <div style="padding:24px 26px;border-inline-end:1px solid #EFEAE2"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:34px;color:#1F6B43;line-height:1">{{ followers }}</div><div style="margin-top:6px;font-size:13.5px;color:#8A857E">متابعاً</div></div>
+      <div style="padding:24px 26px"><div style="font-family:Inter,sans-serif;font-weight:800;font-size:34px;color:#161513;line-height:1">٢٠١٤</div><div style="margin-top:6px;font-size:13.5px;color:#8A857E">عضو منذ</div></div>
+    </div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:36px;align-items:start;padding-top:34px">
+
+      <!-- MAIN -->
+      <main style="min-width:0">
+        <!-- tabs -->
+        <div style="display:flex;align-items:center;gap:4px;border-bottom:1px solid #E2DDD5;margin-bottom:26px">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+            <button onClick="{{ t.pick }}" style="position:relative;background:none;border:none;cursor:pointer;padding:13px 18px;font-family:'IBM Plex Sans Arabic';font-size:15px;font-weight:{{ t.fw }};color:{{ t.fg }}">{{ t.label }}<span style="position:absolute;bottom:-1px;inset-inline:14px;height:3px;border-radius:3px;background:{{ t.bar }}"></span></button>
+          </sc-for>
+        </div>
+
+        <!-- TAB: ARTICLES (pinned + grid) -->
+        <sc-if value="{{ isArticles }}" hint-placeholder-val="{{ true }}">
+          <div style="animation:fadeUp .3s ease">
+            <!-- pinned -->
+            <article class="res" style="position:relative;border-radius:20px;overflow:hidden;cursor:pointer;background:#15140F;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:22px">
+              <img src="https://picsum.photos/seed/npp-auth-pin/1100/620" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.82)"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,13,10,.95) 0%,rgba(15,13,10,.4) 55%,transparent 80%)"></div>
+              <span style="position:absolute;top:18px;inset-inline-start:18px;display:flex;align-items:center;gap:7px;background:rgba(15,13,10,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:20px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#cdbf6a"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.4h7.6z"/></svg>مقال مثبّت</span>
+              <div style="position:relative;padding:32px 34px">
+                <span style="display:inline-block;background:#B0122A;color:#fff;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;margin-bottom:14px">تحليلات وآراء</span>
+                <h2 style="margin:0 0 12px;font-size:30px;line-height:1.34;font-weight:700;color:#fff;letter-spacing:-.01em;max-width:26ch;text-wrap:balance">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة</h2>
+                <div style="display:flex;align-items:center;gap:13px;font-family:Inter,sans-serif;font-size:13px;color:#a59f95"><span>منذ ٤ أيام</span><span>•</span><span>١٢ دقيقة قراءة</span></div>
+              </div>
+            </article>
+            <!-- grid -->
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="4">
+                <article class="res" style="background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04);display:flex;flex-direction:column">
+                  <div style="position:relative;aspect-ratio:16/9;background:#E9E4DC;overflow:hidden"><img src="{{ a.img }}" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/><span style="position:absolute;top:12px;inset-inline-start:12px;background:rgba(22,21,19,.86);color:#fff;font-size:11px;font-weight:500;padding:3px 9px;border-radius:5px">{{ a.cat }}</span></div>
+                  <div style="padding:17px 17px 19px;display:flex;flex-direction:column;flex:1"><h3 style="margin:0 0 12px;font-size:16.5px;line-height:1.5;font-weight:600;color:#161513">{{ a.x }}</h3><div style="margin-top:auto;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif"><span>{{ a.date }}</span><span>•</span><span>{{ a.read }} د</span></div></div>
+                </article>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- TAB: MOST READ (list) -->
+        <sc-if value="{{ isMost }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;animation:fadeUp .3s ease">
+            <sc-for list="{{ mostRead }}" as="m" hint-placeholder-count="5">
+              <article style="display:flex;align-items:center;gap:22px;padding:20px 0;border-bottom:1px solid #E2DDD5;cursor:pointer">
+                <span style="font-family:Inter,sans-serif;font-weight:800;font-size:34px;color:#D6D0C6;width:54px;flex-shrink:0;text-align:center">{{ m.n }}</span>
+                <div style="flex:1"><h3 style="margin:0 0 7px;font-size:18px;line-height:1.5;font-weight:600;color:#161513">{{ m.x }}</h3><div style="display:flex;align-items:center;gap:11px;font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif"><span style="color:#B0122A;font-weight:600;font-family:'IBM Plex Sans Arabic'">{{ m.cat }}</span><span>•</span><span>{{ m.reads }} قراءة</span></div></div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9C3B9" stroke-width="2" style="flex-shrink:0"><path d="M15 18l-6-6 6-6"/></svg>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- TAB: VIDEOS -->
+        <sc-if value="{{ isVideo }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;animation:fadeUp .3s ease">
+            <sc-for list="{{ videos }}" as="v" hint-placeholder-count="4">
+              <article class="res" style="cursor:pointer">
+                <div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#15140F">
+                  <img src="{{ v.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.72)"/>
+                  <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,13,9,.85),transparent 60%)"></div>
+                  <span style="position:absolute;top:13px;inset-inline-end:13px;background:rgba(15,13,10,.7);color:#fff;font-size:11px;font-family:Inter,sans-serif;padding:3px 8px;border-radius:5px">{{ v.dur }}</span>
+                  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="margin-inline-start:3px"><path d="M7 5v14l12-7z"/></svg></div>
+                  <h3 style="position:absolute;bottom:0;margin:0;padding:18px;font-size:16px;line-height:1.5;font-weight:600;color:#fff">{{ v.x }}</h3>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- TAB: ABOUT -->
+        <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:fadeUp .3s ease">
+            <div style="background:#fff;border-radius:18px;padding:28px 30px;box-shadow:0 1px 2px rgba(20,18,14,.05);margin-bottom:20px">
+              <h3 style="margin:0 0 14px;font-size:19px;font-weight:700">نبذة</h3>
+              <p style="margin:0 0 16px;font-size:15.5px;line-height:1.95;color:#2A2825">سميح خلف محرّر ومحلّل سياسي فلسطيني، يتابع منذ أكثر من عشر سنوات ملفّات الحركات الوطنية والشأن الداخلي. عمل ضمن فرق تحقيقات استقصائية وأشرف على تغطية عدد من المحطّات المفصلية في المشهد الفلسطيني.</p>
+              <p style="margin:0;font-size:15.5px;line-height:1.95;color:#2A2825">تتركّز كتاباته على تفكيك الخطاب السياسي وربط الحدث بسياقه الأوسع، مع التزام بالموضوعية والمهنية في تناول القضايا الحسّاسة.</p>
+            </div>
+            <!-- featured quote -->
+            <div style="background:#15140F;border-radius:18px;padding:34px 32px;color:#fff;position:relative;overflow:hidden">
+              <span style="position:absolute;top:8px;inset-inline-start:24px;font-size:120px;line-height:1;color:#26241f;font-family:Georgia,serif">”</span>
+              <p style="margin:0 0 16px;position:relative;font-size:23px;line-height:1.7;font-weight:600;max-width:46ch">الصحافة ليست نقل الخبر فحسب، بل وضعه في سياقه الصحيح حتى لا يُساء فهمه أو توظيفه.</p>
+              <div style="font-size:13.5px;color:#9b948a">— سميح خلف</div>
+            </div>
+          </div>
+        </sc-if>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside style="display:flex;flex-direction:column;gap:18px">
+        <!-- creative: publishing activity heatmap -->
+        <div style="background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><span style="font-size:14.5px;font-weight:700">نشاط النشر</span><span style="font-size:12px;color:#8A857E">آخر ٦ أشهر</span></div>
+          <div style="display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;gap:4px">
+            <sc-for list="{{ heat }}" as="c" hint-placeholder-count="126"><span class="hc" title="{{ c.t }}" style="width:11px;height:11px;border-radius:3px;background:{{ c.col }}"></span></sc-for>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:12px;font-size:11px;color:#8A857E">أقل<span style="width:11px;height:11px;border-radius:3px;background:#ECE7DF"></span><span style="width:11px;height:11px;border-radius:3px;background:#bcd6c6"></span><span style="width:11px;height:11px;border-radius:3px;background:#6fa886"></span><span style="width:11px;height:11px;border-radius:3px;background:#1F6B43"></span>أكثر</div>
+        </div>
+        <!-- beats -->
+        <div style="background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:14.5px;font-weight:700;margin-bottom:14px">المحاور التي يغطّيها</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <span style="display:flex;align-items:center;gap:6px;background:#F2EFEA;padding:7px 13px;border-radius:20px;font-size:13px"><b style="color:#B0122A;font-family:Inter">#</b>الشأن الفلسطيني الداخلي</span>
+            <span style="display:flex;align-items:center;gap:6px;background:#F2EFEA;padding:7px 13px;border-radius:20px;font-size:13px"><b style="color:#B0122A;font-family:Inter">#</b>فتح</span>
+            <span style="display:flex;align-items:center;gap:6px;background:#F2EFEA;padding:7px 13px;border-radius:20px;font-size:13px"><b style="color:#B0122A;font-family:Inter">#</b>الحركات الوطنية</span>
+            <span style="display:flex;align-items:center;gap:6px;background:#F2EFEA;padding:7px 13px;border-radius:20px;font-size:13px"><b style="color:#B0122A;font-family:Inter">#</b>التحقيقات</span>
+          </div>
+        </div>
+        <!-- subscribe to author -->
+        <div style="background:linear-gradient(135deg,#1F6B43,#16502f);border-radius:18px;padding:22px;color:#fff">
+          <div style="font-size:16px;font-weight:700;margin-bottom:6px">تابع مقالات سميح</div>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.7;color:#cfe6da">استلم كل مقال جديد لهذا الكاتب في بريدك.</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <input placeholder="بريدك الإلكتروني" style="border:none;border-radius:10px;padding:11px 14px;font-family:'IBM Plex Sans Arabic';font-size:13.5px;background:rgba(255,255,255,.92)"/>
+            <button style="background:#fff;color:#16502f;border:none;border-radius:10px;padding:11px;font-weight:700;font-family:'IBM Plex Sans Arabic';font-size:13.5px;cursor:pointer">اشتراك</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div style="height:60px"></div>
+  </div>
+
+  <!-- footer -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1180px;margin:0 auto;padding:34px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px"><img src="assets/npp-logo.webp" alt="" style="height:42px;width:auto"/><div><div style="color:#fff;font-weight:700;font-size:14px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div></div>
+      <span style="font-size:12.5px;color:#6f6a60">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:1000}}">
+const ARTICLES = [
+  {x:'انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن', cat:'تحليلات', days:18, read:8, s:'a1'},
+  {x:'السفير أشرف دبور يكشف تفاصيل قضية مالية مرتبطة بياسر عباس', cat:'معالجات', days:5, read:6, s:'a2'},
+  {x:'لماذا ستفشل دعوات الفوضى في غزة عبر «حراك ٢٦ يونيو»؟', cat:'معالجات', days:0, read:6, s:'a3'},
+  {x:'وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين', cat:'معالجات', days:1, read:5, s:'a4'}
+];
+const MOST = [
+  {n:'٠١', x:'ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة', cat:'تحليلات', reads:'١٤٢ ألف'},
+  {n:'٠٢', x:'انقسامات فتح تهدّد بتصعيد معركة خلافة عباس', cat:'تحليلات', reads:'٩٨ ألف'},
+  {n:'٠٣', x:'السفير أشرف دبور يكشف تفاصيل قضية مالية', cat:'معالجات', reads:'٧٧ ألف'},
+  {n:'٠٤', x:'لماذا ستفشل دعوات الفوضى في غزة؟', cat:'معالجات', reads:'٦٨ ألف'},
+  {n:'٠٥', x:'وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين', cat:'معالجات', reads:'٥٤ ألف'}
+];
+const VIDEOS = [
+  {x:'تغييرات فتح بعد المؤتمر الثامن.. قراءة في المشهد', dur:'٠٨:٤٠', s:'v1'},
+  {x:'الاعتراف بإقليم صوماليلاند وتداعياته الإقليمية', dur:'٠٦:٣٢', s:'v2'},
+  {x:'ملف المعتقلين السياسيين.. الواقع والمآلات', dur:'١١:١٥', s:'v3'},
+  {x:'وقف إطلاق النار في أرقام.. ٢٤٥ يوماً من الخروقات', dur:'٠٥:٥٠', s:'v4'}
+];
+const TABS=[{key:'articles',label:'المقالات'},{key:'most',label:'الأكثر قراءة'},{key:'video',label:'فيديوهات'},{key:'about',label:'نبذة'}];
+const HEAT_COLORS=['#ECE7DF','#bcd6c6','#6fa886','#1F6B43'];
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  state = { lang:'ar', following:false, tab:'articles' };
+
+  toggleFollow=()=> this.setState(s=>({following:!s.following}));
+  pickTab=(k)=> this.setState({tab:k});
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+  fmtDate(d){ return d===0?'اليوم': d===1?'أمس':'منذ '+d+' يوم'; }
+
+  buildHeat(){
+    const cells=[]; let seed=7;
+    const rnd=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
+    for(let i=0;i<18*7;i++){ const r=rnd(); const lvl= r>0.82?3: r>0.62?2: r>0.34?1:0; cells.push({col:HEAT_COLORS[lvl], t: lvl===0?'لا نشر':'‏'+(lvl)+' مقال'}); }
+    return cells;
+  }
+
+  renderVals(){
+    const S=this.state;
+    const tabs=TABS.map(t=>({ label:t.label, pick:()=>this.pickTab(t.key),
+      fg:S.tab===t.key?'#161513':'#8A857E', fw:S.tab===t.key?'700':'500', bar:S.tab===t.key?'#B0122A':'transparent' }));
+    return {
+      rootRef:this.rootRef, langBtn:S.lang==='ar'?'EN':'ع', toggleLang:this.toggleLang,
+      following:S.following, toggleFollow:this.toggleFollow,
+      followLabel:S.following?'تتابعه':'متابعة',
+      followBg:S.following?'#fff':'#B0122A', followFg:S.following?'#161513':'#fff', followBd:S.following?'#fff':'#B0122A',
+      followers:S.following?'٣٢٫١ ألف':'٣٢٫٠ ألف',
+      tabs, isArticles:S.tab==='articles', isMost:S.tab==='most', isVideo:S.tab==='video', isAbout:S.tab==='about',
+      articles:ARTICLES.map(a=>({x:a.x, cat:a.cat, date:this.fmtDate(a.days), read:a.read, img:'https://picsum.photos/seed/npp-'+a.s+'/700/420'})),
+      mostRead:MOST,
+      videos:VIDEOS.map(v=>({x:v.x, dur:v.dur, img:'https://picsum.photos/seed/npp-'+v.s+'/700/420'})),
+      heat:this.buildHeat()
+    };
+  }
+}
+</script>
+</body>
+</html>

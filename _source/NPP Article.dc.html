@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2EFEA;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#B0122A;color:#fff}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes pulseR{0%{box-shadow:0 0 0 0 rgba(176,18,42,.5)}70%{box-shadow:0 0 0 8px rgba(176,18,42,0)}100%{box-shadow:0 0 0 0 rgba(176,18,42,0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes eqb{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  .shr:hover{transform:translateY(-2px)}
+  .shr{transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease}
+  .rel:hover{transform:translateY(-4px);box-shadow:0 20px 44px -24px rgba(20,18,14,.4)}
+  .rel{transition:transform .2s ease, box-shadow .2s ease}
+  .body-prose p{margin:0 0 22px;font-size:18.5px;line-height:2.05;color:#2A2825;letter-spacing:-.002em}
+  .body-prose h2{margin:38px 0 16px;font-size:25px;line-height:1.45;font-weight:700;color:#161513;letter-spacing:-.01em}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;color:#161513;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif">
+
+  <!-- reading progress -->
+  <div style="position:fixed;top:0;inset-inline:0;height:3px;z-index:60;background:transparent"><div ref="{{ progRef }}" style="height:100%;width:0%;background:#B0122A;transition:width .1s linear"></div></div>
+
+  <!-- ===== HEADER ===== -->
+  <div style="background:#161513;color:#CFC9C0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:38px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;white-space:nowrap;overflow:hidden">
+      <span style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الثلاثاء، ٢٤ يونيو ٢٠٢٦ · القدس ٢٩°</span>
+      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid #3a3833;color:#CFC9C0;font-family:Inter,sans-serif;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer">{{ langBtn }}</button>
+    </div>
+  </div>
+  <div style="position:sticky;top:0;z-index:40;background:rgba(247,245,241,.93);backdrop-filter:blur(12px);border-bottom:1px solid #E2DDD5">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px">
+      <div style="display:flex;align-items:center;gap:13px;flex-shrink:0">
+        <img src="assets/npp-logo.webp" alt="شبكة الصحافة الفلسطينية" style="height:46px;width:auto;display:block"/>
+        <div style="line-height:1.15"><div style="font-weight:700;font-size:15px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#B0122A">PALESTINIAN PRESS · NPP</div></div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:2px">
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">معالجات اخبارية</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">تحليلات وآراء</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في أرقام</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">القصة في صور</a>
+        <a href="#" style="padding:8px 14px;font-size:14.5px;font-weight:500;color:#3a3833;text-decoration:none;border-radius:8px">ميديا</a>
+      </nav>
+      <button style="display:flex;align-items:center;gap:8px;background:#161513;color:#fff;border:none;padding:9px 16px;border-radius:24px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:14px;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>بحث</button>
+    </div>
+  </div>
+
+  <!-- ===== ARTICLE LAYOUT ===== -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px">
+    <div style="display:grid;grid-template-columns:64px minmax(0,1fr) 340px;gap:36px;align-items:start">
+
+      <!-- STICKY SHARE RAIL -->
+      <div style="position:sticky;top:96px;display:flex;flex-direction:column;gap:10px;padding-top:40px">
+        <div style="font-size:10.5px;font-weight:600;letter-spacing:.1em;color:#8A857E;writing-mode:vertical-rl;transform:rotate(180deg);align-self:center;margin-bottom:6px;font-family:Inter,sans-serif">SHARE</div>
+        <button class="shr" onClick="{{ shareFb }}" title="فيسبوك" style="width:44px;height:44px;border-radius:50%;border:1px solid #E2DDD5;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#3a3833;font-family:Inter,sans-serif;font-weight:700;font-size:16px">f</button>
+        <button class="shr" onClick="{{ shareX }}" title="إكس" style="width:44px;height:44px;border-radius:50%;border:1px solid #E2DDD5;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#3a3833;font-family:Inter,sans-serif;font-weight:700;font-size:15px">𝕏</button>
+        <button class="shr" onClick="{{ shareWa }}" title="واتساب" style="width:44px;height:44px;border-radius:50%;border:1px solid #E2DDD5;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#1F6B43"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c2.4 1 2.4.7 2.9.6a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3z"/></svg></button>
+        <button class="shr" onClick="{{ shareTg }}" title="تيليجرام" style="width:44px;height:44px;border-radius:50%;border:1px solid #E2DDD5;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#3a3833"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 2.9 11.6c-.9.4-.9 1.2 0 1.5l4.9 1.5 1.9 5.8c.2.5.4.6.8.6s.6-.2 1-.5l2.5-2.4 5 3.7c.5.3 1.1.1 1.3-.6l3.4-15.9c.2-.9-.4-1.3-1.3-1z"/></svg></button>
+        <button class="shr" onClick="{{ copyLink }}" title="نسخ الرابط" style="width:44px;height:44px;border-radius:50%;border:1px solid #E2DDD5;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#3a3833"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></button>
+      </div>
+
+      <!-- MAIN ARTICLE -->
+      <article style="padding-top:34px;min-width:0">
+        <!-- breadcrumb -->
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#8A857E;margin-bottom:18px">
+          <a href="#" style="color:#8A857E;text-decoration:none">الرئيسية</a><span>/</span>
+          <a href="#" style="color:#B0122A;text-decoration:none;font-weight:600">معالجات اخبارية</a>
+        </div>
+        <h1 style="margin:0 0 20px;font-size:40px;line-height:1.32;font-weight:700;letter-spacing:-.015em;text-wrap:balance;max-width:24ch">لماذا ستفشل دعوات الفوضى في غزة عبر «حراك ٢٦ يونيو»؟</h1>
+        <p style="margin:0 0 24px;font-size:20px;line-height:1.7;color:#57534E;font-weight:300;max-width:60ch">قراءة في خلفيات الحراك وأهدافه المعلنة والخفيّة، وحدود تأثيره على المشهد الميداني في ظلّ التعقيدات السياسية المتصاعدة.</p>
+        <!-- byline -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-bottom:22px;border-bottom:1px solid #E2DDD5">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="width:46px;height:46px;border-radius:50%;background:#15140F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px">ح</span>
+            <div><div style="font-size:14.5px;font-weight:600;color:#161513">هيئة التحرير</div><div style="font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif">٢٤ يونيو ٢٠٢٦ · <span style="font-family:'IBM Plex Sans Arabic'">٦ دقائق قراءة</span></div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <button onClick="{{ dec }}" title="تصغير الخط" style="width:38px;height:38px;border-radius:10px;border:1px solid #E2DDD5;background:#fff;cursor:pointer;font-family:Inter;font-size:13px;font-weight:600;color:#57534E">A−</button>
+            <button onClick="{{ inc }}" title="تكبير الخط" style="width:38px;height:38px;border-radius:10px;border:1px solid #E2DDD5;background:#fff;cursor:pointer;font-family:Inter;font-size:16px;font-weight:700;color:#161513">A+</button>
+            <button onClick="{{ toggleSave }}" title="حفظ" style="width:38px;height:38px;border-radius:10px;border:1px solid {{ saveBorder }};background:{{ saveBg }};cursor:pointer;display:flex;align-items:center;justify-content:center">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="{{ saveFill }}" stroke="{{ saveStroke }}" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- AI AUDIO READ-ALOUD -->
+        <div style="margin:24px 0;background:linear-gradient(135deg,#1b1a15,#221f18);border-radius:18px;padding:20px 22px;color:#EDE8E0;box-shadow:0 18px 44px -30px rgba(20,18,14,.5)">
+          <div style="display:flex;align-items:center;gap:14px">
+            <button onClick="{{ togglePlay }}" style="width:52px;height:52px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="#161513"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></sc-if>
+              <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}" not><svg width="21" height="21" viewBox="0 0 24 24" fill="#161513" style="margin-inline-start:3px"><path d="M7 5v14l12-7z"/></svg></sc-if>
+            </button>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+                <span style="font-size:10px;font-weight:600;letter-spacing:.05em;color:#0f0d0a;background:#cdbf6a;padding:2px 8px;border-radius:4px;font-family:Inter">AI</span>
+                <span style="font-size:13.5px;font-weight:600;color:#fff">استمع إلى المقال</span>
+                <span style="font-size:12px;color:#8a847a">· بصوت اصطناعي</span>
+              </div>
+              <div onClick="{{ seek }}" style="display:flex;align-items:flex-end;gap:2px;height:30px;cursor:pointer">
+                <sc-for list="{{ wf }}" as="bar" hint-placeholder-count="48"><span style="flex:1;border-radius:2px;height:{{ bar.h }};background:{{ bar.col }};min-height:3px"></span></sc-for>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+              <span style="font-family:Inter,sans-serif;font-size:12.5px;color:#cdc7bd">{{ cur }} <span style="color:#5f5a51">/</span> {{ dur }}</span>
+              <button onClick="{{ cycleSpeed }}" style="background:#2a2821;color:#EDE8E0;border:none;padding:7px 13px;border-radius:18px;cursor:pointer;font-family:Inter,sans-serif;font-size:12.5px;font-weight:600">{{ speedLabel }}</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- featured image -->
+        <figure style="margin:24px 0 30px">
+          <div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#15140F"><img src="https://picsum.photos/seed/art-lead/1400/800" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/></div>
+          <figcaption style="margin-top:10px;font-size:13px;color:#8A857E;display:flex;gap:8px"><span style="width:3px;background:#B0122A;border-radius:2px;flex-shrink:0"></span>من احتجاجات سابقة في قطاع غزة — أرشيف الشبكة</figcaption>
+        </figure>
+
+        <!-- BODY -->
+        <div ref="{{ bodyRef }}" class="body-prose" style="font-size:{{ fsPx }}">
+          <p><span style="float:right;font-size:62px;line-height:.82;font-weight:700;color:#B0122A;margin:6px 14px 0 0;font-family:'IBM Plex Sans Arabic'">ت</span>تصاعدت خلال الأيام الماضية دعوات للتحرّك الشعبي تحت عنوان «حراك ٢٦ يونيو»، في مشهد بدا للوهلة الأولى عفوياً، لكنّ قراءة متأنّية للخلفيات والأهداف المعلنة تكشف عن صورة أكثر تعقيداً مما يُروَّج له على منصّات التواصل.</p>
+          <p>تشير المعطيات المتوفّرة إلى أنّ الحملة الرقمية المرافقة للدعوة لم تكن منفصلة عن شبكة حسابات نشطة سبق أن استُخدمت في حملات مشابهة، وهو ما يطرح تساؤلات حول مدى تلقائية الحراك وحدود تأثيره الفعلي على الأرض.</p>
+          <h2>أهداف معلنة وأخرى خفيّة</h2>
+          <p>بين المطالب المعيشية المحقّة التي يرفعها كثير من المشاركين، تتسلّل أجندات أخرى تسعى إلى توظيف الغضب الشعبي في اتجاهات لا تخدم أولويات الناس، بل تعيد إنتاج الانقسام في لحظة تتطلّب أعلى درجات التماسك.</p>
+          <blockquote style="margin:32px 0;padding:4px 26px;border-inline-start:4px solid #B0122A;background:#fff;border-radius:0 14px 14px 0">
+            <p style="margin:0;padding:22px 0;font-size:24px;line-height:1.7;font-weight:600;color:#161513;font-style:normal">«الغضب المشروع شيء، وتوظيفه في معارك جانبية لا تخدم الناس شيء آخر تماماً.»</p>
+          </blockquote>
+          <p>ولا يمكن فهم المشهد بمعزل عن السياق الأوسع الذي تتقاطع فيه الحسابات الداخلية مع الضغوط الخارجية، إذ تتحرّك أطراف عدّة لاستثمار أي حالة احتقان في تعزيز مواقعها.</p>
+          <h2>حدود التأثير على الأرض</h2>
+          <p>رغم الزخم الرقمي، تبقى قدرة هذه الدعوات على إحداث تحوّل ميداني محدودة، في ظلّ وعي شعبي متراكم يميّز بين المطالب الحقيقية ومحاولات الركوب على المعاناة. وهذا الوعي تحديداً هو ما يجعل رهانات الفوضى أقرب إلى الفشل.</p>
+          <p>وفي المحصّلة، فإنّ معالجة جذور الأزمة المعيشية والسياسية تبقى الطريق الأكثر فاعلية لنزع فتيل أي توظيف للغضب، بعيداً عن منطق التصعيد الذي لا يضيف إلى رصيد القضية شيئاً.</p>
+        </div>
+
+        <!-- tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 0">
+          <span style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E2DDD5;padding:8px 14px;border-radius:22px;font-size:13.5px;cursor:pointer"><b style="color:#B0122A;font-family:Inter">#</b>حراك ٢٦ يونيو</span>
+          <span style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E2DDD5;padding:8px 14px;border-radius:22px;font-size:13.5px;cursor:pointer"><b style="color:#B0122A;font-family:Inter">#</b>غزة</span>
+          <span style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E2DDD5;padding:8px 14px;border-radius:22px;font-size:13.5px;cursor:pointer"><b style="color:#B0122A;font-family:Inter">#</b>الشأن الفلسطيني</span>
+        </div>
+
+        <!-- share row -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin:28px 0;padding:18px 22px;background:#fff;border-radius:16px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <span style="font-size:14.5px;font-weight:600;color:#161513">شارك المقال</span>
+          <div style="display:flex;align-items:center;gap:9px">
+            <button class="shr" onClick="{{ shareFb }}" style="display:flex;align-items:center;gap:7px;background:#15140F;color:#fff;border:none;padding:9px 15px;border-radius:22px;cursor:pointer;font-family:Inter,sans-serif;font-size:13px;font-weight:600"><span style="font-weight:700">f</span>فيسبوك</button>
+            <button class="shr" onClick="{{ shareX }}" style="display:flex;align-items:center;gap:7px;background:#15140F;color:#fff;border:none;padding:9px 15px;border-radius:22px;cursor:pointer;font-family:Inter,sans-serif;font-size:13px;font-weight:600">𝕏</button>
+            <button class="shr" onClick="{{ shareWa }}" style="display:flex;align-items:center;gap:7px;background:#1F6B43;color:#fff;border:none;padding:9px 15px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px;font-weight:600">واتساب</button>
+            <button class="shr" onClick="{{ copyLink }}" style="display:flex;align-items:center;gap:7px;background:#fff;color:#3a3833;border:1px solid #E2DDD5;padding:9px 15px;border-radius:22px;cursor:pointer;font-family:'IBM Plex Sans Arabic';font-size:13px;font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>نسخ الرابط</button>
+          </div>
+        </div>
+
+        <!-- author bio -->
+        <div style="display:flex;gap:18px;align-items:flex-start;margin:8px 0 36px;padding:24px;background:#15140F;border-radius:18px;color:#EDE8E0">
+          <span style="width:58px;height:58px;border-radius:50%;background:#2a2821;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;flex-shrink:0">ح</span>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:5px">هيئة التحرير</div>
+            <p style="margin:0 0 12px;font-size:13.5px;line-height:1.8;color:#9b948a">فريق المعالجات الإخبارية في شبكة الصحافة الفلسطينية، يقدّم قراءات معمّقة وموضوعية في الشأن الفلسطيني وتأثيراته الإقليمية والدولية.</p>
+            <div style="display:flex;gap:10px"><span style="font-size:12.5px;color:#1F8A5B;font-weight:600;cursor:pointer">عرض كل المقالات ←</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside style="position:sticky;top:96px;padding-top:34px;display:flex;flex-direction:column;gap:18px">
+        <!-- AI summary -->
+        <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 1px 2px rgba(20,18,14,.05);border-top:3px solid #B0122A">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px">
+            <span style="font-size:10px;font-weight:600;letter-spacing:.05em;color:#0f0d0a;background:#cdbf6a;padding:2px 8px;border-radius:4px;font-family:Inter">AI</span>
+            <span style="font-size:15px;font-weight:700;color:#161513">أبرز النقاط</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:11px"><span style="width:7px;height:7px;border-radius:50%;background:#B0122A;margin-top:8px;flex-shrink:0"></span><span style="font-size:14px;line-height:1.7;color:#2A2825">الحملة الرقمية المرافقة للحراك ليست عفوية بالكامل وترتبط بشبكة حسابات نشطة.</span></div>
+            <div style="display:flex;gap:11px"><span style="width:7px;height:7px;border-radius:50%;background:#B0122A;margin-top:8px;flex-shrink:0"></span><span style="font-size:14px;line-height:1.7;color:#2A2825">مطالب معيشية محقّة تختلط بأجندات تسعى لتوظيف الغضب الشعبي.</span></div>
+            <div style="display:flex;gap:11px"><span style="width:7px;height:7px;border-radius:50%;background:#B0122A;margin-top:8px;flex-shrink:0"></span><span style="font-size:14px;line-height:1.7;color:#2A2825">الوعي الشعبي المتراكم يحدّ من قدرة الدعوات على إحداث تحوّل ميداني.</span></div>
+          </div>
+        </div>
+        <!-- TOC / topics -->
+        <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:15px;font-weight:700;color:#161513;margin-bottom:14px">محاور المقال</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <a href="#" style="padding:9px 12px;border-radius:10px;font-size:14px;color:#3a3833;text-decoration:none;border-inline-start:2px solid #B0122A;background:#FAF8F4">المقدّمة</a>
+            <a href="#" style="padding:9px 12px;border-radius:10px;font-size:14px;color:#57534E;text-decoration:none;border-inline-start:2px solid transparent">أهداف معلنة وأخرى خفيّة</a>
+            <a href="#" style="padding:9px 12px;border-radius:10px;font-size:14px;color:#57534E;text-decoration:none;border-inline-start:2px solid transparent">حدود التأثير على الأرض</a>
+          </div>
+        </div>
+        <!-- most read -->
+        <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 1px 2px rgba(20,18,14,.05)">
+          <div style="font-size:15px;font-weight:700;color:#161513;margin-bottom:16px">الأكثر قراءة</div>
+          <div style="display:flex;flex-direction:column;gap:15px">
+            <div style="display:flex;gap:12px;align-items:flex-start;cursor:pointer"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:19px;color:#D6D0C6;width:18px;flex-shrink:0">١</span><span style="font-size:14px;line-height:1.5;color:#161513;font-weight:500">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات</span></div>
+            <div style="display:flex;gap:12px;align-items:flex-start;cursor:pointer"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:19px;color:#D6D0C6;width:18px;flex-shrink:0">٢</span><span style="font-size:14px;line-height:1.5;color:#161513;font-weight:500">أمجد أبو كوش يواجه انتقادات واسعة بعد الترويج للحراك</span></div>
+            <div style="display:flex;gap:12px;align-items:flex-start;cursor:pointer"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:19px;color:#D6D0C6;width:18px;flex-shrink:0">٣</span><span style="font-size:14px;line-height:1.5;color:#161513;font-weight:500">عبد العاطي ويوسف ياسر يشعلان الغضب في غزة</span></div>
+          </div>
+        </div>
+        <!-- newsletter -->
+        <div style="background:linear-gradient(135deg,#1F6B43,#16502f);border-radius:18px;padding:22px;color:#fff">
+          <div style="font-size:16px;font-weight:700;margin-bottom:6px">النشرة البريدية</div>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.7;color:#cfe6da">أبرز المعالجات في بريدك صباح كل يوم.</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <input placeholder="بريدك الإلكتروني" style="border:none;border-radius:10px;padding:11px 14px;font-family:'IBM Plex Sans Arabic';font-size:13.5px;background:rgba(255,255,255,.92)"/>
+            <button style="background:#fff;color:#16502f;border:none;border-radius:10px;padding:11px;font-weight:700;font-family:'IBM Plex Sans Arabic';font-size:13.5px;cursor:pointer">اشتراك</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- RELATED -->
+    <section style="padding:20px 0 70px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #161513;padding-bottom:12px;margin-bottom:24px">
+        <h2 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em">اقرأ أيضاً</h2>
+        <a href="#" style="display:flex;align-items:center;gap:6px;color:#B0122A;font-size:14px;font-weight:600;text-decoration:none">عرض الكل<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+          <article class="rel" style="background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(20,18,14,.04)">
+            <div style="position:relative;aspect-ratio:16/10;background:#E9E4DC;overflow:hidden"><img src="{{ r.img }}" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)"/><span style="position:absolute;top:13px;inset-inline-start:13px;background:rgba(22,21,19,.86);color:#fff;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:6px">{{ r.cat }}</span></div>
+            <div style="padding:18px"><h3 style="margin:0 0 12px;font-size:16.5px;line-height:1.55;font-weight:600;color:#161513">{{ r.x }}</h3><div style="font-size:12.5px;color:#8A857E;font-family:Inter,sans-serif">{{ r.t }}</div></div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+
+  <!-- footer -->
+  <footer style="background:#0F0E0B;color:#A39D92">
+    <div style="max-width:1280px;margin:0 auto;padding:34px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:12px"><img src="assets/npp-logo.webp" alt="" style="height:42px;width:auto"/><div><div style="color:#fff;font-weight:700;font-size:14px">شبكة الصحافة الفلسطينية</div><div style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;color:#6f6a60">PALESTINIAN PRESS NETWORK</div></div></div>
+      <span style="font-size:12.5px;color:#6f6a60">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+  <!-- toast -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;background:#15140F;color:#fff;padding:13px 22px;border-radius:24px;font-size:14px;box-shadow:0 18px 44px -18px rgba(0,0,0,.5);animation:fadeUp .25s ease;display:flex;align-items:center;gap:9px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>{{ toast }}
+    </div>
+  </sc-if>
+
+  <!-- mobile floating audio -->
+  <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:22px;inset-inline-end:22px;z-index:80;display:flex;align-items:center;gap:11px;background:#15140F;border-radius:30px;padding:8px 8px 8px 18px;box-shadow:0 18px 44px -18px rgba(0,0,0,.5);animation:fadeUp .3s ease">
+      <span style="display:flex;align-items:flex-end;gap:2px;height:16px">
+        <span style="width:2.5px;background:#1F8A5B;border-radius:2px;height:100%;transform-origin:bottom;animation:eqb .9s ease-in-out infinite"></span>
+        <span style="width:2.5px;background:#1F8A5B;border-radius:2px;height:100%;transform-origin:bottom;animation:eqb .9s ease-in-out infinite .25s"></span>
+        <span style="width:2.5px;background:#1F8A5B;border-radius:2px;height:100%;transform-origin:bottom;animation:eqb .9s ease-in-out infinite .5s"></span>
+      </span>
+      <span style="font-size:12.5px;color:#EDE8E0">يُقرأ الآن · {{ cur }}</span>
+      <button onClick="{{ togglePlay }}" style="width:38px;height:38px;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="#161513"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:1000}}">
+const WAVE = Array.from({length:54},(_,i)=> 0.25 + 0.75*Math.abs(Math.sin(i*0.5)*Math.cos(i*0.13) + 0.3*Math.sin(i*0.9)));
+const RELATED = [
+  {cat:'معالجات اخبارية', x:'وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي', t:'٢٣ يونيو', s:'rel1'},
+  {cat:'تحليلات وآراء', x:'ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة', t:'٢٠ يونيو', s:'rel2'},
+  {cat:'معالجات اخبارية', x:'تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة', t:'٢٢ يونيو', s:'rel3'}
+];
+
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  progRef = React.createRef();
+  bodyRef = React.createRef();
+  state = { lang:'ar', playing:false, progress:0, speedIdx:1, fs:1, saved:false, toast:'' };
+  audioTotal = 372;
+  speeds=[0.75,1,1.25,1.5];
+
+  componentDidMount(){ this.onScroll=this.handleScroll.bind(this); window.addEventListener('scroll',this.onScroll,{passive:true}); this.handleScroll(); }
+  componentWillUnmount(){ window.removeEventListener('scroll',this.onScroll); clearInterval(this.audioTimer); clearTimeout(this.toastTimer); }
+
+  handleScroll(){
+    const b=this.bodyRef.current; if(!b||!this.progRef.current) return;
+    const r=b.getBoundingClientRect(); const vh=window.innerHeight;
+    const total=r.height - vh + 240; const passed=Math.min(Math.max(-r.top + vh*0.4,0),Math.max(total,1));
+    this.progRef.current.style.width=Math.min(100,(passed/Math.max(total,1))*100)+'%';
+  }
+
+  togglePlay=()=>{
+    this.setState(s=>{
+      const playing=!s.playing; clearInterval(this.audioTimer);
+      if(playing){ const step=0.4*this.speeds[this.state.speedIdx];
+        this.audioTimer=setInterval(()=>{ this.setState(st=>{ let p=st.progress+step/this.audioTotal; if(p>=1){ clearInterval(this.audioTimer); return {progress:1,playing:false}; } return {progress:p}; }); },100);
+      }
+      return {playing};
+    });
+  };
+  seekFromEvent=(e)=>{ const r=e.currentTarget.getBoundingClientRect(); let x=(e.clientX-r.left)/r.width; if(this.state.lang==='ar') x=1-x; this.setState({progress:Math.max(0,Math.min(1,x))}); };
+  cycleSpeed=()=> this.setState(s=>({speedIdx:(s.speedIdx+1)%this.speeds.length}));
+  inc=()=> this.setState(s=>({fs:Math.min(1.35,s.fs+0.1)}));
+  dec=()=> this.setState(s=>({fs:Math.max(0.85,s.fs-0.1)}));
+  toggleSave=()=> this.setState(s=>({saved:!s.saved, toast:!s.saved?'تم حفظ المقال':'أُزيل من المحفوظات'}), ()=>this.flashToast());
+  toggleLang=()=>{ this.setState(s=>{ const lang=s.lang==='ar'?'en':'ar'; if(this.rootRef.current) this.rootRef.current.setAttribute('dir', lang==='ar'?'rtl':'ltr'); return {lang}; }); };
+  flashToast(){ clearTimeout(this.toastTimer); this.toastTimer=setTimeout(()=>this.setState({toast:''}),2200); }
+  doShare(msg){ this.setState({toast:msg}); this.flashToast(); }
+  shareFb=()=>this.doShare('تمت المشاركة على فيسبوك');
+  shareX=()=>this.doShare('تمت المشاركة على إكس');
+  shareWa=()=>this.doShare('تمت المشاركة على واتساب');
+  shareTg=()=>this.doShare('تمت المشاركة على تيليجرام');
+  copyLink=()=>{ try{ navigator.clipboard && navigator.clipboard.writeText('https://palps.net/article'); }catch(e){} this.doShare('تم نسخ الرابط'); };
+  fmt(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60),s=sec%60; return m+':'+String(s).padStart(2,'0'); }
+
+  renderVals(){
+    const prog=this.state.progress;
+    const wf=WAVE.map((h,i)=>({ h:(h*100).toFixed(1)+'%', col:(i/WAVE.length)<=prog?'#cdbf6a':'#3a372f' }));
+    return {
+      rootRef:this.rootRef, progRef:this.progRef, bodyRef:this.bodyRef,
+      langBtn:this.state.lang==='ar'?'EN':'ع', toggleLang:this.toggleLang,
+      playing:this.state.playing, togglePlay:this.togglePlay, wf, seek:this.seekFromEvent,
+      cur:this.fmt(prog*this.audioTotal), dur:this.fmt(this.audioTotal),
+      speedLabel:'×'+this.speeds[this.state.speedIdx], cycleSpeed:this.cycleSpeed,
+      inc:this.inc, dec:this.dec, fsPx:(18.5*this.state.fs).toFixed(1)+'px',
+      toggleSave:this.toggleSave, saved:this.state.saved,
+      saveBg:this.state.saved?'#15140F':'#fff', saveBorder:this.state.saved?'#15140F':'#E2DDD5',
+      saveFill:this.state.saved?'#fff':'none', saveStroke:this.state.saved?'#fff':'#57534E',
+      shareFb:this.shareFb, shareX:this.shareX, shareWa:this.shareWa, shareTg:this.shareTg, copyLink:this.copyLink,
+      toast:this.state.toast,
+      related:RELATED.map(r=>({...r, img:'https://picsum.photos/seed/npp-'+r.s+'/700/450'}))
+    };
+  }
+}
+</script>
+</body>
+</html>
