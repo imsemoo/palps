@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تواصل — شبكة الصحافة الفلسطينية NPP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="npp" dir="rtl">
+
+  <!-- ===================== الشريط العلوي ===================== -->
+  <div class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="topbar__group">
+        <span class="topbar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span data-i18n="date">الثلاثاء، ٢٣ يونيو ٢٠٢٦</span>
+        </span>
+        <span class="topbar__sep">|</span>
+        <span class="topbar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+          <span data-i18n="weather">القدس ٢٩°</span>
+        </span>
+      </div>
+      <div class="topbar__group topbar__group--end">
+        <button class="topbar__lang" type="button" data-lang-toggle data-i18n="langBtn">EN</button>
+        <span class="topbar__bell">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CFC9C0" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        </span>
+        <span class="topbar__signin" data-i18n="signin">تسجيل الدخول</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== الهيدر اللاصق + التيكر ===================== -->
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.webp" alt="شبكة الصحافة الفلسطينية">
+        <span>
+          <span class="brand__name">شبكة الصحافة الفلسطينية</span>
+          <span class="brand__sub">PALESTINIAN PRESS · NPP</span>
+        </span>
+      </a>
+      <nav class="mainnav">
+        <a class="mainnav__link" href="articles.html" data-i18n="nav0">معالجات اخبارية</a>
+        <a class="mainnav__link" href="articles.html" data-i18n="nav1">تحليلات وآراء</a>
+        <a class="mainnav__link" href="articles.html" data-i18n="nav2">القصة في أرقام</a>
+        <a class="mainnav__link" href="articles.html" data-i18n="nav3">القصة في صور</a>
+        <a class="mainnav__link" href="articles.html" data-i18n="nav4">ميديا</a>
+      </nav>
+      <button class="search-btn" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        بحث
+      </button>
+    </div>
+
+    <div class="ticker">
+      <div class="ticker__label">
+        <span class="ticker__dot"></span>
+        <span data-i18n="breaking">عاجل</span>
+      </div>
+      <div class="ticker__viewport">
+        <div class="ticker__track">
+          <!-- نسخة 1 -->
+          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+          <!-- نسخة 2 (لاستمرارية الحركة) -->
+          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== هيرو تواصل ===================== -->
+  <section class="contact__hero wrap">
+    <div class="contact__kicker-row">
+      <span class="contact__flag contact__flag--red"></span>
+      <span class="contact__flag contact__flag--green"></span>
+      <span class="contact__flag contact__flag--ink"></span>
+      <span class="contact__kicker">CONTACT</span>
+    </div>
+    <h1 class="contact__title">تواصل مع غرفة التحرير</h1>
+    <div class="contact__lead-row">
+      <p class="contact__lead">سواء عندك بلاغ، أو وثيقة، أو ملاحظة تحريرية — نحن نصغي. اختر القناة المناسبة وسنردّ في أقرب وقت.</p>
+      <span class="contact__pill">
+        <span class="contact__pill-dot"></span>
+        نردّ عادةً خلال ٢٤ ساعة
+      </span>
+    </div>
+  </section>
+
+  <!-- ===================== جسم تواصل ===================== -->
+  <section class="contact wrap">
+    <div class="contact__grid">
+
+      <!-- بطاقة الفورم -->
+      <div class="contact__panel" data-contact-form>
+        <div class="contact__form" data-contact-form-view>
+          <h2 class="contact__panel-title">أرسل رسالتك</h2>
+          <p class="contact__panel-sub">كل الحقول المعلّمة بـ<span class="contact__req">*</span> مطلوبة.</p>
+
+          <!-- نوع الرسالة -->
+          <div class="contact__field-label">نوع الرسالة</div>
+          <div class="contact__purposes" data-contact-purposes>
+            <button class="contact__purpose is-active" type="button" data-purpose="general">استفسار عام</button>
+            <button class="contact__purpose" type="button" data-purpose="tip">بلاغ سرّي</button>
+            <button class="contact__purpose" type="button" data-purpose="ad">إعلان وشراكة</button>
+            <button class="contact__purpose" type="button" data-purpose="complaint">شكوى تحريرية</button>
+          </div>
+
+          <!-- مفتاح السرّية -->
+          <div class="contact__secure">
+            <div class="contact__secure-info">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              <div>
+                <div class="contact__secure-title">إرسال بسرّية تامّة</div>
+                <div class="contact__secure-desc">نخفي اسمك وبريدك ونلتزم بحماية مصدرك.</div>
+              </div>
+            </div>
+            <button class="contact__switch" type="button" role="switch" aria-checked="false" data-contact-secure>
+              <span class="contact__switch-knob"></span>
+            </button>
+          </div>
+
+          <!-- الاسم + البريد (يختفيان في الوضع السرّي) -->
+          <div class="contact__identity" data-contact-identity>
+            <div class="contact__col">
+              <label class="contact__label">الاسم <span class="contact__req">*</span></label>
+              <input class="contact__input" type="text" data-f="name" placeholder="اسمك الكامل">
+              <div class="contact__error" data-error="name"></div>
+            </div>
+            <div class="contact__col">
+              <label class="contact__label">البريد الإلكتروني <span class="contact__req">*</span></label>
+              <input class="contact__input contact__input--ltr" type="email" data-f="email" placeholder="name@example.com">
+              <div class="contact__error" data-error="email"></div>
+            </div>
+          </div>
+
+          <!-- شارة الوضع السرّي (تظهر بدلاً من الاسم والبريد) -->
+          <div class="contact__secure-note" data-contact-secure-note hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            الوضع السرّي مُفعّل — لن نطلب أيّ بيانات تعريفية.
+          </div>
+
+          <!-- الموضوع -->
+          <div class="contact__col contact__col--block">
+            <label class="contact__label">الموضوع <span class="contact__req">*</span></label>
+            <input class="contact__input" type="text" data-f="subject" placeholder="عنوان مختصر لرسالتك">
+            <div class="contact__error" data-error="subject"></div>
+          </div>
+
+          <!-- الرسالة -->
+          <div class="contact__col contact__col--block">
+            <label class="contact__label">الرسالة <span class="contact__req">*</span></label>
+            <textarea class="contact__input contact__textarea" data-f="message" placeholder="اكتب تفاصيل رسالتك هنا…"></textarea>
+            <div class="contact__error" data-error="message"></div>
+          </div>
+
+          <!-- إرفاق -->
+          <div class="contact__attach">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><path d="M21.4 11.05 12.25 20.2a5 5 0 0 1-7.07-7.07l9.19-9.19a3 3 0 1 1 4.24 4.24l-9.2 9.19a1 1 0 0 1-1.41-1.41l8.49-8.49"/></svg>
+            <span class="contact__attach-text">إرفاق وثيقة أو صورة <span class="contact__attach-hint">(اختياري · حتى ٢٥ ميجابايت)</span></span>
+          </div>
+
+          <button class="contact__submit" type="button" data-contact-submit>
+            إرسال الرسالة
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+          </button>
+        </div>
+
+        <!-- حالة النجاح -->
+        <div class="contact__success" data-contact-success hidden>
+          <div class="contact__success-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2 class="contact__success-title">تمّ استلام رسالتك</h2>
+          <p class="contact__success-desc">شكراً لتواصلك مع غرفة التحرير. سنراجع رسالتك ونردّ عليك في أقرب وقت ممكن.</p>
+          <div class="contact__refbox">
+            <span class="contact__ref-label">رقم المرجع</span>
+            <span class="contact__ref-no lat" data-contact-ref></span>
+          </div>
+          <div>
+            <button class="contact__again" type="button" data-contact-reset>إرسال رسالة أخرى</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- قنوات التواصل -->
+      <aside class="contact__channels">
+        <div class="contact__chan">
+          <div class="contact__chan-head">
+            <span class="contact__chan-ico contact__chan-ico--red">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg>
+            </span>
+            <span class="contact__chan-title">غرفة الأخبار</span>
+          </div>
+          <div class="contact__chan-mail lat">newsroom@palps.net</div>
+        </div>
+
+        <div class="contact__chan contact__chan--dark">
+          <div class="contact__chan-head">
+            <span class="contact__chan-ico contact__chan-ico--dark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span class="contact__chan-title contact__chan-title--on-dark">البلاغات والوثائق</span>
+          </div>
+          <div class="contact__chan-text">قناة آمنة لإرسال الوثائق والتسريبات بسرّية تامّة وحماية كاملة للمصدر.</div>
+        </div>
+
+        <div class="contact__chan">
+          <div class="contact__chan-head">
+            <span class="contact__chan-ico contact__chan-ico--green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            </span>
+            <span class="contact__chan-title">الإعلانات والشراكات</span>
+          </div>
+          <div class="contact__chan-mail lat">partners@palps.net</div>
+        </div>
+
+        <!-- المكتب الرئيسي -->
+        <div class="contact__office">
+          <div class="contact__office-title">المكتب الرئيسي</div>
+          <div class="contact__office-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="contact__office-text">رام الله، فلسطين — شارع الإرسال، عمارة الإعلام</span>
+          </div>
+          <div class="contact__office-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span class="contact__office-text">الأحد–الخميس · ٩ص – ٦م</span>
+          </div>
+          <div class="contact__office-socials">
+            <span class="contact__soc lat">𝕏</span>
+            <span class="contact__soc lat">f</span>
+            <span class="contact__soc">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 2.9 11.6c-.9.4-.9 1.2 0 1.5l4.9 1.5 1.9 5.8c.2.5.4.6.8.6s.6-.2 1-.5l2.5-2.4 5 3.7c.5.3 1.1.1 1.3-.6l3.4-15.9c.2-.9-.4-1.3-1.3-1z"/></svg>
+            </span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- أسئلة شائعة -->
+    <section class="contact__faq">
+      <div class="sec-head">
+        <h2 class="sec-head__title">أسئلة شائعة</h2>
+      </div>
+      <div class="contact__faq-list" data-contact-faq>
+        <div class="contact__faq-item is-open">
+          <button class="contact__faq-q" type="button" data-faq-toggle>
+            <span class="contact__faq-q-text">كيف أرسل وثيقة أو تسريباً بسرّية؟</span>
+            <span class="contact__faq-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="contact__faq-a">
+            <p class="contact__faq-a-text">فعّل خيار «إرسال بسرّية تامّة» في النموذج، أو راسلنا عبر قناة البلاغات الآمنة. لا نطلب أيّ بيانات تعريفية، ونلتزم بحماية المصدر بشكل كامل.</p>
+          </div>
+        </div>
+
+        <div class="contact__faq-item">
+          <button class="contact__faq-q" type="button" data-faq-toggle>
+            <span class="contact__faq-q-text">كم يستغرق الردّ على رسالتي؟</span>
+            <span class="contact__faq-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="contact__faq-a">
+            <p class="contact__faq-a-text">نردّ عادةً خلال ٢٤ ساعة في أيام العمل. البلاغات العاجلة تُعطى أولوية أعلى من قبل غرفة التحرير.</p>
+          </div>
+        </div>
+
+        <div class="contact__faq-item">
+          <button class="contact__faq-q" type="button" data-faq-toggle>
+            <span class="contact__faq-q-text">كيف أبلّغ عن خطأ في مادة منشورة؟</span>
+            <span class="contact__faq-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="contact__faq-a">
+            <p class="contact__faq-a-text">اختر «شكوى تحريرية» كنوع للرسالة، واذكر رابط المادة وموضع الخطأ. نراجع كل الملاحظات وننشر التصويبات عند الحاجة.</p>
+          </div>
+        </div>
+
+        <div class="contact__faq-item">
+          <button class="contact__faq-q" type="button" data-faq-toggle>
+            <span class="contact__faq-q-text">هل يمكنني إعادة نشر موادّكم؟</span>
+            <span class="contact__faq-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="contact__faq-a">
+            <p class="contact__faq-a-text">يمكن إعادة النشر مع الإشارة الواضحة إلى المصدر. للاستخدامات التجارية أو الشراكات، تواصل معنا عبر قناة الإعلانات والشراكات.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===================== الفوتر ===================== -->
+  <footer class="footer">
+    <div class="wrap footer__pad">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-row">
+            <img class="footer__logo" src="assets/img/logo.webp" alt="">
+            <div><div class="footer__name">شبكة الصحافة الفلسطينية</div><div class="footer__name-sub">PALESTINIAN PRESS NETWORK</div></div>
+          </div>
+          <p class="footer__desc">نقدّم المعالجات الإخبارية والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تركّز على المهنية والموضوعية.</p>
+          <div class="socials">
+            <span class="social">f</span>
+            <span class="social">X</span>
+            <span class="social social--sm">YT</span>
+            <span class="social social--sm">IG</span>
+            <span class="social social--sm">TG</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading" data-i18n="f_sections">الأقسام</div>
+          <div class="footer__links">
+            <a href="articles.html">معالجات اخبارية</a>
+            <a href="articles.html">تحليلات وآراء</a>
+            <a href="articles.html">القصة في أرقام</a>
+            <a href="articles.html">القصة في صور</a>
+            <a href="articles.html">ميديا</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading" data-i18n="f_about">عن الشبكة</div>
+          <div class="footer__links">
+            <a href="about.html" data-i18n="f_about">عن الشبكة</a>
+            <a href="about.html" data-i18n="f_policy">السياسة التحريرية</a>
+            <a href="#" data-i18n="s_audio">الموجز الصوتي اليومي</a>
+            <a href="#" data-i18n="s_video">قصص مرئية</a>
+            <a href="contact.html" data-i18n="f_contact">تواصل</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading" data-i18n="nl">النشرة البريدية</div>
+          <p class="footer__news-desc" data-i18n="nlDesc">أبرز المعالجات والتحليلات في بريدك صباح كل يوم.</p>
+          <form class="footer__news-form" onsubmit="return false">
+            <input class="footer__news-input" type="email" placeholder="بريدك الإلكتروني" data-i18n-ph="emailPh">
+            <button class="footer__news-btn" type="submit" data-i18n="subscribe">اشتراك</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__rights" data-i18n="rights">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+        <div class="footer__legal">
+          <a href="about.html" data-i18n="f_policy">السياسة التحريرية</a>
+          <a href="contact.html" data-i18n="f_contact">تواصل</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
