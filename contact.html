@@ -6,10 +6,18 @@
   <title>تواصل — شبكة الصحافة الفلسطينية NPP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<!-- ===================== لودر التحميل ===================== -->
+<div class="loader" data-loader aria-hidden="true">
+  <div class="loader__mark">
+    <span class="loader__ring"></span>
+    <img class="loader__logo" src="assets/img/logo.webp" alt="شبكة الصحافة الفلسطينية">
+  </div>
+  <div class="loader__bar"><span class="loader__bar-fill"></span></div>
+</div>
 <div class="npp" dir="rtl">
 
   <!-- ===================== الشريط العلوي ===================== -->
@@ -18,20 +26,16 @@
       <div class="topbar__group">
         <span class="topbar__item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <span data-i18n="date">الثلاثاء، ٢٣ يونيو ٢٠٢٦</span>
+          <span data-i18n="date">الثلاثاء، 23 يونيو 2026</span>
         </span>
         <span class="topbar__sep">|</span>
         <span class="topbar__item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
-          <span data-i18n="weather">القدس ٢٩°</span>
+          <span data-i18n="weather">القدس 29°</span>
         </span>
       </div>
       <div class="topbar__group topbar__group--end">
         <button class="topbar__lang" type="button" data-lang-toggle data-i18n="langBtn">EN</button>
-        <span class="topbar__bell">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CFC9C0" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-        </span>
-        <span class="topbar__signin" data-i18n="signin">تسجيل الدخول</span>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@
         <span class="brand__divider"></span>
         <span class="brand__text">
           <span class="brand__name">شبكة الصحافة الفلسطينية</span>
-          <span class="brand__sub">PALESTINIAN PRESS · NPP</span>
+          
         </span>
       </a>
       <nav class="mainnav">
@@ -69,15 +73,15 @@
       <div class="ticker__viewport">
         <div class="ticker__track">
           <!-- نسخة 1 -->
-          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">10:42</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد 3269 خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">09:15</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">08:30</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">07:50</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
           <!-- نسخة 2 (لاستمرارية الحركة) -->
-          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">10:42</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد 3269 خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">09:15</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">08:30</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">07:50</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
         </div>
       </div>
     </div>
@@ -92,14 +96,14 @@
         <span class="contact__flag contact__flag--red"></span>
         <span class="contact__flag contact__flag--green"></span>
         <span class="contact__flag contact__flag--paper"></span>
-        <span class="contact__kicker lat">CONTACT</span>
+        
       </div>
       <h1 class="contact__title">تواصل مع غرفة التحرير</h1>
       <div class="contact__lead-row">
         <p class="contact__lead">سواء عندك بلاغ، أو وثيقة، أو ملاحظة تحريرية — خلف كلّ رسالة هنا محرّر حقيقي يصغي. اختر القناة المناسبة وسنردّ في أقرب وقت.</p>
         <span class="contact__pill">
           <span class="contact__pill-dot"></span>
-          نردّ عادةً خلال ٢٤ ساعة
+          نردّ عادةً خلال 24 ساعة
         </span>
       </div>
     </div>
@@ -140,7 +144,7 @@
       </span>
       <div class="contact__trust-body">
         <h3 class="contact__trust-title">سرعة الردّ</h3>
-        <p class="contact__trust-desc">ردّ خلال ٢٤ ساعة، والعاجل له أولوية.</p>
+        <p class="contact__trust-desc">ردّ خلال 24 ساعة، والعاجل له أولوية.</p>
       </div>
     </article>
   </section>
@@ -215,7 +219,7 @@
           <!-- إرفاق -->
           <div class="contact__attach">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><path d="M21.4 11.05 12.25 20.2a5 5 0 0 1-7.07-7.07l9.19-9.19a3 3 0 1 1 4.24 4.24l-9.2 9.19a1 1 0 0 1-1.41-1.41l8.49-8.49"/></svg>
-            <span class="contact__attach-text">إرفاق وثيقة أو صورة <span class="contact__attach-hint">(اختياري · حتى ٢٥ ميجابايت)</span></span>
+            <span class="contact__attach-text">إرفاق وثيقة أو صورة <span class="contact__attach-hint">(اختياري · حتى 25 ميجابايت)</span></span>
           </div>
 
           <button class="contact__submit" type="button" data-contact-submit>
@@ -294,7 +298,7 @@
           </div>
           <div class="contact__office-row">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A857E" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <span class="contact__office-text">الأحد–الخميس · ٩ص – ٦م</span>
+            <span class="contact__office-text">الأحد–الخميس · 9ص – 6م</span>
           </div>
           <div class="contact__office-socials">
             <a class="contact__soc" href="#" aria-label="منصة إكس">
@@ -337,7 +341,7 @@
             </span>
           </button>
           <div class="contact__faq-a">
-            <p class="contact__faq-a-text">نردّ عادةً خلال ٢٤ ساعة في أيام العمل. البلاغات العاجلة تُعطى أولوية أعلى من قبل غرفة التحرير.</p>
+            <p class="contact__faq-a-text">نردّ عادةً خلال 24 ساعة في أيام العمل. البلاغات العاجلة تُعطى أولوية أعلى من قبل غرفة التحرير.</p>
           </div>
         </div>
 
@@ -375,7 +379,7 @@
         <div>
           <div class="footer__brand-row">
             <img class="footer__logo" src="assets/img/logo.webp" alt="">
-            <div><div class="footer__name">شبكة الصحافة الفلسطينية</div><div class="footer__name-sub">PALESTINIAN PRESS NETWORK</div></div>
+            <div><div class="footer__name">شبكة الصحافة الفلسطينية</div></div>
           </div>
           <p class="footer__desc">نقدّم المعالجات الإخبارية والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تركّز على المهنية والموضوعية.</p>
           <div class="socials">
@@ -416,11 +420,11 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span class="footer__rights" data-i18n="rights">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+        <span class="footer__rights" data-i18n="rights">© 2026 شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
         <div class="footer__legal">
           <a href="about.html" data-i18n="f_policy">السياسة التحريرية</a>
           <a href="contact.html" data-i18n="f_contact">تواصل</a>
-          <a href="#">Sitemap</a>
+          <a href="#">خريطة الموقع</a>
         </div>
       </div>
     </div>

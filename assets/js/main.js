@@ -15,7 +15,7 @@
      ---------------------------------------------------------------------- */
   var I18N = {
     ar: {
-      date: 'الثلاثاء، ٢٣ يونيو ٢٠٢٦', weather: 'القدس ٢٩°', signin: 'تسجيل الدخول', langBtn: 'EN',
+      date: 'الثلاثاء، 23 يونيو 2026', weather: 'القدس 29°', signin: 'تسجيل الدخول', langBtn: 'EN',
       nav0: 'معالجات اخبارية', nav1: 'تحليلات وآراء', nav2: 'القصة في أرقام', nav3: 'القصة في صور', nav4: 'ميديا',
       breaking: 'عاجل', viewAll: 'عرض الكل', read: 'دقائق قراءة', minRead: 'د قراءة',
       ic: 'مركز المعلومات', icLive: 'مباشر', feedTitle: 'مركز الرصد المباشر',
@@ -30,7 +30,7 @@
       nl: 'النشرة البريدية', nlDesc: 'أبرز المعالجات والتحليلات في بريدك صباح كل يوم.',
       subscribe: 'اشتراك', emailPh: 'بريدك الإلكتروني',
       f_about: 'عن الشبكة', f_policy: 'السياسة التحريرية', f_sections: 'الأقسام', f_contact: 'تواصل',
-      rights: '© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.'
+      rights: '© 2026 شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.'
     },
     en: {
       date: 'Tuesday, 23 June 2026', weather: 'Jerusalem 29°', signin: 'Sign in', langBtn: 'ع',
@@ -80,7 +80,7 @@
      2) الساعة اللحظية
      ---------------------------------------------------------------------- */
   function updateClock() {
-    var locale = state.lang === 'ar' ? 'ar-EG' : 'en-GB';
+    var locale = 'en-GB';
     var txt = new Date().toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     document.querySelectorAll('[data-clock]').forEach(function (el) { el.textContent = txt; });
   }
@@ -175,14 +175,14 @@
   ];
 
   var VIDEOS = [
-    { x: 'فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة', cat: 'تحقيق', dur: '١٢:٤٠' },
-    { x: 'مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة', cat: 'وثائقي', dur: '٠٨:١٥' },
-    { x: 'الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي', cat: 'تحليل', dur: '٠٦:٣٢' },
-    { x: 'شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال', cat: 'ميديا', dur: '٠٥:٥٠' }
+    { x: 'فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة', cat: 'تحقيق', dur: '12:40' },
+    { x: 'مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة', cat: 'وثائقي', dur: '08:15' },
+    { x: 'الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي', cat: 'تحليل', dur: '06:32' },
+    { x: 'شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال', cat: 'ميديا', dur: '05:50' }
   ];
 
   // مساعدات الأرقام والوقت
-  function toAr(n) { return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); }); }
+  function toAr(n) { return String(n); }
   function toLat(s) { return String(s).replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 0x660); }); }
   function durToSec(d) { var p = toLat(d).split(':'); return (parseInt(p[0], 10) || 0) * 60 + (parseInt(p[1], 10) || 0); }
   function fmtT(sec) { sec = Math.max(0, Math.round(sec)); var m = Math.floor(sec / 60), s = sec % 60; return toAr(m + ':' + (s < 10 ? '0' + s : s)); }
@@ -227,8 +227,8 @@
 
   // ── اللايت‌بوكس (معرض الصور) ──
   var GAL = {
-    jenin: { title: 'أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة', date: '٣١ مارس ٢٠٢٦', n: 14, seed: 'npp-jenin' },
-    teachers: { title: 'المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد', date: '١ ديسمبر ٢٠٢٥', n: 9, seed: 'npp-teachers' }
+    jenin: { title: 'أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة', date: '31 مارس 2026', n: 14, seed: 'npp-jenin' },
+    teachers: { title: 'المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد', date: '1 ديسمبر 2025', n: 9, seed: 'npp-teachers' }
   };
   var lb = document.querySelector('[data-lightbox]');
   var lbState = { key: null, i: 0 };
@@ -564,8 +564,7 @@
   }
 
   function toArabic(n) {
-    var map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return String(n).replace(/\d/g, function (d) { return map[+d]; });
+    return String(n);
   }
 
   function render() {
@@ -672,7 +671,7 @@
       following = !following;
       followBtn.classList.toggle('is-following', following);
       if (labelEl) labelEl.textContent = following ? 'تتابعه' : 'متابعة';
-      if (followersEl) followersEl.textContent = following ? '٣٢٫١ ألف' : '٣٢٫٠ ألف';
+      if (followersEl) followersEl.textContent = following ? '32.1 ألف' : '32.0 ألف';
     });
   }
 
@@ -714,8 +713,7 @@
   if (!nodes.length) return;
 
   function toAr(n) {
-    var f = Math.round(n).toLocaleString('en-US');
-    return f.replace(/[0-9]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'[d]; }).replace(/,/g, '٬');
+    return Math.round(n).toLocaleString('en-US');
   }
 
   var done = false;
@@ -833,7 +831,7 @@
         if (!val('subject')) { setError('subject', 'الرجاء إدخال الموضوع.'); ok = false; }
         var msg = val('message');
         if (!msg) { setError('message', 'الرجاء كتابة الرسالة.'); ok = false; }
-        else if (msg.length < 10) { setError('message', 'الرسالة قصيرة جداً (١٠ أحرف على الأقل).'); ok = false; }
+        else if (msg.length < 10) { setError('message', 'الرسالة قصيرة جداً (10 أحرف على الأقل).'); ok = false; }
 
         if (!ok) return;
 
@@ -885,7 +883,7 @@
   if (!bars || !monthsEl || !panel) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function toAr(n) { return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); }); }
+  function toAr(n) { return String(n); }
 
   // خروقات موثّقة شهرياً (تجريبية) — المجموع ٣٢٦٩، الذروة في أبريل
   var MONTHS = ['نوفمبر', 'ديسمبر', 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'];
@@ -1001,9 +999,9 @@
   if (!canvas || !card || typeof L === 'undefined') return;
 
   var LOC = {
-    gaza:  { name: 'قطاع غزة', short: 'غزة', value: '٣٢٦٩', tag: 'حرج', tone: 'red', note: 'الأعلى تسجيلاً للخروقات الموثّقة على مستوى الضفة والقطاع.', ll: [31.50, 34.47] },
-    ram:   { name: 'رام الله', short: 'رام الله', value: '٤١٢', tag: 'متابعة', tone: 'green', note: 'وقفات احتجاجية وخروقات متفرّقة موثّقة خلال الأسبوع.', ll: [31.90, 35.20] },
-    jenin: { name: 'جنين', short: 'جنين', value: '٣٧٧', tag: 'متابعة', tone: 'green', note: 'تصاعد ملحوظ في الاقتحامات خلال الأسابيع الأخيرة.', ll: [32.46, 35.30] }
+    gaza:  { name: 'قطاع غزة', short: 'غزة', value: '3269', tag: 'حرج', tone: 'red', note: 'الأعلى تسجيلاً للخروقات الموثّقة على مستوى الضفة والقطاع.', ll: [31.50, 34.47] },
+    ram:   { name: 'رام الله', short: 'رام الله', value: '412', tag: 'متابعة', tone: 'green', note: 'وقفات احتجاجية وخروقات متفرّقة موثّقة خلال الأسبوع.', ll: [31.90, 35.20] },
+    jenin: { name: 'جنين', short: 'جنين', value: '377', tag: 'متابعة', tone: 'green', note: 'تصاعد ملحوظ في الاقتحامات خلال الأسابيع الأخيرة.', ll: [32.46, 35.30] }
   };
 
   var elName = card.querySelector('[data-locard-name]');
@@ -1012,7 +1010,7 @@
   var elNote = card.querySelector('[data-locard-note]');
   var elPin = card.querySelector('[data-locard-pin]');
 
-  var map = L.map(canvas, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
+  var map = L.map(canvas, { zoomControl: false, scrollWheelZoom: false, dragging: false, doubleClickZoom: false, boxZoom: false, keyboard: false, touchZoom: false, attributionControl: true });
   map.setView([31.95, 35.0], 7);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     maxZoom: 18, subdomains: 'abcd', attribution: '© OpenStreetMap · © CARTO'
@@ -1159,4 +1157,23 @@
   nav.addEventListener('click', function (e) { if (e.target.closest('.mainnav__link')) setOpen(false); });
   document.addEventListener('click', function (e) { if (mast.classList.contains('is-menu-open') && !e.target.closest('.masthead')) setOpen(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
+
+/* ===== لودر التحميل: يختفي عند اكتمال التحميل، بحدّ أدنى لطيف وحدّ أقصى منطقي ===== */
+(function () {
+  'use strict';
+  var loader = document.querySelector('[data-loader]');
+  if (!loader) return;
+  var MIN = 700, MAX = 4000, done = false;
+  function now() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
+  var t0 = now();
+  function hide() {
+    if (done) return; done = true;
+    loader.classList.add('is-done');
+    setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 550);
+  }
+  function onReady() { var el = now() - t0; setTimeout(hide, Math.max(0, MIN - el)); }
+  if (document.readyState === 'complete') { onReady(); }
+  else { window.addEventListener('load', onReady); }
+  setTimeout(hide, MAX);
 })();

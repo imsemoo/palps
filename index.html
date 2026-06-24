@@ -6,11 +6,19 @@
   <title>شبكة الصحافة الفلسطينية — NPP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<!-- ===================== لودر التحميل ===================== -->
+<div class="loader" data-loader aria-hidden="true">
+  <div class="loader__mark">
+    <span class="loader__ring"></span>
+    <img class="loader__logo" src="assets/img/logo.webp" alt="شبكة الصحافة الفلسطينية">
+  </div>
+  <div class="loader__bar"><span class="loader__bar-fill"></span></div>
+</div>
 <div class="npp" dir="rtl">
 
   <!-- ===================== الشريط العلوي ===================== -->
@@ -19,12 +27,12 @@
       <div class="topbar__group">
         <span class="topbar__item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <span data-i18n="date">الثلاثاء، ٢٣ يونيو ٢٠٢٦</span>
+          <span data-i18n="date">الثلاثاء، 23 يونيو 2026</span>
         </span>
         <span class="topbar__sep">|</span>
         <span class="topbar__item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9b958b" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
-          <span data-i18n="weather">القدس ٢٩°</span>
+          <span data-i18n="weather">القدس 29°</span>
         </span>
       </div>
       <div class="topbar__group topbar__group--end">
@@ -42,7 +50,7 @@
         <span class="brand__divider"></span>
         <span class="brand__text">
           <span class="brand__name">شبكة الصحافة الفلسطينية</span>
-          <span class="brand__sub">PALESTINIAN PRESS · NPP</span>
+          
         </span>
       </a>
       <nav class="mainnav">
@@ -67,15 +75,15 @@
       <div class="ticker__viewport">
         <div class="ticker__track">
           <!-- نسخة 1 -->
-          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">10:42</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد 3269 خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">09:15</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">08:30</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">07:50</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
           <!-- نسخة 2 (لاستمرارية الحركة) -->
-          <span class="ticker__item"><span class="ticker__time">١٠:٤٢</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٩:١٥</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٨:٣٠</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
-          <span class="ticker__item"><span class="ticker__time">٠٧:٥٠</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">10:42</span><span class="ticker__text">المكتب الإعلامي الحكومي يرصد 3269 خرقاً لاتفاق وقف إطلاق النار في غزة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">09:15</span><span class="ticker__text">تصاعد الغضب الشعبي ضد الاعتقال السياسي في مدن الضفة الغربية</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">08:30</span><span class="ticker__text">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</span><span class="ticker__diamond">◆</span></span>
+          <span class="ticker__item"><span class="ticker__time">07:50</span><span class="ticker__text">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</span><span class="ticker__diamond">◆</span></span>
         </div>
       </div>
     </div>
@@ -86,7 +94,7 @@
     <div class="ic__head">
       <div class="ic__titles">
         <h2 class="ic__title" data-i18n="ic">مركز المعلومات</h2>
-        <span class="ic__kicker">INTELLIGENCE CENTER</span>
+        
       </div>
       <div class="ic__live">
         <span class="ic__live-dot"></span>
@@ -98,7 +106,7 @@
       <div class="ic__left">
         <!-- القصة الرئيسية -->
         <article class="zoneA">
-          <span class="zoneA__badge">القصة الرئيسية</span>
+          <!-- <span class="zoneA__badge">القصة الرئيسية</span> -->
           <img class="zoneA__img" src="assets/img/news/ghzh-7.jpg" alt="">
           <div class="zoneA__overlay"></div>
           <div class="zoneA__body">
@@ -107,8 +115,8 @@
             <p class="zoneA__excerpt">قال القيادي الفتحاوي سميح خلف إن المؤتمر الحركي الأخير أعاد رسم موازين القوى داخل الحركة، وسط تساؤلات حول مستقبل التمثيل وآليات القرار.</p>
             <div class="zoneA__meta">
               <span class="zoneA__meta-name">هيئة التحرير</span>
-              <span>•</span><span>٢٣ يونيو ٢٠٢٦</span>
-              <span class="zoneA__meta-read"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a59f95" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>١٢ <span data-i18n="read">دقائق قراءة</span></span>
+              <span>•</span><span>23 يونيو 2026</span>
+              
             </div>
           </div>
         </article>
@@ -117,7 +125,7 @@
           <!-- موجز صوتي مصغّر -->
           <div class="zoneC">
             <div class="zoneC__head">
-              <span class="badge-ai">AI</span>
+              <span class="badge-ai">آلي</span>
               <span class="zoneC__label" data-i18n="s_audio">الموجز الصوتي اليومي</span>
             </div>
             <div class="zoneC__row">
@@ -138,7 +146,7 @@
             <img class="zoneD__img" src="assets/img/news/photo-2026-06-23-12-56-55.jpg" alt="">
             <div class="zoneD__overlay"></div>
             <span class="zoneD__badge">مرئيات</span>
-            <span class="zoneD__dur">١٢:٤٠</span>
+            <span class="zoneD__dur">12:40</span>
             <span class="play-circle play-circle--md"><svg class="play-circle__icon" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
             <h3 class="zoneD__title">فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة</h3>
           </article>
@@ -158,36 +166,36 @@
           <div class="feed__item">
             <span class="feed__node"></span><span class="feed__rail"></span>
             <div class="feed__body">
-              <div class="feed__meta"><span class="feed__tag tag--red">عاجل</span><span class="feed__time">منذ ٤ د</span></div>
-              <div class="feed__text">ضربة قاسية لـ«شبكة أفيخاي» قبل حراك ٢٦ يونيو التخريبي في غزة</div>
+              <div class="feed__meta"><span class="feed__tag tag--red">عاجل</span><span class="feed__time">منذ 4 د</span></div>
+              <div class="feed__text">ضربة قاسية لـ«شبكة أفيخاي» قبل حراك 26 يونيو التخريبي في غزة</div>
             </div>
           </div>
           <div class="feed__item">
             <span class="feed__node"></span><span class="feed__rail"></span>
             <div class="feed__body">
-              <div class="feed__meta"><span class="feed__tag tag--green">تحليل</span><span class="feed__time">منذ ١٨ د</span></div>
+              <div class="feed__meta"><span class="feed__tag tag--green">تحليل</span><span class="feed__time">منذ 18 د</span></div>
               <div class="feed__text">عبد العاطي ويوسف ياسر يشعلان الغضب في غزة.. ماذا وراء المنشورات؟</div>
             </div>
           </div>
           <div class="feed__item">
             <span class="feed__node"></span><span class="feed__rail"></span>
             <div class="feed__body">
-              <div class="feed__meta"><span class="feed__tag tag--grey">متابعة</span><span class="feed__time">منذ ٣٥ د</span></div>
+              <div class="feed__meta"><span class="feed__tag tag--grey">متابعة</span><span class="feed__time">منذ 35 د</span></div>
               <div class="feed__text">من كشف أهداف الحراك إلى الترويج له.. أمجد أبو كوش يواجه انتقادات واسعة</div>
             </div>
           </div>
           <div class="feed__item">
             <span class="feed__node"></span><span class="feed__rail"></span>
             <div class="feed__body">
-              <div class="feed__meta"><span class="feed__tag tag--green">موجز AI</span><span class="feed__time">منذ ٥٢ د</span></div>
-              <div class="feed__text">ملخّص آلي: ثلاثة محاور رئيسية في النقاش حول حراك ٢٦ يونيو ومآلاته</div>
+              <div class="feed__meta"><span class="feed__tag tag--green">موجز آلي</span><span class="feed__time">منذ 52 د</span></div>
+              <div class="feed__text">ملخّص آلي: ثلاثة محاور رئيسية في النقاش حول حراك 26 يونيو ومآلاته</div>
             </div>
           </div>
           <div class="feed__item">
             <span class="feed__node"></span><span class="feed__rail"></span>
             <div class="feed__body">
-              <div class="feed__meta"><span class="feed__tag tag--grey">أرقام</span><span class="feed__time">منذ ١ س</span></div>
-              <div class="feed__text">خروقات الاحتلال لاتفاق وقف إطلاق النار تتواصل لليوم ٢٤٥</div>
+              <div class="feed__meta"><span class="feed__tag tag--grey">أرقام</span><span class="feed__time">منذ 1 س</span></div>
+              <div class="feed__text">خروقات الاحتلال لاتفاق وقف إطلاق النار تتواصل لليوم 245</div>
             </div>
           </div>
         </div>
@@ -205,8 +213,8 @@
         <div class="brief__cover">
           <div class="brief__poster">
             <div class="brief__poster-top">
-              <span class="brief__poster-mark">PALPS</span>
-              <span class="brief__poster-live"><span class="brief__poster-live-dot"></span>AUDIO BRIEF</span>
+              <span class="brief__poster-mark">الموجز</span>
+              <span class="brief__poster-live"><span class="brief__poster-live-dot"></span>موجز صوتي</span>
             </div>
             <div class="brief__poster-wave" aria-hidden="true">
               <svg viewBox="0 0 176 42" preserveAspectRatio="none" fill="currentColor">
@@ -223,16 +231,16 @@
             <div class="brief__poster-foot">
               <span class="brief__poster-rule"></span>
               <div class="brief__poster-title">الموجز الصوتي اليومي</div>
-              <div class="brief__poster-meta">ملخّص يومي مُولّد بالذكاء الاصطناعي · ٨:٤٢</div>
+              <div class="brief__poster-meta">ملخّص يومي مُولّد بالذكاء الاصطناعي · 8:42</div>
             </div>
           </div>
         </div>
         <div class="brief__player">
           <div class="brief__top">
-            <span class="badge-ai">AI</span>
+            <span class="badge-ai">آلي</span>
             <span class="brief__kicker"><span data-i18n="audioKicker">مُولّد بالذكاء الاصطناعي</span> · <span data-i18n="s_audio">الموجز الصوتي اليومي</span></span>
           </div>
-          <h2 class="brief__title">موجز اليوم: حراك ٢٦ يونيو وتغييرات فتح والخروقات المستمرة</h2>
+          <h2 class="brief__title">موجز اليوم: حراك 26 يونيو وتغييرات فتح والخروقات المستمرة</h2>
           <p class="brief__desc" data-i18n="audioDesc">موجز صوتي يومي يلخّص أبرز ما نشرته الشبكة خلال الساعات الأربع والعشرين الماضية، بصوتٍ اصطناعي واضح.</p>
 
           <div class="waveform" data-waveform></div>
@@ -260,7 +268,7 @@
 
           <div class="brief__transcript">
             <div class="brief__transcript-h" data-i18n="transcript">النصّ الكامل</div>
-            <p class="brief__transcript-p">«في موجز اليوم نتوقّف عند تفاعلات حراك ٢٦ يونيو في غزة، وما رافقه من جدل حول المنشورات والأهداف، ثم ننتقل إلى تداعيات تغييرات فتح بعد المؤتمر الثامن، قبل أن نختم بأرقام الخروقات المتواصلة لاتفاق وقف إطلاق النار…»</p>
+            <p class="brief__transcript-p">«في موجز اليوم نتوقّف عند تفاعلات حراك 26 يونيو في غزة، وما رافقه من جدل حول المنشورات والأهداف، ثم ننتقل إلى تداعيات تغييرات فتح بعد المؤتمر الثامن، قبل أن نختم بأرقام الخروقات المتواصلة لاتفاق وقف إطلاق النار…»</p>
           </div>
         </div>
       </div>
@@ -276,27 +284,27 @@
     <div class="cards">
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/almqawmh.webp" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">لماذا ستفشل دعوات الفوضى في غزة عبر حراك ٢٦ يونيو؟</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٦ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">لماذا ستفشل دعوات الفوضى في غزة عبر حراك 26 يونيو؟</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/mstshfyat.webp" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٥ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/rfh.jpg" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٨ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/photo-2026-02-06-10-39-29.jpg" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">استعراض فاشل للقوة من العميل محمد جرغون لن يحميه من مصيره</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٤ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">استعراض فاشل للقوة من العميل محمد جرغون لن يحميه من مصيره</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/jrghwn.jpg" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">شبكة أفيخاي تثير غضباً واسعاً بمنشورات تستهدف المقاومة</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٥ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">شبكة أفيخاي تثير غضباً واسعاً بمنشورات تستهدف المقاومة</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
       <article class="card">
         <div class="card__media"><img class="mono cover-abs" src="assets/img/news/abd-alaaty.jpg" alt=""><span class="card__cat">معالجات اخبارية</span></div>
-        <div class="card__body"><h3 class="card__title">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٧ <span data-i18n="minRead">د قراءة</span></span></div></div>
+        <div class="card__body"><h3 class="card__title">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة</h3><div class="card__meta"><span>23 يونيو</span></div></div>
       </article>
     </div>
   </section>
@@ -316,20 +324,20 @@
           </div>
           <h3 class="analysis__lead-title">ما وراء تغييرات فتح؟.. اتهامات بالفساد وإقصاء قيادات وتثبيت نفوذ أسماء بارزة</h3>
           <p class="analysis__lead-excerpt">قال القيادي الفتحاوي سميح خلف إن المؤتمر الحركي الأخير أعاد رسم موازين القوى داخل الحركة، وسط تساؤلات حول مستقبل التمثيل وآليات القرار.</p>
-          <div class="analysis__lead-by">هيئة التحرير · ٢٣ يونيو ٢٠٢٦</div>
+          <div class="analysis__lead-by">هيئة التحرير · 23 يونيو 2026</div>
         </article>
         <div class="analysis__list">
           <article class="analysis__item">
             <div class="analysis__thumb"><img src="assets/img/news/alaml.jpg" alt=""></div>
-            <div><h4 class="analysis__item-title">السفير أشرف دبور يكشف تفاصيل قضية مالية مرتبطة بياسر عباس في لبنان</h4><div class="analysis__item-by">مكتب بيروت · ٢٠ يونيو</div></div>
+            <div><h4 class="analysis__item-title">السفير أشرف دبور يكشف تفاصيل قضية مالية مرتبطة بياسر عباس في لبنان</h4><div class="analysis__item-by">مكتب بيروت · 20 يونيو</div></div>
           </article>
           <article class="analysis__item">
             <div class="analysis__thumb"><img src="assets/img/news/photo_2025-12-01_11-18-59.jpg" alt=""></div>
-            <div><h4 class="analysis__item-title">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة الغربية</h4><div class="analysis__item-by">وحدة التحقيقات · ٢٣ يونيو</div></div>
+            <div><h4 class="analysis__item-title">إهمال السلطة الفلسطينية يهدّد بانهيار المستشفيات في الضفة الغربية</h4><div class="analysis__item-by">وحدة التحقيقات · 23 يونيو</div></div>
           </article>
           <article class="analysis__item">
             <div class="analysis__thumb"><img src="assets/img/news/amjd-5.png" alt=""></div>
-            <div><h4 class="analysis__item-title">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</h4><div class="analysis__item-by">القسم السياسي · ١٨ مايو</div></div>
+            <div><h4 class="analysis__item-title">انقسامات فتح تهدّد بتصعيد معركة خلافة عباس بعد المؤتمر الثامن</h4><div class="analysis__item-by">القسم السياسي · 18 مايو</div></div>
           </article>
         </div>
       </div>
@@ -340,12 +348,12 @@
   <section class="figures wrap">
     <div class="sec-head">
       <div>
-        <span class="figures__kicker">بالأرقام · ON THE RECORD</span>
+        <span class="figures__kicker">بالأرقام</span>
         <h2 class="sec-head__title" data-i18n="s_numbers">القصة في أرقام</h2>
       </div>
       <div class="figures__source">
         <span class="figures__source-label">المصدر</span>المكتب الإعلامي الحكومي
-        <span class="figures__source-date">محدّث حتى ٢٣ يونيو ٢٠٢٦</span>
+        <span class="figures__source-date">محدّث حتى 23 يونيو 2026</span>
       </div>
     </div>
 
@@ -353,17 +361,17 @@
       <!-- السرد الرقمي: الرقم البطل + الداعم -->
       <div class="fig-lead">
         <div class="fig-hero">
-          <div class="fig-hero__value" data-countup data-to="3269">٣٢٦٩</div>
+          <div class="fig-hero__value" data-countup data-to="3269">3269</div>
           <div class="fig-hero__label">خرقاً موثّقاً لاتفاق وقف إطلاق النار في غزة والضفة</div>
-          <p class="fig-hero__why">منذ بدء الرصد قبل ٢٤٥ يوماً لم يتوقّف التوثيق يوماً واحداً — كلّ رقمٍ هنا انتهاكٌ مثبّت بالاسم والتاريخ.</p>
+          <p class="fig-hero__why">منذ بدء الرصد قبل 245 يوماً لم يتوقّف التوثيق يوماً واحداً — كلّ رقمٍ هنا انتهاكٌ مثبّت بالاسم والتاريخ.</p>
         </div>
         <div class="fig-sub">
           <div class="fig-sub__item">
-            <div class="fig-sub__value" data-countup data-to="245">٢٤٥</div>
+            <div class="fig-sub__value" data-countup data-to="245">245</div>
             <div class="fig-sub__label">يوماً متواصلة من الرصد دون توقّف</div>
           </div>
           <div class="fig-sub__item">
-            <div class="fig-sub__value" data-countup data-to="612">٦١٢</div>
+            <div class="fig-sub__value" data-countup data-to="612">612</div>
             <div class="fig-sub__label">ذروة الخروقات في شهر واحد — أبريل</div>
           </div>
         </div>
@@ -394,7 +402,7 @@
   <section class="pictures wrap">
     <div class="sec-head">
       <div>
-        <span class="pictures__kicker">PHOTO ESSAYS · قصص مصوّرة</span>
+        <span class="pictures__kicker">قصص مصوّرة</span>
         <h2 class="sec-head__title" data-i18n="s_pictures">القصة في صور</h2>
       </div>
       <a class="sec-head__more" href="#"><span data-i18n="viewAll">عرض الكل</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
@@ -407,23 +415,23 @@
           <img class="essay__hero" data-essay-hero src="assets/img/news/photo-2026-01-13-13-33-02.jpg" alt="">
           <span class="essay__counter">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <b data-essay-count>٠١</b><span class="essay__counter-sep">/</span>١٤
+            <b data-essay-count>01</b><span class="essay__counter-sep">/</span>14
           </span>
           <div class="essay__overlay"></div>
           <div class="essay__caption">
-            <span class="essay__eyebrow">قصة مصوّرة · ٣١ مارس ٢٠٢٦</span>
+            <span class="essay__eyebrow">قصة مصوّرة · 31 مارس 2026</span>
             <h3 class="essay__title">أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة</h3>
             <p class="essay__dek">نظّم أهالي المعتقلين السياسيين في جنين وقفة احتجاجية للتنديد باستمرار الاعتقال والقمع.</p>
           </div>
         </div>
         <div class="filmstrip" data-essay-strip>
-          <button class="frame is-active" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="0" data-src="assets/img/news/7bd23523-0bad-426f-88e9-8ed230105d3c_16x9_1200x676.webp" aria-label="الإطار ١"><img src="assets/img/news/photo-2026-01-10-11-14-53.jpg" alt=""><span class="frame__no">٠١</span></button>
-          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="1" data-src="assets/img/news/f0a24783-ba06-4435-8a45-0f16a4c4be91.jpg" aria-label="الإطار ٢"><img src="assets/img/news/102946-mpg-00-19-30-16-still003.webp" alt=""><span class="frame__no">٠٢</span></button>
-          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="2" data-src="assets/img/news/photo-2026-01-09-21-10-45.jpg" aria-label="الإطار ٣"><img src="assets/img/news/vxgjw.webp" alt=""><span class="frame__no">٠٣</span></button>
-          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="3" data-src="assets/img/news/thumbs-b-c-a0e7fa30afe671de3b70ba1ede15467f.jpg" aria-label="الإطار ٤"><img src="assets/img/news/mgfzb.jpeg" alt=""><span class="frame__no">٠٤</span></button>
-          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="4" data-src="assets/img/news/img_20240814_131221_687.jpg" aria-label="الإطار ٥"><img src="assets/img/news/ghzh-7.jpg" alt=""><span class="frame__no">٠٥</span></button>
-          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="5" data-src="assets/img/news/photo-2026-06-23-12-56-55.jpg" aria-label="الإطار ٦"><img src="assets/img/news/almqawmh.webp" alt=""><span class="frame__no">٠٦</span></button>
-          <a class="frame frame--more" href="#" data-open-gallery="jenin" data-open-index="0"><span class="frame__more-n">+٨</span><span class="frame__more-t">المعرض</span></a>
+          <button class="frame is-active" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="0" data-src="assets/img/news/7bd23523-0bad-426f-88e9-8ed230105d3c_16x9_1200x676.webp" aria-label="الإطار 1"><img src="assets/img/news/photo-2026-01-10-11-14-53.jpg" alt=""><span class="frame__no">01</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="1" data-src="assets/img/news/f0a24783-ba06-4435-8a45-0f16a4c4be91.jpg" aria-label="الإطار 2"><img src="assets/img/news/102946-mpg-00-19-30-16-still003.webp" alt=""><span class="frame__no">02</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="2" data-src="assets/img/news/photo-2026-01-09-21-10-45.jpg" aria-label="الإطار 3"><img src="assets/img/news/vxgjw.webp" alt=""><span class="frame__no">03</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="3" data-src="assets/img/news/thumbs-b-c-a0e7fa30afe671de3b70ba1ede15467f.jpg" aria-label="الإطار 4"><img src="assets/img/news/mgfzb.jpeg" alt=""><span class="frame__no">04</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="4" data-src="assets/img/news/img_20240814_131221_687.jpg" aria-label="الإطار 5"><img src="assets/img/news/ghzh-7.jpg" alt=""><span class="frame__no">05</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="5" data-src="assets/img/news/photo-2026-06-23-12-56-55.jpg" aria-label="الإطار 6"><img src="assets/img/news/almqawmh.webp" alt=""><span class="frame__no">06</span></button>
+          <a class="frame frame--more" href="#" data-open-gallery="jenin" data-open-index="0"><span class="frame__more-n">+8</span><span class="frame__more-t">المعرض</span></a>
         </div>
       </article>
 
@@ -432,11 +440,11 @@
         <div class="essay__stage essay__stage--tall">
           <img class="essay__hero" src="assets/img/news/mstshfyat.webp" alt="">
           <span class="essay__count-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>٩ صور
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>9 صور
           </span>
           <div class="essay__overlay"></div>
           <div class="essay__caption">
-            <span class="essay__eyebrow">قصة مصوّرة · ١ ديسمبر ٢٠٢٥</span>
+            <span class="essay__eyebrow">قصة مصوّرة · 1 ديسمبر 2025</span>
             <h3 class="essay__title">المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد</h3>
           </div>
         </div>
@@ -449,7 +457,7 @@
     <div class="wrap videos__pad">
       <div class="sec-head">
         <div>
-          <div class="videos__kicker">MEDIA · ميديا</div>
+          <div class="videos__kicker">ميديا</div>
           <h2 class="sec-head__title" data-i18n="s_video">قصص مرئية</h2>
         </div>
         <a class="sec-head__more" href="#"><span data-i18n="viewAll">عرض الكل</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
@@ -461,7 +469,7 @@
           <div class="feature__overlay"></div>
           <div class="feature__top">
             <span class="feature__cat">تحقيق</span>
-            <span class="feature__dur"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>١٢:٤٠</span>
+            <span class="feature__dur"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>12:40</span>
           </div>
           <span class="feature__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
           <div class="feature__body">
@@ -477,7 +485,7 @@
             <div class="episode__thumb">
               <img class="episode__img" src="assets/img/news/photo-2026-02-06-10-39-29.jpg" alt="">
               <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-              <span class="episode__dur">٠٨:١٥</span>
+              <span class="episode__dur">08:15</span>
             </div>
             <div><div class="episode__cat">وثائقي</div><h4 class="episode__title">مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة</h4></div>
           </button>
@@ -485,7 +493,7 @@
             <div class="episode__thumb">
               <img class="episode__img" src="assets/img/news/jrghwn.jpg" alt="">
               <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-              <span class="episode__dur">٠٦:٣٢</span>
+              <span class="episode__dur">06:32</span>
             </div>
             <div><div class="episode__cat">تحليل</div><h4 class="episode__title">الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي</h4></div>
           </button>
@@ -493,7 +501,7 @@
             <div class="episode__thumb">
               <img class="episode__img" src="assets/img/news/abd-alaaty.jpg" alt="">
               <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-              <span class="episode__dur">٠٥:٥٠</span>
+              <span class="episode__dur">05:50</span>
             </div>
             <div><div class="episode__cat">ميديا</div><h4 class="episode__title">شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال</h4></div>
           </button>
@@ -531,7 +539,7 @@
             <h3 class="locard__name" data-locard-name>قطاع غزة</h3>
             <span class="locard__tag locard__tag--red" data-locard-tag>حرج</span>
           </div>
-          <div class="locard__value" data-locard-value>٣٢٦٩</div>
+          <div class="locard__value" data-locard-value>3269</div>
           <div class="locard__label">خرقاً موثّقاً منذ بدء الرصد</div>
           <p class="locard__note" data-locard-note>الأعلى تسجيلاً للخروقات الموثّقة على مستوى الضفة والقطاع.</p>
         </div>
@@ -540,21 +548,21 @@
           <div class="tl">
             <div class="tl__item">
               <span class="tl__dot tl__dot--red"></span><span class="tl__line"></span>
-              <div class="tl__content"><div class="tl__time">١٠:٤٢</div><div class="tl__text">رصد ٣٢٦٩ خرقاً لاتفاق وقف إطلاق النار في غزة</div></div>
+              <div class="tl__content"><div class="tl__time">10:42</div><div class="tl__text">رصد 3269 خرقاً لاتفاق وقف إطلاق النار في غزة</div></div>
             </div>
             <div class="tl__item">
               <span class="tl__dot tl__dot--green"></span><span class="tl__line"></span>
-              <div class="tl__content"><div class="tl__time">٠٩:١٥</div><div class="tl__text">وقفات احتجاجية ضد الاعتقال السياسي في الضفة</div></div>
+              <div class="tl__content"><div class="tl__time">09:15</div><div class="tl__text">وقفات احتجاجية ضد الاعتقال السياسي في الضفة</div></div>
             </div>
             <div class="tl__item tl__item--last">
               <span class="tl__dot tl__dot--grey"></span>
-              <div class="tl__content"><div class="tl__time">٠٨:٣٠</div><div class="tl__text">تحذير من انهيار المستشفيات في الضفة الغربية</div></div>
+              <div class="tl__content"><div class="tl__time">08:30</div><div class="tl__text">تحذير من انهيار المستشفيات في الضفة الغربية</div></div>
             </div>
           </div>
         </div>
         <div class="coverage__stats">
-          <div class="minstat"><div class="minstat__value">٢٤٥</div><div class="minstat__label">يوماً من الرصد</div></div>
-          <div class="minstat"><div class="minstat__value">٣</div><div class="minstat__label">محافظات تحت التغطية</div></div>
+          <div class="minstat"><div class="minstat__value">245</div><div class="minstat__label">يوماً من الرصد</div></div>
+          <div class="minstat"><div class="minstat__value">3</div><div class="minstat__label">محافظات تحت التغطية</div></div>
         </div>
       </div>
     </div>
@@ -565,23 +573,23 @@
     <div class="lists__grid">
       <div class="mostread">
         <div class="list-head mostread__head"><h2 class="list-head__title" data-i18n="s_most">الأكثر قراءة</h2></div>
-        <article class="mostread__item"><span class="mostread__rank">٠١</span><div><h3 class="mostread__title">ما وراء تغييرات فتح؟.. اتهامات بالفساد وإقصاء قيادات</h3><span class="mostread__tag">تحليلات</span></div></article>
-        <article class="mostread__item"><span class="mostread__rank">٠٢</span><div><h3 class="mostread__title">من كشف أهداف الحراك إلى الترويج له.. أمجد أبو كوش</h3><span class="mostread__tag">معالجات</span></div></article>
-        <article class="mostread__item"><span class="mostread__rank">٠٣</span><div><h3 class="mostread__title">عبد العاطي ويوسف ياسر يشعلان الغضب في غزة</h3><span class="mostread__tag">معالجات</span></div></article>
-        <article class="mostread__item"><span class="mostread__rank">٠٤</span><div><h3 class="mostread__title">استعراض فاشل للقوة من العميل محمد جرغون</h3><span class="mostread__tag">معالجات</span></div></article>
-        <article class="mostread__item"><span class="mostread__rank">٠٥</span><div><h3 class="mostread__title">ضربة قاسية لـ«شبكة أفيخاي» قبل حراك ٢٦ يونيو</h3><span class="mostread__tag">عاجل</span></div></article>
+        <article class="mostread__item"><span class="mostread__rank">01</span><div><h3 class="mostread__title">ما وراء تغييرات فتح؟.. اتهامات بالفساد وإقصاء قيادات</h3><span class="mostread__tag">تحليلات</span></div></article>
+        <article class="mostread__item"><span class="mostread__rank">02</span><div><h3 class="mostread__title">من كشف أهداف الحراك إلى الترويج له.. أمجد أبو كوش</h3><span class="mostread__tag">معالجات</span></div></article>
+        <article class="mostread__item"><span class="mostread__rank">03</span><div><h3 class="mostread__title">عبد العاطي ويوسف ياسر يشعلان الغضب في غزة</h3><span class="mostread__tag">معالجات</span></div></article>
+        <article class="mostread__item"><span class="mostread__rank">04</span><div><h3 class="mostread__title">استعراض فاشل للقوة من العميل محمد جرغون</h3><span class="mostread__tag">معالجات</span></div></article>
+        <article class="mostread__item"><span class="mostread__rank">05</span><div><h3 class="mostread__title">ضربة قاسية لـ«شبكة أفيخاي» قبل حراك 26 يونيو</h3><span class="mostread__tag">عاجل</span></div></article>
       </div>
       <div class="trending">
         <div class="list-head trending__head"><h2 class="list-head__title" data-i18n="s_trend">الأكثر تداولاً</h2></div>
         <div class="tags">
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">حراك ٢٦ يونيو</span><span class="tag-chip__count">٤٨</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">فتح</span><span class="tag-chip__count">٣١</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">غزة</span><span class="tag-chip__count">٢٧</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">شبكة أفيخاي</span><span class="tag-chip__count">١٩</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">المعتقلون السياسيون</span><span class="tag-chip__count">١٥</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">وقف إطلاق النار</span><span class="tag-chip__count">١٢</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">الضفة الغربية</span><span class="tag-chip__count">٩</span></a>
-          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">خلافة عباس</span><span class="tag-chip__count">٧</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">حراك 26 يونيو</span><span class="tag-chip__count">48</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">فتح</span><span class="tag-chip__count">31</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">غزة</span><span class="tag-chip__count">27</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">شبكة أفيخاي</span><span class="tag-chip__count">19</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">المعتقلون السياسيون</span><span class="tag-chip__count">15</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">وقف إطلاق النار</span><span class="tag-chip__count">12</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">الضفة الغربية</span><span class="tag-chip__count">9</span></a>
+          <a class="tag-chip" href="#"><span class="tag-chip__hash">#</span><span class="tag-chip__label">خلافة عباس</span><span class="tag-chip__count">7</span></a>
         </div>
         <div class="newsletter">
           <div class="newsletter__title" data-i18n="nl">النشرة البريدية</div>
@@ -602,7 +610,7 @@
         <div>
           <div class="footer__brand-row">
             <img class="footer__logo" src="assets/img/logo.webp" alt="">
-            <div><div class="footer__name">شبكة الصحافة الفلسطينية</div><div class="footer__name-sub">PALESTINIAN PRESS NETWORK</div></div>
+            <div><div class="footer__name">شبكة الصحافة الفلسطينية</div></div>
           </div>
           <p class="footer__desc">نقدّم المعالجات الإخبارية والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تركّز على المهنية والموضوعية.</p>
           <div class="socials">
@@ -643,11 +651,11 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span class="footer__rights" data-i18n="rights">© ٢٠٢٦ شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
+        <span class="footer__rights" data-i18n="rights">© 2026 شبكة الصحافة الفلسطينية. جميع الحقوق محفوظة.</span>
         <div class="footer__legal">
           <a href="about.html" data-i18n="f_policy">السياسة التحريرية</a>
           <a href="contact.html" data-i18n="f_contact">تواصل</a>
-          <a href="#">Sitemap</a>
+          <a href="#">خريطة الموقع</a>
         </div>
       </div>
     </div>
@@ -688,7 +696,7 @@
               <svg class="player__icon-play" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg>
               <svg class="player__icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
             </button>
-            <span class="player__time"><b data-player-cur>٠:٠٠</b> / <span data-player-dur>٠:٠٠</span></span>
+            <span class="player__time"><b data-player-cur>0:00</b> / <span data-player-dur>0:00</span></span>
             <div class="player__spacer"></div>
             <button class="player__btn" type="button" aria-label="كتم الصوت">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
@@ -710,7 +718,7 @@
   <!-- ===================== لايت‌بوكس الصور ===================== -->
   <div class="lightbox" data-lightbox>
     <div class="lightbox__top">
-      <span class="lightbox__counter"><b data-lb-cur>١</b><span> / </span><span data-lb-total>١٤</span></span>
+      <span class="lightbox__counter"><b data-lb-cur>1</b><span> / </span><span data-lb-total>14</span></span>
       <button class="lightbox__close" type="button" data-lb-close aria-label="إغلاق">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
