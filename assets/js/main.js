@@ -159,7 +159,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     4) مودال الفيديو
+     4) مشغّل الفيديو (بوب أب نظيف) + لايت‌بوكس الصور
      ---------------------------------------------------------------------- */
   var VIDEOS = [
     { x: 'فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة', cat: 'تحقيق', dur: '١٢:٤٠' },
@@ -167,72 +167,81 @@
     { x: 'الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي', cat: 'تحليل', dur: '٠٦:٣٢' },
     { x: 'شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال', cat: 'ميديا', dur: '٠٥:٥٠' }
   ];
-  VIDEOS.forEach(function (v, i) { v.img = 'https://picsum.photos/seed/npp-vid' + i + '/700/900'; });
 
-  var SCRIPT_LINES = [
-    'في هذه الحلقة نتتبّع خيوط التمويل التي تقف خلف حملات التشويه المنظّمة، ونكشف الأسماء والأدوار.',
-    'الوثائق التي حصلت عليها الشبكة تشير إلى شبكة علاقات تمتدّ بين أجهزة السلطة وعدد من المنصّات.',
-    'نعرض شهادات حصرية وتسلسلاً زمنياً يوضّح كيف تطوّرت الحملة خلال الأشهر الماضية.'
-  ];
+  // مساعدات الأرقام والوقت
+  function toAr(n) { return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); }); }
+  function toLat(s) { return String(s).replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 0x660); }); }
+  function durToSec(d) { var p = toLat(d).split(':'); return (parseInt(p[0], 10) || 0) * 60 + (parseInt(p[1], 10) || 0); }
+  function fmtT(sec) { sec = Math.max(0, Math.round(sec)); var m = Math.floor(sec / 60), s = sec % 60; return toAr(m + ':' + (s < 10 ? '0' + s : s)); }
+  function lockScroll(on) { try { document.body.style.overflow = on ? 'hidden' : ''; } catch (e) {} }
 
-  var modal = document.querySelector('[data-modal]');
-
-  function openVideo(index) {
-    if (!modal) return;
-    var v = VIDEOS[index];
-    if (!v) return;
-    modal.querySelector('[data-modal-img]').src = 'https://picsum.photos/seed/npp-vid' + index + '/1100/620';
-    modal.querySelector('[data-modal-cat]').textContent = v.cat;
-    modal.querySelector('[data-modal-dur]').textContent = v.dur;
-    modal.querySelector('[data-modal-title]').textContent = v.x;
-
-    // النص الكامل
-    var scriptBox = modal.querySelector('[data-modal-script]');
-    scriptBox.innerHTML = '';
-    SCRIPT_LINES.forEach(function (line) {
-      var p = document.createElement('p');
-      p.textContent = line;
-      scriptBox.appendChild(p);
-    });
-
-    // المقاطع ذات الصلة (باقي الفيديوهات)
-    var rel = modal.querySelector('[data-modal-related]');
-    rel.innerHTML = '';
-    VIDEOS.forEach(function (other, j) {
-      if (j === index) return;
-      var card = document.createElement('article');
-      card.className = 'relcard';
-      card.setAttribute('data-video-index', j);
-      card.innerHTML =
-        '<div class="relcard__media">' +
-          '<img class="relcard__img" src="https://picsum.photos/seed/npp-vid' + j + '/700/440" alt="">' +
-          '<span class="play-circle play-circle--sm"><svg class="play-circle__icon" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>' +
-          '<span class="relcard__dur">' + other.dur + '</span>' +
-        '</div>' +
-        '<h4 class="relcard__title"></h4>';
-      card.querySelector('.relcard__title').textContent = other.x;
-      rel.appendChild(card);
-    });
-
-    setTab('watch');
-    modal.classList.add('is-open');
-    try { document.body.style.overflow = 'hidden'; } catch (e) {}
+  // ── المشغّل ──
+  var player = document.querySelector('[data-player]');
+  var pl = { total: 0, cur: 0, playing: false, timer: null };
+  function pq(sel) { return player ? player.querySelector(sel) : null; }
+  function playerRender() {
+    var fill = pq('[data-player-fill]'); if (fill) fill.style.width = (pl.total ? (pl.cur / pl.total * 100) : 0) + '%';
+    var cur = pq('[data-player-cur]'); if (cur) cur.textContent = fmtT(pl.cur);
+  }
+  function playerSetPlaying(on) {
+    pl.playing = on; if (player) player.classList.toggle('is-playing', on);
+    clearInterval(pl.timer);
+    if (on) {
+      pl.timer = setInterval(function () {
+        pl.cur += 1;
+        if (pl.cur >= pl.total) { pl.cur = pl.total; playerRender(); playerSetPlaying(false); return; }
+        playerRender();
+      }, 1000);
+    }
+  }
+  function openPlayer(index) {
+    if (!player) return; var v = VIDEOS[index]; if (!v) return;
+    var img = pq('[data-player-img]'); if (img) img.src = 'https://picsum.photos/seed/npp-vid' + index + '/1280/720';
+    var cat = pq('[data-player-cat]'); if (cat) cat.textContent = v.cat;
+    var md = pq('[data-player-meta-dur]'); if (md) md.textContent = v.dur;
+    var t = pq('[data-player-title]'); if (t) t.textContent = v.x;
+    var dur = pq('[data-player-dur]'); if (dur) dur.textContent = v.dur;
+    pl.total = durToSec(v.dur); pl.cur = 0; playerSetPlaying(false); playerRender();
+    player.classList.add('is-open'); lockScroll(true);
+  }
+  function closePlayer() { if (!player) return; playerSetPlaying(false); player.classList.remove('is-open'); lockScroll(false); }
+  function playerToggle() { playerSetPlaying(!pl.playing); }
+  function playerSeek(e) {
+    var bar = pq('[data-player-bar]'); if (!bar) return;
+    var r = bar.getBoundingClientRect(); var x = (e.clientX - r.left) / r.width;
+    pl.cur = Math.max(0, Math.min(1, x)) * pl.total; playerRender();
   }
 
-  function closeVideo() {
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    try { document.body.style.overflow = ''; } catch (e) {}
+  // ── اللايت‌بوكس (معرض الصور) ──
+  var GAL = {
+    jenin: { title: 'أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة', date: '٣١ مارس ٢٠٢٦', n: 14, seed: 'npp-jenin' },
+    teachers: { title: 'المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد', date: '١ ديسمبر ٢٠٢٥', n: 9, seed: 'npp-teachers' }
+  };
+  var lb = document.querySelector('[data-lightbox]');
+  var lbState = { key: null, i: 0 };
+  function lq(sel) { return lb ? lb.querySelector(sel) : null; }
+  function lbRender() {
+    var g = GAL[lbState.key]; if (!g) return;
+    var img = lq('[data-lb-img]');
+    if (img) {
+      var src = 'https://picsum.photos/seed/' + g.seed + '-' + (lbState.i + 1) + '/1600/1000';
+      img.style.opacity = '0';
+      var pre = new Image();
+      pre.onload = pre.onerror = function () { img.src = src; img.style.opacity = ''; };
+      pre.src = src;
+    }
+    var cur = lq('[data-lb-cur]'); if (cur) cur.textContent = toAr(lbState.i + 1);
+    var tot = lq('[data-lb-total]'); if (tot) tot.textContent = toAr(g.n);
+    var t = lq('[data-lb-title]'); if (t) t.textContent = g.title;
+    var d = lq('[data-lb-date]'); if (d) d.textContent = g.date;
   }
-
-  function setTab(tab) {
-    if (!modal) return;
-    var isScript = tab === 'script';
-    modal.querySelector('[data-modal-script]').classList.toggle('is-active', isScript);
-    modal.querySelectorAll('[data-tab]').forEach(function (btn) {
-      btn.classList.toggle('is-active', btn.getAttribute('data-tab') === tab);
-    });
+  function openLightbox(key, index) {
+    if (!lb || !GAL[key]) return;
+    lbState.key = key; lbState.i = Math.max(0, Math.min(GAL[key].n - 1, index || 0));
+    lbRender(); lb.classList.add('is-open'); lockScroll(true);
   }
+  function closeLightbox() { if (!lb) return; lb.classList.remove('is-open'); lockScroll(false); }
+  function lbStep(delta) { var g = GAL[lbState.key]; if (!g) return; lbState.i = (lbState.i + delta + g.n) % g.n; lbRender(); }
 
   /* ----------------------------------------------------------------------
      ربط الأحداث (Event wiring)
@@ -252,22 +261,41 @@
     });
     if (waveEl) waveEl.addEventListener('click', seekFromEvent);
 
-    // فتح الفيديو (التفويض على مستوى المستند ليشمل المقاطع ذات الصلة المُولّدة)
+    // فتح الفيديو في المشغّل + فتح المعرض في اللايت‌بوكس (تفويض على المستند)
     document.addEventListener('click', function (e) {
-      var opener = e.target.closest('[data-video-index]');
-      if (opener) { e.preventDefault(); openVideo(parseInt(opener.getAttribute('data-video-index'), 10)); }
+      var v = e.target.closest('[data-video-index]');
+      if (v) { e.preventDefault(); openPlayer(parseInt(v.getAttribute('data-video-index'), 10)); return; }
+      var g = e.target.closest('[data-open-gallery]');
+      if (g) { e.preventDefault(); openLightbox(g.getAttribute('data-open-gallery'), parseInt(g.getAttribute('data-open-index'), 10) || 0); }
     });
 
-    // قفل المودال
-    if (modal) {
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal || e.target.closest('[data-modal-close]')) closeVideo();
-      });
-      modal.querySelectorAll('[data-tab]').forEach(function (btn) {
-        btn.addEventListener('click', function () { setTab(btn.getAttribute('data-tab')); });
+    // تحكّم المشغّل
+    if (player) {
+      player.addEventListener('click', function (e) {
+        if (e.target.closest('[data-player-close]')) return closePlayer();
+        if (e.target.closest('[data-player-toggle]')) return playerToggle();
+        if (e.target.closest('[data-player-bar]')) return playerSeek(e);
+        if (!e.target.closest('.player__dialog')) closePlayer();
       });
     }
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
+
+    // تحكّم اللايت‌بوكس
+    if (lb) {
+      lb.addEventListener('click', function (e) {
+        if (e.target.closest('[data-lb-close]')) return closeLightbox();
+        if (e.target.closest('[data-lb-prev]')) return lbStep(-1);
+        if (e.target.closest('[data-lb-next]')) return lbStep(1);
+        if (!e.target.closest('[data-lb-img]')) closeLightbox();
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closePlayer(); closeLightbox(); }
+      if (lb && lb.classList.contains('is-open')) {
+        if (e.key === 'ArrowLeft') lbStep(1);
+        else if (e.key === 'ArrowRight') lbStep(-1);
+      }
+    });
   }
 
   /* ----------------------------------------------------------------------
@@ -829,4 +857,146 @@
       if (!isOpen) item.classList.add('is-open');
     });
   }
+})();
+
+
+/* ======================================================================
+   "القصة في أرقام" — count-up animation for .figure__value on scroll-in
+   (scoped to the figures section; respects prefers-reduced-motion)
+   ====================================================================== */
+(function () {
+  'use strict';
+  var els = document.querySelectorAll('.figure__value[data-countup][data-to]');
+  if (!els.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function toArabic(n) {
+    return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); });
+  }
+  function run(el) {
+    var to = parseInt(el.getAttribute('data-to'), 10) || 0;
+    if (reduce) { el.textContent = toArabic(to); return; }
+    var dur = 1400, start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = toArabic(Math.round(to * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!('IntersectionObserver' in window)) { els.forEach(run); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
+
+/* ======================================================================
+   "القصة في صور" — film-strip gallery: hover/click a frame to enlarge it
+   in the stage, with the frame counter following. Scoped to [data-essay].
+   ====================================================================== */
+(function () {
+  'use strict';
+  var roots = document.querySelectorAll('[data-essay]');
+  if (!roots.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  roots.forEach(function (root) {
+    var hero = root.querySelector('[data-essay-hero]');
+    var count = root.querySelector('[data-essay-count]');
+    var frames = root.querySelectorAll('[data-essay-frame]');
+    if (!hero || !frames.length) return;
+    var swapTimer = null;
+
+    function select(btn) {
+      var src = btn.getAttribute('data-src');
+      if (src && hero.getAttribute('src') !== src) {
+        clearTimeout(swapTimer);
+        if (reduce) {
+          hero.setAttribute('src', src);
+        } else {
+          hero.style.opacity = '0';
+          swapTimer = setTimeout(function () {
+            hero.setAttribute('src', src);
+            hero.style.opacity = '';
+          }, 180);
+        }
+      }
+      for (var i = 0; i < frames.length; i++) {
+        frames[i].classList.toggle('is-active', frames[i] === btn);
+      }
+      if (count) {
+        var no = btn.querySelector('.frame__no');
+        if (no) count.textContent = no.textContent;
+      }
+    }
+
+    // المرور/التركيز يعاين الإطار في المنصّة؛ الضغط يفتح المعرض (لايت‌بوكس) عبر data-open-gallery
+    frames.forEach(function (btn) {
+      btn.addEventListener('mouseenter', function () { select(btn); });
+      btn.addEventListener('focus', function () { select(btn); });
+    });
+  });
+})();
+
+
+/* ======================================================================
+   "تغطية تفاعلية" — خريطة حيّة (Leaflet) ببلاطات داكنة وعلامات تفتح كارت
+   الموقع الجانبي. Scoped to [data-geomap-canvas] + [data-loc-card].
+   ====================================================================== */
+(function () {
+  'use strict';
+  var canvas = document.querySelector('[data-geomap-canvas]');
+  var card = document.querySelector('[data-loc-card]');
+  if (!canvas || !card || typeof L === 'undefined') return;
+
+  var LOC = {
+    gaza:  { name: 'قطاع غزة', short: 'غزة', value: '٣٢٦٩', tag: 'حرج', tone: 'red', note: 'الأعلى تسجيلاً للخروقات الموثّقة على مستوى الضفة والقطاع.', ll: [31.50, 34.47] },
+    ram:   { name: 'رام الله', short: 'رام الله', value: '٤١٢', tag: 'متابعة', tone: 'green', note: 'وقفات احتجاجية وخروقات متفرّقة موثّقة خلال الأسبوع.', ll: [31.90, 35.20] },
+    jenin: { name: 'جنين', short: 'جنين', value: '٣٧٧', tag: 'متابعة', tone: 'green', note: 'تصاعد ملحوظ في الاقتحامات خلال الأسابيع الأخيرة.', ll: [32.46, 35.30] }
+  };
+
+  var elName = card.querySelector('[data-locard-name]');
+  var elValue = card.querySelector('[data-locard-value]');
+  var elTag = card.querySelector('[data-locard-tag]');
+  var elNote = card.querySelector('[data-locard-note]');
+  var elPin = card.querySelector('[data-locard-pin]');
+
+  var map = L.map(canvas, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
+  map.setView([31.95, 35.0], 7);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 18, subdomains: 'abcd', attribution: '© OpenStreetMap · © CARTO'
+  }).addTo(map);
+
+  function select(key) {
+    var d = LOC[key]; if (!d) return;
+    document.querySelectorAll('.geopin').forEach(function (p) {
+      p.classList.toggle('is-active', p.getAttribute('data-loc') === key);
+    });
+    if (elName) elName.textContent = d.name;
+    if (elValue) elValue.textContent = d.value;
+    if (elTag) { elTag.textContent = d.tag; elTag.className = 'locard__tag locard__tag--' + d.tone; }
+    if (elNote) elNote.textContent = d.note;
+    if (elPin) elPin.className = 'locard__pin locard__pin--' + d.tone;
+  }
+
+  Object.keys(LOC).forEach(function (key) {
+    var d = LOC[key];
+    var icon = L.divIcon({
+      className: '', iconSize: [14, 14], iconAnchor: [7, 7],
+      html: '<span class="geopin geopin--' + d.tone + '" data-loc="' + key + '">' +
+            '<span class="geopin__pulse"></span><span class="geopin__dot"></span>' +
+            '<span class="geopin__label">' + d.short + '</span></span>'
+    });
+    L.marker(d.ll, { icon: icon, title: d.name, riseOnHover: true }).addTo(map)
+      .on('click', function () { select(key); });
+  });
+
+  select('gaza');
+  setTimeout(function () {
+    map.invalidateSize();
+    map.fitBounds([[31.18, 34.15], [32.72, 35.62]], { padding: [14, 14] });
+  }, 90);
 })();

@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -41,7 +42,8 @@
     <div class="wrap masthead__inner">
       <a class="brand" href="index.html">
         <img class="brand__logo" src="assets/img/logo.webp" alt="شبكة الصحافة الفلسطينية">
-        <span>
+        <span class="brand__divider"></span>
+        <span class="brand__text">
           <span class="brand__name">شبكة الصحافة الفلسطينية</span>
           <span class="brand__sub">PALESTINIAN PRESS · NPP</span>
         </span>
@@ -320,48 +322,106 @@
     </div>
   </section>
 
-  <!-- ===================== القصة في أرقام ===================== -->
-  <section class="numbers wrap">
-    <div class="sec-head">
-      <h2 class="sec-head__title" data-i18n="s_numbers">القصة في أرقام</h2>
-      <a class="sec-head__more" href="#"><span data-i18n="viewAll">عرض الكل</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
-    </div>
-    <div class="numbers__grid">
-      <div class="stat stat--red"><div class="stat__value">٣٢٦٩</div><div class="stat__rule"></div><div class="stat__label">خرقاً لاتفاق وقف إطلاق النار في غزة</div></div>
-      <div class="stat stat--ink"><div class="stat__value">٢٤٥</div><div class="stat__rule"></div><div class="stat__label">يوماً من الخروقات المتواصلة</div></div>
-      <div class="stat stat--green"><div class="stat__value">٣٧٧</div><div class="stat__rule"></div><div class="stat__label">خرقاً موثّقاً خلال أبريل وحده</div></div>
+  <!-- ===================== القصة في أرقام — سجلّ موثّق ===================== -->
+  <section class="figures">
+    <div class="figures__bg" aria-hidden="true"></div>
+    <div class="wrap figures__inner">
+      <div class="figures__head">
+        <div>
+          <span class="figures__kicker">ON THE RECORD · سجلّ موثّق</span>
+          <h2 class="figures__title" data-i18n="s_numbers">القصة في أرقام</h2>
+        </div>
+        <div class="figures__source">
+          <span class="figures__source-label">المصدر</span>المكتب الإعلامي الحكومي
+          <span class="figures__source-date">محدّث حتى ٢٣ يونيو ٢٠٢٦</span>
+        </div>
+      </div>
+
+      <div class="figures__grid">
+        <!-- الرقم المحوري -->
+        <article class="figure figure--lead">
+          <div class="figure__value figure__value--red" data-countup data-to="3269">٣٢٦٩</div>
+          <span class="figure__rule figure__rule--red"></span>
+          <p class="figure__label">خرقاً موثّقاً لاتفاق وقف إطلاق النار في قطاع غزة</p>
+          <div class="figure__live">
+            <span class="figure__live-dot"></span>
+            الرصد مستمر حتى اللحظة
+          </div>
+        </article>
+
+        <!-- رقمان داعمان -->
+        <div class="figures__side">
+          <article class="figure">
+            <div class="figure__value" data-countup data-to="245">٢٤٥</div>
+            <span class="figure__rule"></span>
+            <p class="figure__label">يوماً متواصلة دون توقّف الانتهاكات</p>
+          </article>
+          <article class="figure">
+            <div class="figure__value" data-countup data-to="377">٣٧٧</div>
+            <span class="figure__rule"></span>
+            <p class="figure__label">خرقاً في أبريل وحده — الأعلى شهرياً</p>
+          </article>
+        </div>
+      </div>
+
+      <a class="figures__more" href="#">
+        عرض السجلّ الكامل
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
     </div>
   </section>
 
   <!-- ===================== القصة في صور ===================== -->
   <section class="pictures wrap">
     <div class="sec-head">
-      <h2 class="sec-head__title" data-i18n="s_pictures">القصة في صور</h2>
+      <div>
+        <span class="pictures__kicker">PHOTO ESSAYS · قصص مصوّرة</span>
+        <h2 class="sec-head__title" data-i18n="s_pictures">القصة في صور</h2>
+      </div>
       <a class="sec-head__more" href="#"><span data-i18n="viewAll">عرض الكل</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
     </div>
-    <div class="pictures__list">
-      <article class="photo">
-        <div class="photo__media">
-          <img class="mono cover-abs" src="https://picsum.photos/seed/npp-pic0/900/600" alt="">
-          <span class="photo__count"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>١٤ صورة</span>
+
+    <div class="essays">
+      <!-- القصة المميّزة: لفّة فيلم تفاعلية -->
+      <article class="essay" data-essay>
+        <div class="essay__stage" data-open-gallery="jenin" data-open-index="0">
+          <img class="essay__hero" data-essay-hero src="https://picsum.photos/seed/npp-jenin-1/1200/800" alt="">
+          <span class="essay__counter">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <b data-essay-count>٠١</b><span class="essay__counter-sep">/</span>١٤
+          </span>
+          <div class="essay__overlay"></div>
+          <div class="essay__caption">
+            <span class="essay__eyebrow">قصة مصوّرة · ٣١ مارس ٢٠٢٦</span>
+            <h3 class="essay__title">أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة</h3>
+            <p class="essay__dek">نظّم أهالي المعتقلين السياسيين في جنين وقفة احتجاجية للتنديد باستمرار الاعتقال والقمع.</p>
+          </div>
         </div>
-        <div class="photo__body">
-          <h3 class="photo__title">أهالي المعتقلين السياسيين في جنين يفضحون التعذيب داخل سجون السلطة</h3>
-          <p class="photo__desc">نظّم أهالي المعتقلين السياسيين في جنين وقفة احتجاجية للتنديد باستمرار الاعتقال والقمع.</p>
-          <div class="photo__date">٣١ مارس ٢٠٢٦</div>
+        <div class="filmstrip" data-essay-strip>
+          <button class="frame is-active" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="0" data-src="https://picsum.photos/seed/npp-jenin-1/1200/800" aria-label="الإطار ١"><img src="https://picsum.photos/seed/npp-jenin-1/240/160" alt=""><span class="frame__no">٠١</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="1" data-src="https://picsum.photos/seed/npp-jenin-2/1200/800" aria-label="الإطار ٢"><img src="https://picsum.photos/seed/npp-jenin-2/240/160" alt=""><span class="frame__no">٠٢</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="2" data-src="https://picsum.photos/seed/npp-jenin-3/1200/800" aria-label="الإطار ٣"><img src="https://picsum.photos/seed/npp-jenin-3/240/160" alt=""><span class="frame__no">٠٣</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="3" data-src="https://picsum.photos/seed/npp-jenin-4/1200/800" aria-label="الإطار ٤"><img src="https://picsum.photos/seed/npp-jenin-4/240/160" alt=""><span class="frame__no">٠٤</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="4" data-src="https://picsum.photos/seed/npp-jenin-5/1200/800" aria-label="الإطار ٥"><img src="https://picsum.photos/seed/npp-jenin-5/240/160" alt=""><span class="frame__no">٠٥</span></button>
+          <button class="frame" type="button" data-essay-frame data-open-gallery="jenin" data-open-index="5" data-src="https://picsum.photos/seed/npp-jenin-6/1200/800" aria-label="الإطار ٦"><img src="https://picsum.photos/seed/npp-jenin-6/240/160" alt=""><span class="frame__no">٠٦</span></button>
+          <a class="frame frame--more" href="#" data-open-gallery="jenin" data-open-index="0"><span class="frame__more-n">+٨</span><span class="frame__more-t">المعرض</span></a>
         </div>
       </article>
-      <article class="photo">
-        <div class="photo__media">
-          <img class="mono cover-abs" src="https://picsum.photos/seed/npp-pic1/900/600" alt="">
-          <span class="photo__count"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>٩ صور</span>
+
+      <!-- القصة الثانية: ملصق طولي -->
+      <a class="essay essay--alt" href="#" data-open-gallery="teachers" data-open-index="0">
+        <div class="essay__stage essay__stage--tall">
+          <img class="essay__hero" src="https://picsum.photos/seed/npp-teachers/900/1200" alt="">
+          <span class="essay__count-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>٩ صور
+          </span>
+          <div class="essay__overlay"></div>
+          <div class="essay__caption">
+            <span class="essay__eyebrow">قصة مصوّرة · ١ ديسمبر ٢٠٢٥</span>
+            <h3 class="essay__title">المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد</h3>
+          </div>
         </div>
-        <div class="photo__body">
-          <h3 class="photo__title">المعلمون في الضفة.. حقوق مسلوبة وأمل ضائع بين وعود الإصلاح وواقع الفساد</h3>
-          <p class="photo__desc">في ظل أزمة مالية خانقة، يواصل المعلمون مطالبتهم بحقوقهم المالية الكاملة.</p>
-          <div class="photo__date">١ ديسمبر ٢٠٢٥</div>
-        </div>
-      </article>
+      </a>
     </div>
   </section>
 
@@ -375,47 +435,50 @@
         </div>
         <a class="sec-head__more" href="#"><span data-i18n="viewAll">عرض الكل</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
       </div>
-      <div class="videos__grid">
-        <article class="video-card" data-video-index="0">
-          <div class="video-card__media">
-            <img class="video-card__img" src="https://picsum.photos/seed/npp-vid0/700/900" alt="">
-            <div class="video-card__overlay"></div>
-            <span class="play-circle play-circle--lg"><svg class="play-circle__icon--lg" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-            <span class="video-card__cat">تحقيق</span>
-            <span class="video-card__dur">١٢:٤٠</span>
-            <h3 class="video-card__title">فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة</h3>
+      <div class="videos__layout">
+        <!-- الفيلم المميّز -->
+        <article class="feature" data-video-index="0">
+          <img class="feature__img" src="https://picsum.photos/seed/npp-vid0/1200/680" alt="">
+          <div class="feature__overlay"></div>
+          <div class="feature__top">
+            <span class="feature__cat">تحقيق</span>
+            <span class="feature__dur"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>١٢:٤٠</span>
+          </div>
+          <span class="feature__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
+          <div class="feature__body">
+            <h3 class="feature__title">فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة</h3>
+            <p class="feature__dek">تحقيق يكشف خيوط التمويل وراء حملات التشويه المنظّمة ضد رجال أعمال غزة، بالأسماء والوثائق.</p>
           </div>
         </article>
-        <article class="video-card" data-video-index="1">
-          <div class="video-card__media">
-            <img class="video-card__img" src="https://picsum.photos/seed/npp-vid1/700/900" alt="">
-            <div class="video-card__overlay"></div>
-            <span class="play-circle play-circle--lg"><svg class="play-circle__icon--lg" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-            <span class="video-card__cat">وثائقي</span>
-            <span class="video-card__dur">٠٨:١٥</span>
-            <h3 class="video-card__title">مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة</h3>
-          </div>
-        </article>
-        <article class="video-card" data-video-index="2">
-          <div class="video-card__media">
-            <img class="video-card__img" src="https://picsum.photos/seed/npp-vid2/700/900" alt="">
-            <div class="video-card__overlay"></div>
-            <span class="play-circle play-circle--lg"><svg class="play-circle__icon--lg" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-            <span class="video-card__cat">تحليل</span>
-            <span class="video-card__dur">٠٦:٣٢</span>
-            <h3 class="video-card__title">الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي</h3>
-          </div>
-        </article>
-        <article class="video-card" data-video-index="3">
-          <div class="video-card__media">
-            <img class="video-card__img" src="https://picsum.photos/seed/npp-vid3/700/900" alt="">
-            <div class="video-card__overlay"></div>
-            <span class="play-circle play-circle--lg"><svg class="play-circle__icon--lg" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
-            <span class="video-card__cat">ميديا</span>
-            <span class="video-card__dur">٠٥:٥٠</span>
-            <h3 class="video-card__title">شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال</h3>
-          </div>
-        </article>
+
+        <!-- قائمة التشغيل -->
+        <div class="playlist">
+          <div class="playlist__head"><span class="playlist__head-dot"></span>حلقات أخرى</div>
+          <button class="episode" type="button" data-video-index="1">
+            <div class="episode__thumb">
+              <img class="episode__img" src="https://picsum.photos/seed/npp-vid1/360/230" alt="">
+              <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
+              <span class="episode__dur">٠٨:١٥</span>
+            </div>
+            <div><div class="episode__cat">وثائقي</div><h4 class="episode__title">مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة</h4></div>
+          </button>
+          <button class="episode" type="button" data-video-index="2">
+            <div class="episode__thumb">
+              <img class="episode__img" src="https://picsum.photos/seed/npp-vid2/360/230" alt="">
+              <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
+              <span class="episode__dur">٠٦:٣٢</span>
+            </div>
+            <div><div class="episode__cat">تحليل</div><h4 class="episode__title">الاعتراف بإقليم صوماليلاند.. خطوة تكشف مشروع إسرائيل الإقليمي</h4></div>
+          </button>
+          <button class="episode" type="button" data-video-index="3">
+            <div class="episode__thumb">
+              <img class="episode__img" src="https://picsum.photos/seed/npp-vid3/360/230" alt="">
+              <span class="episode__play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
+              <span class="episode__dur">٠٥:٥٠</span>
+            </div>
+            <div><div class="episode__cat">ميديا</div><h4 class="episode__title">شهد الشرفا.. بوق فتح الناعم لتشويه المقاومة وتبييض الاحتلال</h4></div>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -427,26 +490,32 @@
       <p class="coverage__sub" data-i18n="coverDesc">تتبّع الأحداث على الخريطة وعبر الخط الزمني، مع مؤشرات محدّثة لحظياً.</p>
     </div>
     <div class="coverage__grid">
-      <div class="map">
-        <span class="map__label">INTERACTIVE MAP · فلسطين</span>
-        <div class="hotspot hotspot--gaza">
-          <span class="hotspot__dot hotspot__dot--red"></span>
-          <span class="hotspot__label">غزة · ٣٢٦٩</span>
+      <!-- خريطة الرصد (خريطة حيّة — Leaflet) -->
+      <div class="geomap" data-geomap>
+        <div class="geomap__head">
+          <span class="geomap__live-dot"></span>خريطة الرصد · فلسطين
+          <span class="geomap__coords">31.9°N · 35.2°E</span>
         </div>
-        <div class="hotspot hotspot--ram">
-          <span class="hotspot__dot hotspot__dot--green"></span>
-          <span class="hotspot__label">رام الله</span>
-        </div>
-        <div class="hotspot hotspot--jenin">
-          <span class="hotspot__dot hotspot__dot--green-slow"></span>
-          <span class="hotspot__label">جنين</span>
-        </div>
-        <div class="map__legend">
-          <span class="map__legend-item"><span class="map__legend-dot tag--red"></span>عاجل</span>
-          <span class="map__legend-item"><span class="map__legend-dot tag--green"></span>متابعة</span>
+        <div class="geomap__hint">اضغط على موقع لعرض تفاصيله</div>
+        <div class="geomap__map" data-geomap-canvas></div>
+        <div class="geomap__legend">
+          <span class="geomap__legend-item"><span class="geomap__legend-dot tag--red"></span>حرج</span>
+          <span class="geomap__legend-item"><span class="geomap__legend-dot tag--green"></span>متابعة</span>
         </div>
       </div>
+
+      <!-- اللوحة الجانبية -->
       <div class="coverage__side">
+        <div class="locard" data-loc-card>
+          <div class="locard__head">
+            <span class="locard__pin locard__pin--red" data-locard-pin></span>
+            <h3 class="locard__name" data-locard-name>قطاع غزة</h3>
+            <span class="locard__tag locard__tag--red" data-locard-tag>حرج</span>
+          </div>
+          <div class="locard__value" data-locard-value>٣٢٦٩</div>
+          <div class="locard__label">خرقاً موثّقاً منذ بدء الرصد</div>
+          <p class="locard__note" data-locard-note>الأعلى تسجيلاً للخروقات الموثّقة على مستوى الضفة والقطاع.</p>
+        </div>
         <div class="timeline-card">
           <div class="timeline-card__h">الخط الزمني — اليوم</div>
           <div class="tl">
@@ -582,39 +651,69 @@
     </div>
   </div>
 
-  <!-- ===================== مودال الفيديو ===================== -->
-  <div class="modal" data-modal>
-    <div class="modal__dialog">
-      <div class="modal__media">
-        <img class="modal__img" data-modal-img src="" alt="">
-        <div class="modal__play"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></div>
-        <button class="modal__close" type="button" data-modal-close>
+  <!-- ===================== مشغّل الفيديو ===================== -->
+  <div class="player" data-player>
+    <div class="player__dialog">
+      <div class="player__frame">
+        <img class="player__img" data-player-img src="" alt="">
+        <button class="player__close" type="button" data-player-close aria-label="إغلاق">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
-      </div>
-      <div class="modal__body">
-        <div class="modal__meta">
-          <span class="modal__cat" data-modal-cat></span>
-          <span class="modal__dur" data-modal-dur></span>
+        <button class="player__big" type="button" data-player-toggle aria-label="تشغيل">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg>
+        </button>
+        <div class="player__controls">
+          <div class="player__bar" data-player-bar><div class="player__bar-fill" data-player-fill></div></div>
+          <div class="player__ctrls">
+            <button class="player__btn" type="button" data-player-toggle aria-label="تشغيل/إيقاف">
+              <svg class="player__icon-play" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg>
+              <svg class="player__icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            </button>
+            <span class="player__time"><b data-player-cur>٠:٠٠</b> / <span data-player-dur>٠:٠٠</span></span>
+            <div class="player__spacer"></div>
+            <button class="player__btn" type="button" aria-label="كتم الصوت">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
+            </button>
+            <button class="player__btn" type="button" aria-label="ملء الشاشة">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            </button>
+          </div>
         </div>
-        <h2 class="modal__title" data-modal-title></h2>
-        <div class="modal__tabs">
-          <button class="tab is-active" type="button" data-tab="watch" data-i18n="watch">مشاهدة</button>
-          <button class="tab" type="button" data-tab="script" data-i18n="script">النص</button>
-          <div class="modal__tabs-spacer"></div>
-          <button class="modal__share" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#cdc7bd" stroke-width="1.7"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg><span data-i18n="share">مشاركة</span>
-          </button>
-        </div>
-        <div class="modal__script" data-modal-script></div>
-        <div class="modal__related-title" data-i18n="related">مقاطع ذات صلة</div>
-        <div class="modal__related" data-modal-related></div>
       </div>
+      <div class="player__info">
+        <span class="player__cat" data-player-cat></span>
+        <span class="player__meta-dur" data-player-meta-dur></span>
+        <h2 class="player__title" data-player-title></h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== لايت‌بوكس الصور ===================== -->
+  <div class="lightbox" data-lightbox>
+    <div class="lightbox__top">
+      <span class="lightbox__counter"><b data-lb-cur>١</b><span> / </span><span data-lb-total>١٤</span></span>
+      <button class="lightbox__close" type="button" data-lb-close aria-label="إغلاق">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="lightbox__stage">
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="السابقة">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <img class="lightbox__img" data-lb-img src="" alt="">
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="التالية">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+    </div>
+    <div class="lightbox__caption">
+      <p class="lightbox__caption-title" data-lb-title></p>
+      <div class="lightbox__caption-date" data-lb-date></div>
     </div>
   </div>
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
