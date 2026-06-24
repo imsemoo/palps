@@ -92,8 +92,8 @@
       <!-- شريط المشاركة الجانبي اللاصق -->
       <div class="article__rail">
         <div class="article__rail-label">SHARE</div>
-        <button class="article__rail-btn" type="button" data-share="facebook" title="فيسبوك">f</button>
-        <button class="article__rail-btn" type="button" data-share="x" title="إكس">𝕏</button>
+        <button class="article__rail-btn" type="button" data-share="facebook" title="فيسبوك" aria-label="مشاركة على فيسبوك"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+        <button class="article__rail-btn" type="button" data-share="x" title="إكس" aria-label="مشاركة على إكس"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
         <button class="article__rail-btn article__rail-btn--wa" type="button" data-share="whatsapp" title="واتساب">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c2.4 1 2.4.7 2.9.6a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3z"/></svg>
         </button>
@@ -112,7 +112,7 @@
           <a class="article__crumb-link" href="index.html">الرئيسية</a><span class="article__crumb-sep">/</span>
           <a class="article__crumb-link article__crumb-link--active" href="articles.html">معالجات اخبارية</a>
         </div>
-        <h1 class="article__headline">لماذا ستفشل دعوات الفوضى في غزة عبر «حراك ٢٦ يونيو»؟</h1>
+        <h1 class="article__headline" id="article-top">لماذا ستفشل دعوات الفوضى في غزة عبر «حراك ٢٦ يونيو»؟</h1>
         <p class="article__deck">قراءة في خلفيات الحراك وأهدافه المعلنة والخفيّة، وحدود تأثيره على المشهد الميداني في ظلّ التعقيدات السياسية المتصاعدة.</p>
 
         <!-- بيانات الكاتب والتاريخ -->
@@ -121,7 +121,7 @@
             <span class="article__avatar">ح</span>
             <div>
               <a class="article__author" href="author.html">هيئة التحرير</a>
-              <div class="article__byline-meta">٢٤ يونيو ٢٠٢٦ · ٦ دقائق قراءة</div>
+              <div class="article__byline-meta">٢٤ يونيو ٢٠٢٦ · ٦ دقائق قراءة · <span class="article__updated" data-updated><span class="article__updated-dot"></span>حُدّث قبل ١٢ دقيقة</span></div>
             </div>
           </div>
           <div class="article__tools">
@@ -158,20 +158,26 @@
           <div class="article__figure-media">
             <img class="mono cover-abs" src="assets/img/news/ghzh-7.jpg" alt="من احتجاجات سابقة في قطاع غزة">
           </div>
-          <figcaption class="article__caption"><span class="article__caption-rule"></span>من احتجاجات سابقة في قطاع غزة — أرشيف الشبكة</figcaption>
+          <figcaption class="article__caption">
+            <span class="article__caption-rule"></span>
+            <span>
+              <span class="article__caption-text">أهالٍ خلال وقفة احتجاجية في إحدى مدن قطاع غزة.</span>
+              <span class="article__caption-credit"><b>تصوير:</b> أرشيف شبكة الصحافة الفلسطينية · غزة، يونيو ٢٠٢٦</span>
+            </span>
+          </figcaption>
         </figure>
 
         <!-- جسم المقال -->
         <div class="article__prose" data-article-body>
           <p><span class="article__dropcap">ت</span>تصاعدت خلال الأيام الماضية دعوات للتحرّك الشعبي تحت عنوان «حراك ٢٦ يونيو»، في مشهد بدا للوهلة الأولى عفوياً، لكنّ قراءة متأنّية للخلفيات والأهداف المعلنة تكشف عن صورة أكثر تعقيداً مما يُروَّج له على منصّات التواصل.</p>
           <p>تشير المعطيات المتوفّرة إلى أنّ الحملة الرقمية المرافقة للدعوة لم تكن منفصلة عن شبكة حسابات نشطة سبق أن استُخدمت في حملات مشابهة، وهو ما يطرح تساؤلات حول مدى تلقائية الحراك وحدود تأثيره الفعلي على الأرض.</p>
-          <h2 class="article__subhead">أهداف معلنة وأخرى خفيّة</h2>
+          <h2 class="article__subhead" id="sec-aims">أهداف معلنة وأخرى خفيّة</h2>
           <p>بين المطالب المعيشية المحقّة التي يرفعها كثير من المشاركين، تتسلّل أجندات أخرى تسعى إلى توظيف الغضب الشعبي في اتجاهات لا تخدم أولويات الناس، بل تعيد إنتاج الانقسام في لحظة تتطلّب أعلى درجات التماسك.</p>
           <blockquote class="article__quote">
             <p>«الغضب المشروع شيء، وتوظيفه في معارك جانبية لا تخدم الناس شيء آخر تماماً.»</p>
           </blockquote>
           <p>ولا يمكن فهم المشهد بمعزل عن السياق الأوسع الذي تتقاطع فيه الحسابات الداخلية مع الضغوط الخارجية، إذ تتحرّك أطراف عدّة لاستثمار أي حالة احتقان في تعزيز مواقعها.</p>
-          <h2 class="article__subhead">حدود التأثير على الأرض</h2>
+          <h2 class="article__subhead" id="sec-impact">حدود التأثير على الأرض</h2>
           <p>رغم الزخم الرقمي، تبقى قدرة هذه الدعوات على إحداث تحوّل ميداني محدودة، في ظلّ وعي شعبي متراكم يميّز بين المطالب الحقيقية ومحاولات الركوب على المعاناة. وهذا الوعي تحديداً هو ما يجعل رهانات الفوضى أقرب إلى الفشل.</p>
           <p>وفي المحصّلة، فإنّ معالجة جذور الأزمة المعيشية والسياسية تبقى الطريق الأكثر فاعلية لنزع فتيل أي توظيف للغضب، بعيداً عن منطق التصعيد الذي لا يضيف إلى رصيد القضية شيئاً.</p>
         </div>
@@ -187,8 +193,8 @@
         <div class="article__share">
           <span class="article__share-label">شارك المقال</span>
           <div class="article__share-btns">
-            <button class="article__share-btn" type="button" data-share="facebook"><span class="article__share-f">f</span>فيسبوك</button>
-            <button class="article__share-btn" type="button" data-share="x">𝕏</button>
+            <button class="article__share-btn" type="button" data-share="facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>فيسبوك</button>
+            <button class="article__share-btn" type="button" data-share="x" aria-label="مشاركة على إكس"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
             <button class="article__share-btn article__share-btn--wa" type="button" data-share="whatsapp">واتساب</button>
             <button class="article__share-btn article__share-btn--ghost" type="button" data-share="copy">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>نسخ الرابط
@@ -198,11 +204,12 @@
 
         <!-- نبذة الكاتب -->
         <div class="article__bio">
-          <span class="article__bio-avatar">ح</span>
+          <span class="article__bio-avatar"><img src="assets/img/logo.webp" alt="شبكة الصحافة الفلسطينية"></span>
           <div class="article__bio-body">
+            <div class="article__bio-role">بقلم</div>
             <a class="article__bio-name" href="author.html">هيئة التحرير</a>
             <p class="article__bio-desc">فريق المعالجات الإخبارية في شبكة الصحافة الفلسطينية، يقدّم قراءات معمّقة وموضوعية في الشأن الفلسطيني وتأثيراته الإقليمية والدولية.</p>
-            <a class="article__bio-link" href="author.html">عرض كل المقالات ←</a>
+            <a class="article__bio-link" href="author.html">عرض كل مقالات الهيئة <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
           </div>
         </div>
       </article>
@@ -225,10 +232,10 @@
         <!-- محاور المقال -->
         <div class="article__widget">
           <div class="article__widget-title article__widget-title--solo">محاور المقال</div>
-          <nav class="article__toc">
-            <a class="article__toc-link article__toc-link--active" href="#">المقدّمة</a>
-            <a class="article__toc-link" href="#">أهداف معلنة وأخرى خفيّة</a>
-            <a class="article__toc-link" href="#">حدود التأثير على الأرض</a>
+          <nav class="article__toc" data-toc>
+            <a class="article__toc-link article__toc-link--active" href="#article-top" data-toc-link>المقدّمة</a>
+            <a class="article__toc-link" href="#sec-aims" data-toc-link>أهداف معلنة وأخرى خفيّة</a>
+            <a class="article__toc-link" href="#sec-impact" data-toc-link>حدود التأثير على الأرض</a>
           </nav>
         </div>
 
@@ -263,15 +270,15 @@
       <div class="cards">
         <article class="card">
           <a class="card__media" href="article.html"><img class="mono cover-abs" src="assets/img/news/photo-2026-06-23-12-56-55.jpg" alt=""><span class="card__cat">معالجات اخبارية</span></a>
-          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي</a></h3><div class="card__meta"><span>٢٣ يونيو</span></div></div>
+          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">وقف مخصصات السلطة يحوّل أبطال السجون إلى مشرّدين في المنافي</a></h3><div class="card__meta"><span>٢٣ يونيو</span><span>•</span><span>٥ د قراءة</span></div></div>
         </article>
         <article class="card">
           <a class="card__media" href="article.html"><img class="mono cover-abs" src="assets/img/news/almqawmh.webp" alt=""><span class="card__cat">تحليلات وآراء</span></a>
-          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة</a></h3><div class="card__meta"><span>٢٠ يونيو</span></div></div>
+          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة</a></h3><div class="card__meta"><span>٢٠ يونيو</span><span>•</span><span>٧ د قراءة</span></div></div>
         </article>
         <article class="card">
           <a class="card__media" href="article.html"><img class="mono cover-abs" src="assets/img/news/mstshfyat.webp" alt=""><span class="card__cat">معالجات اخبارية</span></a>
-          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة</a></h3><div class="card__meta"><span>٢٢ يونيو</span></div></div>
+          <div class="card__body"><h3 class="card__title"><a class="article__card-link" href="article.html">تحقيق تلفزيوني يوثّق جرائم العصابات العميلة للاحتلال في غزة</a></h3><div class="card__meta"><span>٢٢ يونيو</span><span>•</span><span>٤ د قراءة</span></div></div>
         </article>
       </div>
     </section>
@@ -288,11 +295,11 @@
           </div>
           <p class="footer__desc">نقدّم المعالجات الإخبارية والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تركّز على المهنية والموضوعية.</p>
           <div class="socials">
-            <span class="social">f</span>
-            <span class="social">X</span>
-            <span class="social social--sm">YT</span>
-            <span class="social social--sm">IG</span>
-            <span class="social social--sm">TG</span>
+            <a class="social" href="#" aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a class="social" href="#" aria-label="منصة إكس"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a class="social" href="#" aria-label="يوتيوب"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a class="social" href="#" aria-label="إنستغرام"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            <a class="social" href="#" aria-label="تيليغرام"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.44-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
           </div>
         </div>
         <div>

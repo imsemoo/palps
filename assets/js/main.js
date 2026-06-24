@@ -1050,3 +1050,70 @@
     map.fitBounds(L.featureGroup(group).getBounds().pad(0.55), { padding: [20, 20] });
   }, 90);
 })();
+
+
+/* ======================================================================
+   صفحة المقال — مشاركة الاقتباس عند تحديد النص + فهرس المحاور (TOC)
+   تمرير سلس وإبراز القسم النشط. كل العناصر تتحرّس بوجودها.
+   ====================================================================== */
+(function () {
+  'use strict';
+
+  // --- مشاركة الاقتباس عند التحديد ---
+  var body = document.querySelector('[data-article-body]');
+  if (body) {
+    var btn = document.createElement('button');
+    btn.className = 'quote-share';
+    btn.type = 'button';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5"/></svg> شارك الاقتباس';
+    document.body.appendChild(btn);
+    var quote = '';
+    function hide() { btn.classList.remove('is-visible'); }
+    document.addEventListener('selectionchange', function () {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed) { return hide(); }
+      var txt = sel.toString().trim();
+      var node = sel.anchorNode;
+      var host = node && (node.nodeType === 1 ? node : node.parentNode);
+      if (txt.length < 12 || !host || !body.contains(host)) { return hide(); }
+      quote = txt;
+      var rect = sel.getRangeAt(0).getBoundingClientRect();
+      if (!rect.width) { return hide(); }
+      btn.style.top = (rect.top + window.scrollY - 12) + 'px';
+      btn.style.left = (rect.left + rect.width / 2) + 'px';
+      btn.classList.add('is-visible');
+    });
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    btn.addEventListener('click', function () {
+      var text = '«' + quote + '»';
+      var url = location.href;
+      if (navigator.share) { navigator.share({ text: text, url: url }).catch(function () {}); }
+      else if (navigator.clipboard) { navigator.clipboard.writeText(text + ' — ' + url).catch(function () {}); }
+      hide();
+    });
+    document.addEventListener('scroll', hide, { passive: true });
+  }
+
+  // --- فهرس المحاور: تمرير سلس + إبراز النشط ---
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('[data-toc-link]'));
+  if (tocLinks.length) {
+    var targets = tocLinks.map(function (l) { return document.querySelector(l.getAttribute('href')); });
+    tocLinks.forEach(function (l, i) {
+      l.addEventListener('click', function (e) {
+        var t = targets[i];
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            var idx = targets.indexOf(e.target);
+            if (idx > -1) tocLinks.forEach(function (l, j) { l.classList.toggle('article__toc-link--active', j === idx); });
+          }
+        });
+      }, { rootMargin: '-100px 0px -68% 0px' });
+      targets.forEach(function (t) { if (t) io.observe(t); });
+    }
+  }
+})();
