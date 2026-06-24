@@ -1142,3 +1142,21 @@
   }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
   nodes.forEach(function (n) { io.observe(n); });
 })();
+
+/* ===== قائمة التنقّل على الموبايل (هامبرغر) — متحرّسة بوجود الزرّ ===== */
+(function () {
+  'use strict';
+  var btn = document.querySelector('[data-nav-toggle]');
+  if (!btn) return;
+  var mast = btn.closest('.masthead');
+  var nav = mast && mast.querySelector('.mainnav');
+  if (!mast || !nav) return;
+  function setOpen(open) {
+    mast.classList.toggle('is-menu-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!mast.classList.contains('is-menu-open')); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('.mainnav__link')) setOpen(false); });
+  document.addEventListener('click', function (e) { if (mast.classList.contains('is-menu-open') && !e.target.closest('.masthead')) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();

@@ -56,6 +56,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
         بحث
       </button>
+      <button class="navbtn" type="button" data-nav-toggle aria-label="القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 
     <div class="ticker">
@@ -97,7 +98,7 @@
       <div class="ic__left">
         <!-- القصة الرئيسية -->
         <article class="zoneA">
-          <span class="zoneA__badge">ZONE A · القصة الرئيسية</span>
+          <span class="zoneA__badge">القصة الرئيسية</span>
           <img class="zoneA__img" src="assets/img/news/ghzh-7.jpg" alt="">
           <div class="zoneA__overlay"></div>
           <div class="zoneA__body">
@@ -116,7 +117,7 @@
           <!-- موجز صوتي مصغّر -->
           <div class="zoneC">
             <div class="zoneC__head">
-              <span class="badge-ai">AI · ZONE C</span>
+              <span class="badge-ai">AI</span>
               <span class="zoneC__label" data-i18n="s_audio">الموجز الصوتي اليومي</span>
             </div>
             <div class="zoneC__row">
@@ -136,7 +137,7 @@
           <article class="zoneD" data-video-index="0">
             <img class="zoneD__img" src="assets/img/news/photo-2026-06-23-12-56-55.jpg" alt="">
             <div class="zoneD__overlay"></div>
-            <span class="zoneD__badge">ZONE D · مرئيات</span>
+            <span class="zoneD__badge">مرئيات</span>
             <span class="zoneD__dur">١٢:٤٠</span>
             <span class="play-circle play-circle--md"><svg class="play-circle__icon" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M7 5v14l12-7z"/></svg></span>
             <h3 class="zoneD__title">فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة</h3>
@@ -349,27 +350,26 @@
     </div>
 
     <div class="datapanel">
-      <!-- المؤشرات -->
-      <div class="kpis">
-        <div class="kpi">
-          <div class="kpi__value kpi__value--red" data-countup data-to="3269">٣٢٦٩</div>
-          <div class="kpi__label">إجمالي الخروقات الموثّقة لاتفاق وقف إطلاق النار</div>
+      <!-- السرد الرقمي: الرقم البطل + الداعم -->
+      <div class="fig-lead">
+        <div class="fig-hero">
+          <div class="fig-hero__value" data-countup data-to="3269">٣٢٦٩</div>
+          <div class="fig-hero__label">خرقاً موثّقاً لاتفاق وقف إطلاق النار في غزة والضفة</div>
+          <p class="fig-hero__why">منذ بدء الرصد قبل ٢٤٥ يوماً لم يتوقّف التوثيق يوماً واحداً — كلّ رقمٍ هنا انتهاكٌ مثبّت بالاسم والتاريخ.</p>
         </div>
-        <div class="kpi">
-          <div class="kpi__value" data-countup data-to="245">٢٤٥</div>
-          <div class="kpi__label">يوماً متواصلة من الرصد دون توقّف</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi__value" data-countup data-to="612">٦١٢</div>
-          <div class="kpi__label">ذروة الخروقات في شهر واحد — أبريل</div>
-        </div>
-        <div class="kpi--live">
-          <span class="kpi__live-dot"></span>
-          الرصد مستمر حتى اللحظة
+        <div class="fig-sub">
+          <div class="fig-sub__item">
+            <div class="fig-sub__value" data-countup data-to="245">٢٤٥</div>
+            <div class="fig-sub__label">يوماً متواصلة من الرصد دون توقّف</div>
+          </div>
+          <div class="fig-sub__item">
+            <div class="fig-sub__value" data-countup data-to="612">٦١٢</div>
+            <div class="fig-sub__label">ذروة الخروقات في شهر واحد — أبريل</div>
+          </div>
         </div>
       </div>
 
-      <!-- الرسم البياني الشهري -->
+      <!-- الرسم البياني الشهري — داعم للسرد -->
       <div class="chart">
         <div class="chart__head">
           <h3 class="chart__title">الخروقات الموثّقة شهرياً</h3>
@@ -377,6 +377,10 @@
         </div>
         <div class="chart__bars" data-figbars></div>
         <div class="chart__months" data-figmonths></div>
+        <div class="kpi--live">
+          <span class="kpi__live-dot"></span>
+          الرصد مستمر حتى اللحظة
+        </div>
       </div>
     </div>
 

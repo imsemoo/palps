@@ -58,6 +58,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
         بحث
       </button>
+      <button class="navbtn" type="button" data-nav-toggle aria-label="القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 
     <div class="ticker">
@@ -82,22 +83,66 @@
     </div>
   </header>
 
-  <!-- ===================== هيرو تواصل ===================== -->
-  <section class="contact__hero wrap">
-    <div class="contact__kicker-row">
-      <span class="contact__flag contact__flag--red"></span>
-      <span class="contact__flag contact__flag--green"></span>
-      <span class="contact__flag contact__flag--ink"></span>
-      <span class="contact__kicker">CONTACT</span>
+  <!-- ===================== هيرو تواصل (درامي) ===================== -->
+  <section class="contact__hero" id="contact-hero">
+    <img class="contact__hero-img" src="assets/img/news/photo-2026-01-13-13-33-02.jpg" alt="">
+    <div class="contact__hero-shade"></div>
+    <div class="wrap contact__hero-inner">
+      <div class="contact__kicker-row">
+        <span class="contact__flag contact__flag--red"></span>
+        <span class="contact__flag contact__flag--green"></span>
+        <span class="contact__flag contact__flag--paper"></span>
+        <span class="contact__kicker lat">CONTACT</span>
+      </div>
+      <h1 class="contact__title">تواصل مع غرفة التحرير</h1>
+      <div class="contact__lead-row">
+        <p class="contact__lead">سواء عندك بلاغ، أو وثيقة، أو ملاحظة تحريرية — خلف كلّ رسالة هنا محرّر حقيقي يصغي. اختر القناة المناسبة وسنردّ في أقرب وقت.</p>
+        <span class="contact__pill">
+          <span class="contact__pill-dot"></span>
+          نردّ عادةً خلال ٢٤ ساعة
+        </span>
+      </div>
     </div>
-    <h1 class="contact__title">تواصل مع غرفة التحرير</h1>
-    <div class="contact__lead-row">
-      <p class="contact__lead">سواء عندك بلاغ، أو وثيقة، أو ملاحظة تحريرية — نحن نصغي. اختر القناة المناسبة وسنردّ في أقرب وقت.</p>
-      <span class="contact__pill">
-        <span class="contact__pill-dot"></span>
-        نردّ عادةً خلال ٢٤ ساعة
+  </section>
+
+  <!-- ===================== شريط الثقة ===================== -->
+  <section class="contact__trust wrap" id="contact-trust">
+    <article class="contact__trust-item">
+      <span class="contact__trust-ic contact__trust-ic--green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
       </span>
-    </div>
+      <div class="contact__trust-body">
+        <h3 class="contact__trust-title">حماية المصدر</h3>
+        <p class="contact__trust-desc">نلتزم بحماية هويّة مصادرنا في كلّ الظروف.</p>
+      </div>
+    </article>
+    <article class="contact__trust-item">
+      <span class="contact__trust-ic contact__trust-ic--ink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="11" width="17" height="10" rx="2.5"/><path d="M7.5 11V7a4.5 4.5 0 0 1 9 0v4"/></svg>
+      </span>
+      <div class="contact__trust-body">
+        <h3 class="contact__trust-title">سرّية تامّة</h3>
+        <p class="contact__trust-desc">وضع سرّي لا يطلب أيّ بيانات تعريفية عنك.</p>
+      </div>
+    </article>
+    <article class="contact__trust-item">
+      <span class="contact__trust-ic contact__trust-ic--red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.4"/><path d="M3.5 20v-1.4a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4V20"/><path d="m15.5 12.5 1.7 1.7 3.3-3.4"/></svg>
+      </span>
+      <div class="contact__trust-body">
+        <h3 class="contact__trust-title">مراجعة بشرية</h3>
+        <p class="contact__trust-desc">كلّ رسالة يقرأها محرّر، لا نظام آليّ.</p>
+      </div>
+    </article>
+    <article class="contact__trust-item">
+      <span class="contact__trust-ic contact__trust-ic--gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 13h7l-1 9 9-12h-7z"/></svg>
+      </span>
+      <div class="contact__trust-body">
+        <h3 class="contact__trust-title">سرعة الردّ</h3>
+        <p class="contact__trust-desc">ردّ خلال ٢٤ ساعة، والعاجل له أولوية.</p>
+      </div>
+    </article>
   </section>
 
   <!-- ===================== جسم تواصل ===================== -->
@@ -198,35 +243,47 @@
 
       <!-- قنوات التواصل -->
       <aside class="contact__channels">
-        <div class="contact__chan">
-          <div class="contact__chan-head">
-            <span class="contact__chan-ico contact__chan-ico--red">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg>
-            </span>
+        <a class="contact__chan" href="mailto:newsroom@palps.net">
+          <span class="contact__chan-ico contact__chan-ico--red">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B0122A" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg>
+          </span>
+          <div class="contact__chan-body">
+            <span class="contact__chan-eyebrow">للأخبار والبلاغات</span>
             <span class="contact__chan-title">غرفة الأخبار</span>
+            <span class="contact__chan-desc">راسلنا بأيّ خبر أو ملاحظة صحفية مباشرة.</span>
+            <span class="contact__chan-action lat">newsroom@palps.net
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </div>
-          <div class="contact__chan-mail lat">newsroom@palps.net</div>
-        </div>
+        </a>
 
         <div class="contact__chan contact__chan--dark">
-          <div class="contact__chan-head">
-            <span class="contact__chan-ico contact__chan-ico--dark">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </span>
+          <span class="contact__chan-ico contact__chan-ico--dark">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="contact__chan-body">
+            <span class="contact__chan-eyebrow">قناة آمنة</span>
             <span class="contact__chan-title contact__chan-title--on-dark">البلاغات والوثائق</span>
+            <span class="contact__chan-desc">أرسل الوثائق والتسريبات بسرّية تامّة وحماية كاملة للمصدر.</span>
+            <span class="contact__chan-action contact__chan-action--green">فعّل الوضع السرّي في النموذج
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </div>
-          <div class="contact__chan-text">قناة آمنة لإرسال الوثائق والتسريبات بسرّية تامّة وحماية كاملة للمصدر.</div>
         </div>
 
-        <div class="contact__chan">
-          <div class="contact__chan-head">
-            <span class="contact__chan-ico contact__chan-ico--green">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-            </span>
+        <a class="contact__chan" href="mailto:partners@palps.net">
+          <span class="contact__chan-ico contact__chan-ico--green">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1F6B43" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          </span>
+          <div class="contact__chan-body">
+            <span class="contact__chan-eyebrow">تعاون تجاري</span>
             <span class="contact__chan-title">الإعلانات والشراكات</span>
+            <span class="contact__chan-desc">للإعلان والرعاية والشراكات الإعلامية.</span>
+            <span class="contact__chan-action contact__chan-action--green lat">partners@palps.net
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </div>
-          <div class="contact__chan-mail lat">partners@palps.net</div>
-        </div>
+        </a>
 
         <!-- المكتب الرئيسي -->
         <div class="contact__office">
