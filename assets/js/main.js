@@ -161,6 +161,19 @@
   /* ----------------------------------------------------------------------
      4) مشغّل الفيديو (بوب أب نظيف) + لايت‌بوكس الصور
      ---------------------------------------------------------------------- */
+  // صور حقيقية من palps.net (محليّة في assets/img/news) — تتبدّل بصور الـ CMS عند التركيب
+  var IMG = [
+    'assets/img/news/ghzh-7.jpg', 'assets/img/news/photo-2026-06-23-12-56-55.jpg', 'assets/img/news/almqawmh.webp',
+    'assets/img/news/mstshfyat.webp', 'assets/img/news/rfh.jpg', 'assets/img/news/photo-2026-02-06-10-39-29.jpg',
+    'assets/img/news/jrghwn.jpg', 'assets/img/news/abd-alaaty.jpg', 'assets/img/news/photo-2026-03-31-10-16-37.jpg',
+    'assets/img/news/alaml.jpg', 'assets/img/news/photo_2025-12-01_11-18-59.jpg', 'assets/img/news/amjd-5.png',
+    'assets/img/news/photo-2026-01-13-13-33-02.jpg', 'assets/img/news/7bd23523-0bad-426f-88e9-8ed230105d3c_16x9_1200x676.webp',
+    'assets/img/news/photo-2026-01-10-11-14-53.jpg', 'assets/img/news/f0a24783-ba06-4435-8a45-0f16a4c4be91.jpg',
+    'assets/img/news/102946-mpg-00-19-30-16-still003.webp', 'assets/img/news/photo-2026-01-09-21-10-45.jpg',
+    'assets/img/news/vxgjw.webp', 'assets/img/news/thumbs-b-c-a0e7fa30afe671de3b70ba1ede15467f.jpg',
+    'assets/img/news/mgfzb.jpeg', 'assets/img/news/img_20240814_131221_687.jpg'
+  ];
+
   var VIDEOS = [
     { x: 'فضيحة منصة الكود.. تمويل حملات تشويه وابتزاز ضد رجال أعمال غزة', cat: 'تحقيق', dur: '١٢:٤٠' },
     { x: 'مسؤولو العصابات العميلة في غزة.. ضباط بأجهزة السلطة', cat: 'وثائقي', dur: '٠٨:١٥' },
@@ -196,7 +209,7 @@
   }
   function openPlayer(index) {
     if (!player) return; var v = VIDEOS[index]; if (!v) return;
-    var img = pq('[data-player-img]'); if (img) img.src = 'https://picsum.photos/seed/npp-vid' + index + '/1280/720';
+    var img = pq('[data-player-img]'); if (img) img.src = IMG[index % IMG.length];
     var cat = pq('[data-player-cat]'); if (cat) cat.textContent = v.cat;
     var md = pq('[data-player-meta-dur]'); if (md) md.textContent = v.dur;
     var t = pq('[data-player-title]'); if (t) t.textContent = v.x;
@@ -224,7 +237,7 @@
     var g = GAL[lbState.key]; if (!g) return;
     var img = lq('[data-lb-img]');
     if (img) {
-      var src = 'https://picsum.photos/seed/' + g.seed + '-' + (lbState.i + 1) + '/1600/1000';
+      var src = IMG[(lbState.i + (lbState.key === 'teachers' ? 11 : 0)) % IMG.length];
       img.style.opacity = '0';
       var pre = new Image();
       pre.onload = pre.onerror = function () { img.src = src; img.style.opacity = ''; };
@@ -861,35 +874,70 @@
 
 
 /* ======================================================================
-   "القصة في أرقام" — count-up animation for .figure__value on scroll-in
-   (scoped to the figures section; respects prefers-reduced-motion)
+   "القصة في أرقام" — لوحة بيانات: يبني الرسم البياني الشهري + عدّاد تصاعدي
+   للمؤشرات، ويظهر بالحركة عند دخول القسم. يحترم prefers-reduced-motion.
    ====================================================================== */
 (function () {
   'use strict';
-  var els = document.querySelectorAll('.figure__value[data-countup][data-to]');
-  if (!els.length) return;
+  var bars = document.querySelector('[data-figbars]');
+  var monthsEl = document.querySelector('[data-figmonths]');
+  var panel = bars ? bars.closest('.datapanel') : null;
+  if (!bars || !monthsEl || !panel) return;
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function toArabic(n) {
-    return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); });
-  }
-  function run(el) {
+  function toAr(n) { return String(n).replace(/[0-9]/g, function (d) { return String.fromCharCode(0x660 + (+d)); }); }
+
+  // خروقات موثّقة شهرياً (تجريبية) — المجموع ٣٢٦٩، الذروة في أبريل
+  var MONTHS = ['نوفمبر', 'ديسمبر', 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'];
+  var DATA = [261, 318, 366, 402, 470, 612, 525, 315];
+  var peak = DATA.indexOf(Math.max.apply(null, DATA));
+  var max = DATA[peak];
+
+  var fills = [];
+  DATA.forEach(function (v, i) {
+    var bar = document.createElement('div');
+    bar.className = 'fbar' + (i === peak ? ' fbar--peak' : '');
+    var fill = document.createElement('span');
+    fill.className = 'fbar__fill';
+    fill.setAttribute('title', MONTHS[i] + '：' + toAr(v) + ' خرقاً');
+    var val = document.createElement('span');
+    val.className = 'fbar__val';
+    val.textContent = toAr(v);
+    fill.appendChild(val);
+    bar.appendChild(fill);
+    bars.appendChild(bar);
+    fills.push({ el: fill, pct: (v / max) * 100 });
+
+    var m = document.createElement('span');
+    m.className = 'fmonth' + (i === peak ? ' fmonth--peak' : '');
+    m.textContent = MONTHS[i];
+    monthsEl.appendChild(m);
+  });
+
+  var nums = panel.querySelectorAll('[data-countup][data-to]');
+  function countUp(el) {
     var to = parseInt(el.getAttribute('data-to'), 10) || 0;
-    if (reduce) { el.textContent = toArabic(to); return; }
+    if (reduce) { el.textContent = toAr(to); return; }
     var dur = 1400, start = null;
     function tick(ts) {
       if (start === null) start = ts;
       var p = Math.min(1, (ts - start) / dur);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = toArabic(Math.round(to * eased));
+      el.textContent = toAr(Math.round(to * eased));
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
-  if (!('IntersectionObserver' in window)) { els.forEach(run); return; }
+  function reveal() {
+    fills.forEach(function (f) { f.el.style.height = f.pct + '%'; });
+    nums.forEach(countUp);
+  }
+
+  if (reduce || !('IntersectionObserver' in window)) { reveal(); return; }
   var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.4 });
-  els.forEach(function (el) { io.observe(el); });
+    entries.forEach(function (e) { if (e.isIntersecting) { reveal(); io.disconnect(); } });
+  }, { threshold: 0.3 });
+  io.observe(panel);
 })();
 
 
@@ -966,7 +1014,7 @@
 
   var map = L.map(canvas, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
   map.setView([31.95, 35.0], 7);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     maxZoom: 18, subdomains: 'abcd', attribution: '© OpenStreetMap · © CARTO'
   }).addTo(map);
 
@@ -982,6 +1030,7 @@
     if (elPin) elPin.className = 'locard__pin locard__pin--' + d.tone;
   }
 
+  var group = [];
   Object.keys(LOC).forEach(function (key) {
     var d = LOC[key];
     var icon = L.divIcon({
@@ -990,13 +1039,14 @@
             '<span class="geopin__pulse"></span><span class="geopin__dot"></span>' +
             '<span class="geopin__label">' + d.short + '</span></span>'
     });
-    L.marker(d.ll, { icon: icon, title: d.name, riseOnHover: true }).addTo(map)
-      .on('click', function () { select(key); });
+    var m = L.marker(d.ll, { icon: icon, title: d.name, riseOnHover: true }).addTo(map);
+    m.on('click', function () { select(key); });
+    group.push(m);
   });
 
   select('gaza');
   setTimeout(function () {
     map.invalidateSize();
-    map.fitBounds([[31.18, 34.15], [32.72, 35.62]], { padding: [14, 14] });
+    map.fitBounds(L.featureGroup(group).getBounds().pad(0.55), { padding: [20, 20] });
   }, 90);
 })();
