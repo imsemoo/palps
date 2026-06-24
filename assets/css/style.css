@@ -342,7 +342,7 @@ button { font-family: var(--font-ar); }
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .card { background: var(--paper); border-radius: 18px; overflow: hidden; cursor: pointer; box-shadow: 0 1px 2px rgba(20,18,14,.04); transition: transform .2s, box-shadow .2s; }
 .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(20,18,14,.4); }
-.card__media { position: relative; aspect-ratio: 16/10; background: #E9E4DC; overflow: hidden; }
+.card__media { display: block; position: relative; aspect-ratio: 16/10; background: #E9E4DC; overflow: hidden; }
 .card__cat { position: absolute; top: 13px; inset-inline-start: 13px; z-index: 2; background: rgba(22,21,19,.86); color: #fff; font-size: 11.5px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
 .card__body { padding: 24px 24px 26px; }
 .card__title { margin: 0 0 18px; font-size: 18.5px; line-height: 1.6; font-weight: 600; color: var(--ink); letter-spacing: -.005em; }
@@ -952,6 +952,7 @@ button { font-family: var(--font-ar); }
 .articles__facets {
   position: sticky; top: 96px; padding-top: 30px;
   display: flex; flex-direction: column; gap: 18px;
+  margin-bottom: 40px;
 }
 .articles__facets-head { display: flex; align-items: center; justify-content: space-between; }
 .articles__facets-title { font-size: 16px; font-weight: 700; }
@@ -1484,4 +1485,370 @@ button { font-family: var(--font-ar); }
   .contact__title { font-size: 32px; }
   .contact__lead { font-size: 16px; }
   .contact__identity { grid-template-columns: 1fr; }
+}
+
+/* ======================================================================
+   صقل بريميوم للصفحات الداخلية (الكاتب/الأرشيف/عن الشبكة/تواصل)
+   overrides بكلاسات كل صفحة — تتلو القواعد الأصلية فتفوز بالأسبقية.
+   ====================================================================== */
+/* ===== refine: author.html ===== */
+
+/* أيقونات السوشيال في الهيرو — SVG حقيقية بنمط الفوتر (إزالة اعتماد الحروف) */
+.author-hero__socials { gap: 9px; }
+.author-hero__soc { width: 40px; height: 40px; text-decoration: none; }
+.author-hero__soc svg { width: 17px; height: 17px; display: block; }
+.author-hero__soc:hover { background: var(--d-chip); border-color: #3a372f; color: #fff; }
+
+/* كارت الإحصائيات المتراكب — تراكب أنعم، فاصل بالتوكن، هرمية وتنفّس أوضح */
+.author-stats { margin-top: -60px; padding: 4px; border: 1px solid var(--line); box-shadow: 0 28px 64px -36px rgba(20,18,14,.42); }
+.author-stats__cell { padding: 26px 28px; border-radius: 16px; transition: background .15s ease; }
+.author-stats__cell:hover { background: var(--bg); }
+.author-stats__cell--div { border-inline-end: 1px solid var(--line); }
+.author-stats__value { font-size: 36px; letter-spacing: -.01em; }
+.author-stats__label { margin-top: 8px; font-size: 13px; letter-spacing: .01em; }
+
+/* التبويبات — مساحة تنفّس وهرمية أوضح + حالة hover */
+.author-tabs { gap: 6px; margin-bottom: 30px; }
+.author-tabs__btn { padding: 14px 20px; font-size: 15.5px; transition: color .15s ease; }
+.author-tabs__btn:hover { color: var(--ink); }
+.author-tabs__btn::after { transition: background .18s ease; }
+
+/* المقال المثبّت — إيقاع داخلي أوسع وميتا أوضح */
+.author-pinned { min-height: 360px; margin-bottom: 26px; }
+.author-pinned__body { padding: 36px 38px; }
+.author-pinned__title { margin-bottom: 14px; }
+.author-pinned__meta { gap: 14px; }
+
+/* الشريط الجانبي — مطابقة معيار article.html: حد رفيع، التصاق، إيقاع متّسق */
+.author-side { gap: 22px; position: sticky; top: 96px; }
+.author-widget { border: 1px solid var(--line); padding: 22px 24px; box-shadow: 0 1px 2px rgba(20,18,14,.04); }
+.author-widget__head { margin-bottom: 16px; }
+.author-widget__title { font-size: 15px; }
+
+/* خريطة النشاط — تباعد أنظف للأسطورة */
+.author-heat__legend { margin-top: 14px; gap: 7px; }
+
+/* المحاور — رقاقات بحدّ خفيف وتباعد أوسع */
+.author-beats { gap: 10px; }
+.author-beat { border: 1px solid var(--line); padding: 8px 14px; }
+
+/* الاشتراك بالكاتب — إيقاع داخلي أوسع */
+.author-subscribe { padding: 24px; }
+.author-subscribe__form { gap: 9px; }
+.author-subscribe__btn { padding: 12px; }
+
+/* اتساق الإيقاع الرأسي على الموبايل */
+@media (max-width: 920px) {
+  .author-side { position: static; }
+}
+@media (max-width: 720px) {
+  .author-stats { margin-top: -48px; }
+}
+
+/* ===== refine: articles.html ===== */
+
+/* --- هيرو البحث: هرمية وتنفّس أعمق --- */
+.articles__hero-inner { padding: 56px var(--pad-x) 48px; }
+.articles__kicker {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin-bottom: 14px;
+}
+.articles__kicker::before {
+  content: ""; width: 22px; height: 2px; background: var(--red); border-radius: 2px;
+}
+.articles__title { margin: 0 0 14px; line-height: 1.18; }
+.articles__lead {
+  margin: 0 0 28px; max-width: 760px;
+  font-size: 16px; line-height: 1.75; color: var(--on-d-3); font-weight: 300;
+}
+.articles__search-input {
+  height: 64px; border: 1px solid var(--d-line);
+  box-shadow: 0 1px 2px rgba(0,0,0,.18);
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.articles__search-input:focus {
+  border-color: var(--red);
+  background: var(--d-card-1);
+  box-shadow: 0 0 0 3px rgba(176,18,42,.22);
+}
+.articles__suggest { margin-top: 20px; gap: 9px; }
+.articles__suggest-label { letter-spacing: .01em; }
+.articles__sug { padding: 7px 14px; }
+.articles__sug:hover { background: var(--red); border-color: var(--red); }
+
+/* --- التخطيط: تنفّس بين العمودين --- */
+.articles__layout { gap: 38px; }
+
+/* --- شريط الفلاتر الجانبي --- */
+.articles__facets { top: 104px; gap: 16px; }
+.articles__facets-head {
+  padding: 0 2px 14px; margin-bottom: 2px;
+  border-bottom: 1px solid var(--line);
+}
+.articles__facets-title { font-size: 15px; letter-spacing: -.01em; }
+.articles__reset { transition: color .15s ease; }
+.articles__reset:hover { color: var(--red-dark); }
+.articles__facet-card {
+  border: 1px solid var(--line); padding: 20px;
+  box-shadow: 0 1px 2px rgba(20,18,14,.04);
+}
+.articles__facet-h {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.articles__cat { padding: 10px 11px; }
+.articles__cat:hover { background: var(--bg); }
+.articles__cat.is-active { background: rgba(176,18,42,.07); }
+.articles__cat-count {
+  min-width: 26px; padding: 2px 8px; text-align: center;
+  background: var(--bg); border-radius: 20px; color: var(--muted);
+  font-size: 11.5px; font-weight: 600;
+}
+.articles__cat.is-active .articles__cat-count {
+  background: var(--red); color: #fff;
+}
+.articles__type-list { gap: 11px; }
+.articles__type-label { transition: color .15s ease; }
+.articles__type:hover .articles__type-label { color: var(--ink); }
+.articles__time-list { gap: 9px; }
+.articles__time:hover { border-color: var(--ink); color: var(--ink); }
+
+/* --- شريط الأدوات: فرز / عرض --- */
+.articles__results { padding-top: 32px; }
+.articles__toolbar {
+  padding-bottom: 18px; margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.articles__count { font-size: 14.5px; }
+.articles__count b { font-size: 19px; letter-spacing: -.01em; }
+.articles__tools-sep {
+  width: 1px; height: 22px; background: var(--line); margin: 0 2px;
+}
+.articles__sort-btn { transition: background .15s ease, color .15s ease; }
+.articles__sort-btn:not(.is-active):hover { color: var(--ink); }
+.articles__view-btn { transition: background .15s ease, color .15s ease; }
+.articles__view-btn.is-active { box-shadow: 0 1px 2px rgba(20,18,14,.12); }
+
+/* --- شارات الفلاتر النشطة --- */
+.articles__chips { margin-bottom: 24px; }
+
+/* --- شبكة الكروت: إيقاع وهرمية --- */
+.articles__grid { gap: 26px; }
+.articles__card-body { padding: 22px 22px 24px; }
+.articles__card .card__title { margin-bottom: 12px; line-height: 1.55; }
+.articles__excerpt { margin: 0 0 18px; }
+.articles__meta { padding-top: 14px; border-top: 1px solid var(--line); }
+
+/* --- عرض القائمة --- */
+.articles__grid.is-list { gap: 18px; }
+.articles__grid.is-list .articles__card {
+  border: 1px solid var(--line);
+}
+.articles__grid.is-list .card__media { aspect-ratio: 16/10; }
+.articles__grid.is-list .articles__card-body { padding: 24px 26px 24px 4px; }
+.articles__grid.is-list .articles__meta { border-top: none; padding-top: 0; }
+.articles__grid.is-list .articles__excerpt { margin-bottom: 14px; }
+
+/* --- حالة لا نتائج: مساحة أرحب --- */
+.articles__empty { padding: 88px 20px; }
+.articles__empty-icon {
+  width: 80px; height: 80px; background: var(--bg);
+  border: 1px solid var(--line); margin-bottom: 22px;
+}
+.articles__empty-title { font-size: 20px; margin-bottom: 10px; }
+.articles__empty-desc { margin-bottom: 22px; }
+.articles__empty-btn { transition: background .15s ease; padding: 12px 24px; }
+.articles__empty-btn:hover { background: var(--red); }
+
+@media (max-width: 1024px) {
+  .articles__layout { gap: 28px; }
+  .articles__facets { top: auto; }
+}
+@media (max-width: 768px) {
+  .articles__hero-inner { padding: 40px var(--pad-x) 34px; }
+  .articles__lead { font-size: 15px; margin-bottom: 22px; }
+}
+
+/* ===== refine: about.html ===== */
+
+/* 1) المانيفستو: إيقاع وتنفّس أوسع + قياس أدق للّيد */
+.about__hero { padding: 64px var(--pad-x) 52px; }
+.about__eyebrow { gap: 9px; margin-bottom: 30px; }
+.about__kicker { margin-inline-start: 10px; }
+.about__manifesto { margin: 0 0 30px; line-height: 1.26; }
+.about__lead {
+  font-size: 20.5px; line-height: 1.9; max-width: 60ch;
+  padding-inline-start: 18px; border-inline-start: 2px solid var(--line);
+}
+
+/* 2) شريط الأرقام: شريط بيانات محتوى بحدود رفيعة + فواصل رأسية + عنوان سياقي */
+.about__stats { border-block: 1px solid rgba(255,255,255,.08); }
+.about__stats-eyebrow { display: flex; align-items: center; gap: 14px; padding-top: 38px; }
+.about__stats-eyebrow-line { width: 26px; height: 2px; background: var(--gold); border-radius: 2px; }
+.about__stats-eyebrow-label {
+  font-family: var(--font-lat); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--on-d-4);
+}
+.about__stats-grid { padding-top: 30px; padding-bottom: 50px; gap: 0; }
+.about__stat { position: relative; padding-inline: 28px; }
+.about__stat:first-child { padding-inline-start: 0; }
+.about__stat:not(:first-child)::before {
+  content: ""; position: absolute; inset-block: 6px; inset-inline-start: 0;
+  width: 1px; background: rgba(255,255,255,.09);
+}
+.about__stat-value { font-size: 50px; letter-spacing: -.02em; }
+.about__stat-label { margin-top: 12px; font-size: 13.5px; letter-spacing: .01em; }
+
+/* 3) رسالتنا: تنفّس أوسع للاقتباس + هرمية أوضح */
+.about__mission { padding: 64px var(--pad-x); }
+.about__mission-grid { gap: 56px; }
+.about__mission-p { margin: 0 0 28px; }
+.about__mission-p:last-of-type { margin-bottom: 0; }
+.about__quote {
+  margin-top: 30px; padding: 6px 28px;
+  background: var(--paper); border-radius: 0 14px 14px 0;
+}
+.about__quote-text { padding: 22px 0; }
+
+/* 4) كروت القيم: زوايا وحدود أنعم + رفع لطيف + ظل أرقى */
+.about__values { padding: 14px var(--pad-x) 60px; }
+.about__values-grid { gap: 22px; }
+.about__value {
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(20,18,14,.04);
+}
+.about__value:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 26px 54px -30px rgba(20,18,14,.42);
+  border-color: transparent;
+}
+.about__value-icon { margin-bottom: 20px; }
+.about__value-desc { line-height: 1.8; }
+
+/* 5) كيف نعمل: عنوان أوضح + تباعد أرحب وتموضع الريل أدق */
+.about__flow-pad { padding: 64px var(--pad-x); }
+.about__flow-head { margin-bottom: 48px; }
+.about__flow-title { margin-top: 10px; font-size: 30px; }
+.about__flow-grid { gap: 28px; }
+.about__flow-rail { inset-inline: 64px; }
+.about__step-desc { line-height: 1.75; max-width: 22ch; margin-inline: auto; }
+
+/* 6) المحطّات الزمنية: إيقاع رأسي منتظم + إزالة الفراغ الزائد بعد آخر محطّة */
+.about__miles { padding: 64px var(--pad-x); }
+.about__mile { padding-bottom: 34px; }
+.about__mile:last-child { padding-bottom: 0; }
+.about__timeline-rail { bottom: 22px; }
+.about__mile-year { letter-spacing: .04em; margin-bottom: 7px; }
+.about__mile-title { margin-bottom: 8px; }
+.about__mile-desc { line-height: 1.8; }
+
+/* 7) ماذا نغطّي: حدود رفيعة + حركة سهم لطيفة عند المرور */
+.about__coverage { padding: 14px var(--pad-x) 60px; }
+.about__coverage-grid { gap: 16px; }
+.about__sec {
+  border: 1px solid var(--line);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.about__sec:hover { border-color: transparent; transform: translateY(-2px); }
+.about__sec-arrow { transition: transform .2s ease, color .2s ease; }
+.about__sec:hover .about__sec-arrow { transform: translateX(-4px); }
+
+/* 8) الـ CTA: تنفّس داخلي أوسع + زر شبح بحدود واضحة على الداكن */
+.about__cta-sec { padding: 12px var(--pad-x) 72px; }
+.about__cta { padding: 54px 48px; }
+.about__cta-title { margin-bottom: 14px; font-size: 31px; line-height: 1.35; }
+.about__cta-desc { line-height: 1.85; }
+.about__cta-btn { padding: 14px 28px; transition: background .2s ease; }
+.about__cta-btn:hover { background: var(--red-dark); }
+.about__cta-ghost {
+  border: 1px solid rgba(255,255,255,.22); color: var(--on-d-1);
+  transition: background .2s ease, border-color .2s ease;
+}
+.about__cta-ghost:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.4); }
+
+/* تجاوب: إعادة تموضع الفواصل في شريط الأرقام عند الشاشات الأصغر */
+@media (max-width: 980px) {
+  .about__stat:nth-child(odd) { padding-inline-start: 0; }
+  .about__stat:nth-child(odd)::before { display: none; }
+}
+@media (max-width: 640px) {
+  .about__hero { padding: 44px var(--pad-x) 38px; }
+  .about__stat { padding-inline: 0; }
+  .about__stat::before { display: none; }
+  .about__lead { padding-inline-start: 14px; }
+}
+
+/* ===== refine: contact.html ===== */
+
+/* الهيرو: تنفّس أكثر قبل الشبكة + هرمية أنظف للكيكر والعنوان */
+.contact__hero { padding: 60px var(--pad-x) 38px; }
+.contact__kicker-row { gap: 9px; margin-bottom: 20px; }
+.contact__kicker { margin-inline-start: 4px; letter-spacing: .24em; }
+.contact__title { font-size: 48px; line-height: 1.18; letter-spacing: -.025em; margin-bottom: 18px; }
+.contact__lead-row { align-items: flex-start; gap: 22px; }
+.contact__lead { font-size: 19.5px; line-height: 1.72; }
+.contact__pill { margin-top: 4px; background: #E9F0EC; border: 1px solid #d7e4dc; }
+
+/* فاصل خفيف بين الهيرو والجسم + شبكة بتنفّس أوسع */
+.contact { padding-top: 4px; }
+.contact__grid { gap: 34px; }
+
+/* بطاقة الفورم: حدّ رفيع للتعريف + تنفّس داخلي أكبر + هرمية أوضح */
+.contact__panel { padding: 34px 36px; border: 1px solid var(--line); box-shadow: 0 1px 3px rgba(20,18,14,.05); }
+.contact__panel-title { font-size: 23px; letter-spacing: -.01em; margin-bottom: 7px; }
+.contact__panel-sub { margin-bottom: 26px; }
+.contact__field-label { font-size: 13px; letter-spacing: .01em; margin-bottom: 11px; color: var(--ink); }
+
+/* خيارات نوع الرسالة: اتساق التوكنز + حركة لمس لطيفة */
+.contact__purposes { gap: 10px; margin-bottom: 24px; }
+.contact__purpose { color: var(--muted); }
+.contact__purpose:hover { border-color: var(--ink); color: var(--ink); }
+.contact__purpose.is-active:hover { color: #fff; }
+
+/* لوحة السرّية + المراجع: تثبيت الألوان على توكنز الثيم */
+.contact__secure { background: var(--bg); border-color: var(--line); border-radius: 16px; }
+.contact__refbox { background: var(--bg); border-color: var(--line); }
+.contact__attach { border-color: var(--line); background: var(--bg); }
+.contact__attach:hover { border-color: var(--muted-2); }
+
+/* الحقول: انتقال أنعم + تطابق نصف القطر */
+.contact__input { transition: border-color .15s, box-shadow .15s; }
+.contact__input:focus { box-shadow: 0 0 0 3px rgba(22,21,19,.06); }
+
+/* زر الإرسال: لمسة عمق بريميوم */
+.contact__submit { transition: transform .15s, box-shadow .2s; box-shadow: 0 10px 26px -14px rgba(20,18,14,.55); }
+.contact__submit:hover { transform: translateY(-1px); box-shadow: 0 16px 34px -16px rgba(20,18,14,.6); }
+
+/* قنوات التواصل: اتساق نصف القطر مع بطاقة الفورم + حدّ خفيف */
+.contact__channels { gap: 18px; }
+.contact__chan { border-radius: 18px; border: 1px solid var(--line); padding: 22px; }
+.contact__chan--dark { border-color: var(--d-line); }
+.contact__chan-head { margin-bottom: 10px; }
+.contact__office { border-radius: 18px; border: 1px solid var(--line); padding: 22px; }
+.contact__office-title { font-size: 15px; margin-bottom: 14px; }
+
+/* أزرار السوشيال: أيقونات حقيقية بحالة تمرير */
+.contact__office-socials { gap: 10px; margin-top: 18px; }
+.contact__soc { width: 38px; height: 38px; color: var(--muted); text-decoration: none; transition: background .15s, color .15s, border-color .15s; }
+.contact__soc:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* الأسئلة الشائعة: إيقاع متناسق مع الهيرو + هرمية أوضح + لمسة تمرير */
+.contact__faq { padding: 60px 0 24px; }
+.contact__faq-list { gap: 14px; }
+.contact__faq-item { border-radius: 18px; border: 1px solid var(--line); box-shadow: none; transition: border-color .15s, box-shadow .2s; }
+.contact__faq-item:hover { box-shadow: 0 1px 3px rgba(20,18,14,.06); }
+.contact__faq-item.is-open { border-color: var(--line); box-shadow: 0 1px 3px rgba(20,18,14,.06); }
+.contact__faq-q { padding: 22px 24px; }
+.contact__faq-q-text { font-size: 16px; letter-spacing: -.005em; }
+.contact__faq-icon { background: var(--bg); }
+.contact__faq-item.is-open .contact__faq-icon { background: #F4EEEA; }
+.contact__faq-a { padding-bottom: 24px; }
+.contact__faq-a-text { font-size: 15px; line-height: 1.9; }
+
+/* الموبايل: حفاظ على الإيقاع البريميوم على الشاشات الصغيرة */
+@media (max-width: 860px) {
+  .contact__hero { padding: 44px var(--pad-x) 30px; }
+  .contact__panel { padding: 26px 22px; }
+  .contact__lead-row { gap: 16px; }
 }
