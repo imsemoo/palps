@@ -88,10 +88,10 @@
     <div class="wrap author-hero__inner">
       <div class="author-hero__photo-wrap">
         <div class="author-hero__photo">
-          <img class="mono" src="assets/img/news/ghzh-7.jpg" alt="سميح خلف">
+          <img class="mono" src="assets/img/news/abd-alaaty.jpg" alt="سميح خلف">
         </div>
-        <span class="author-hero__verify">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
+        <span class="author-hero__verify" title="كاتب موثّق">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
         </span>
       </div>
       <div class="author-hero__main">
@@ -110,6 +110,7 @@
             <svg class="author-hero__follow-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#161513" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>
             <span data-author-follow-label>متابعة</span>
           </button>
+          <span class="author-hero__followers"><b data-author-followers>٣٢٫٠ ألف</b> متابع</span>
           <div class="author-hero__socials">
             <a class="author-hero__soc" href="#" aria-label="منصة إكس">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -123,6 +124,17 @@
           </div>
         </div>
       </div>
+      <aside class="author-hero__card">
+        <span class="author-hero__card-kicker lat">EXPERTISE</span>
+        <span class="author-hero__card-title">مجالات الخبرة</span>
+        <ul class="author-hero__exp">
+          <li>الشأن الفلسطيني الداخلي</li>
+          <li>التحليل السياسي</li>
+          <li>الحركات الوطنية</li>
+          <li>الملفّات الداخلية</li>
+        </ul>
+        <p class="author-hero__card-quote">«أكتب لأضع الحدث في سياقه، لا لأنقله فقط.»</p>
+      </aside>
     </div>
   </section>
 
@@ -134,12 +146,12 @@
         <div class="author-stats__label">مقالاً منشوراً</div>
       </div>
       <div class="author-stats__cell author-stats__cell--div">
-        <div class="author-stats__value author-stats__value--red">١٫٤<span class="author-stats__unit">م</span></div>
-        <div class="author-stats__label">قراءة إجمالية</div>
+        <div class="author-stats__value author-stats__value--green">٣٢٠<span class="author-stats__unit">ألف</span></div>
+        <div class="author-stats__label">قارئ شهرياً</div>
       </div>
       <div class="author-stats__cell author-stats__cell--div">
-        <div class="author-stats__value author-stats__value--green" data-author-followers>٣٢٫٠ ألف</div>
-        <div class="author-stats__label">متابعاً</div>
+        <div class="author-stats__value author-stats__value--red">١٫٤<span class="author-stats__unit">م</span></div>
+        <div class="author-stats__label">قراءة إجمالية</div>
       </div>
       <div class="author-stats__cell">
         <div class="author-stats__value author-stats__value--ink">٢٠١٤</div>
@@ -162,23 +174,30 @@
           <button class="author-tabs__btn" type="button" data-author-tab="about">نبذة</button>
         </div>
 
-        <!-- تبويب: المقالات (مثبّت + شبكة) -->
+        <!-- تبويب: المقالات (مميّز أفقي + شبكة) -->
         <div class="author-panel is-active" data-author-panel="articles">
-          <!-- مقال مثبّت -->
-          <a class="author-pinned" href="article.html">
-            <img class="mono cover-abs author-pinned__img" src="assets/img/news/photo-2026-06-23-12-56-55.jpg" alt="">
-            <div class="author-pinned__overlay"></div>
-            <span class="author-pinned__flag">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#cdbf6a"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.4h7.6z"/></svg>
-              مقال مثبّت
-            </span>
-            <div class="author-pinned__body">
-              <span class="author-pinned__cat">تحليلات وآراء</span>
-              <h2 class="author-pinned__title">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة</h2>
-              <div class="author-pinned__meta"><span>منذ ٤ أيام</span><span>•</span><span>١٢ دقيقة قراءة</span></div>
+          <!-- مقال مميّز (أفقي) -->
+          <a class="author-feat" href="article.html">
+            <div class="author-feat__media">
+              <img class="mono cover-abs" src="assets/img/news/photo-2026-06-23-12-56-55.jpg" alt="">
+              <span class="author-feat__flag">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#cdbf6a"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.4h7.6z"/></svg>
+                مقال مثبّت
+              </span>
+            </div>
+            <div class="author-feat__body">
+              <span class="author-feat__cat">تحليلات وآراء</span>
+              <h2 class="author-feat__title">ما وراء تغييرات فتح؟ اتهامات بالفساد وإقصاء قيادات بارزة</h2>
+              <p class="author-feat__excerpt">قراءة في خلفيات إعادة الترتيب داخل الحركة قبيل المؤتمر الثامن، وما تكشفه من صراع أجنحة على الخلافة.</p>
+              <div class="author-feat__meta"><span>منذ ٤ أيام</span><span>•</span><span>١٢ دقيقة قراءة</span></div>
             </div>
           </a>
-          <!-- شبكة المقالات -->
+
+          <!-- أحدث المقالات -->
+          <div class="author-subhead">
+            <h3 class="author-subhead__title">أحدث المقالات</h3>
+            <span class="author-subhead__count">٢٤٨ مقالاً</span>
+          </div>
           <div class="author-grid">
             <article class="card">
               <div class="card__media"><img class="mono cover-abs" src="assets/img/news/almqawmh.webp" alt=""><span class="card__cat">تحليلات</span></div>
@@ -290,9 +309,18 @@
         <!-- تبويب: نبذة -->
         <div class="author-panel" data-author-panel="about">
           <div class="author-about">
-            <h3 class="author-about__h">نبذة</h3>
+            <h3 class="author-about__h">نبذة عن الكاتب</h3>
             <p class="author-about__p">سميح خلف محرّر ومحلّل سياسي فلسطيني، يتابع منذ أكثر من عشر سنوات ملفّات الحركات الوطنية والشأن الداخلي. عمل ضمن فرق تحقيقات استقصائية وأشرف على تغطية عدد من المحطّات المفصلية في المشهد الفلسطيني.</p>
             <p class="author-about__p author-about__p--last">تتركّز كتاباته على تفكيك الخطاب السياسي وربط الحدث بسياقه الأوسع، مع التزام بالموضوعية والمهنية في تناول القضايا الحسّاسة.</p>
+            <div class="author-about__focus">
+              <span class="author-about__focus-label">التركيز التحريري</span>
+              <div class="author-about__focus-tags">
+                <span>الشأن الفلسطيني الداخلي</span>
+                <span>صراع الأجنحة</span>
+                <span>المعتقلون السياسيون</span>
+                <span>التحقيقات</span>
+              </div>
+            </div>
           </div>
           <figure class="author-quote">
             <span class="author-quote__mark">”</span>
@@ -307,7 +335,10 @@
         <!-- خريطة نشاط النشر -->
         <div class="author-widget">
           <div class="author-widget__head">
-            <span class="author-widget__title">نشاط النشر</span>
+            <div>
+              <span class="author-widget__kicker lat">ACTIVITY</span>
+              <span class="author-widget__title">نشاط النشر</span>
+            </div>
             <span class="author-widget__note">آخر ٦ أشهر</span>
           </div>
           <div class="author-heat" data-author-heat></div>
@@ -322,7 +353,12 @@
         </div>
         <!-- المحاور -->
         <div class="author-widget">
-          <div class="author-widget__title author-widget__title--mb">المحاور التي يغطّيها</div>
+          <div class="author-widget__head">
+            <div>
+              <span class="author-widget__kicker lat">TOPICS</span>
+              <span class="author-widget__title">المحاور التي يغطّيها</span>
+            </div>
+          </div>
           <div class="author-beats">
             <span class="author-beat"><b class="author-beat__hash">#</b>الشأن الفلسطيني الداخلي</span>
             <span class="author-beat"><b class="author-beat__hash">#</b>فتح</span>
@@ -332,6 +368,7 @@
         </div>
         <!-- الاشتراك بالكاتب -->
         <div class="author-subscribe">
+          <span class="author-subscribe__rule"></span>
           <div class="author-subscribe__title">تابع مقالات سميح</div>
           <p class="author-subscribe__desc">استلم كل مقال جديد لهذا الكاتب في بريدك.</p>
           <form class="author-subscribe__form" onsubmit="return false">

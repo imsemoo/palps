@@ -1099,53 +1099,72 @@ button { font-family: var(--font-ar); }
 }
 
 /* ===== author.html ===== */
-/* صفحة الكاتب: هيرو + كارت إحصائيات متراكب + تبويبات مقالات/فيديو/نبذة + شريط جانبي.
-   كل ألوان البراند عبر التوكنز (var(--red)/--green/--ink…). تدرّجات الخريطة الحرارية
-   فقط hex لعدم وجود توكنز لها. الكلاسات كلها بادئة author- لتفادي أي تعارض. */
+/* صفحة الكاتب — بروفايل تحريري بريميوم (Bloomberg / Substack / Medium contributor).
+   كل ألوان البراند عبر التوكنز. تدرّجات الخريطة الحرارية hex فقط لعدم وجود توكنز.
+   الكلاسات كلها بادئة author- لتفادي أي تعارض. */
 
 /* --- هيرو الكاتب --- */
 .author-hero { position: relative; overflow: hidden; background: var(--d-panel); color: #fff; }
 .author-hero__tex { position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.022) 0 14px, transparent 14px 28px); }
-.author-hero__inner { position: relative; display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; padding-top: 50px; padding-bottom: 130px; }
+.author-hero__inner { position: relative; display: flex; align-items: flex-start; gap: 38px; flex-wrap: wrap; padding-top: 56px; padding-bottom: 128px; }
+
+/* البورتريه — دائري أكبر بإطار وحلقة */
 .author-hero__photo-wrap { position: relative; flex-shrink: 0; }
-.author-hero__photo { width: 140px; height: 140px; border-radius: 24px; overflow: hidden; background: var(--d-card-2); border: 1px solid var(--d-line); }
-.author-hero__verify { position: absolute; bottom: -8px; inset-inline-start: -8px; width: 34px; height: 34px; border-radius: 50%; background: var(--green); border: 3px solid var(--d-panel); display: flex; align-items: center; justify-content: center; }
-.author-hero__main { flex: 1; min-width: 280px; }
-.author-hero__top { display: flex; align-items: center; gap: 11px; margin-bottom: 8px; flex-wrap: wrap; }
-.author-hero__role { font-family: var(--font-lat); font-size: 11.5px; font-weight: 600; letter-spacing: .16em; color: var(--gold); }
+.author-hero__photo { width: 172px; height: 172px; border-radius: 50%; overflow: hidden; background: var(--d-card-2); border: 3px solid rgba(255,255,255,.14); box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 22px 46px -22px rgba(0,0,0,.65); }
+.author-hero__photo .mono, .author-hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+.author-hero__verify { position: absolute; bottom: 8px; inset-inline-start: 10px; width: 38px; height: 38px; border-radius: 50%; background: var(--green); border: 4px solid var(--d-panel); display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 12px -4px rgba(0,0,0,.5); }
+
+/* العمود الرئيسي */
+.author-hero__main { flex: 1 1 360px; min-width: 280px; }
+.author-hero__top { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; flex-wrap: wrap; }
+.author-hero__role { font-family: var(--font-lat); font-size: 11.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
 .author-hero__bullet { width: 4px; height: 4px; border-radius: 50%; background: #5f5a51; }
 .author-hero__loc { font-size: 13px; color: var(--on-d-4); display: flex; align-items: center; gap: 5px; }
-.author-hero__name { margin: 0 0 14px; font-size: 42px; font-weight: 700; letter-spacing: -.015em; }
-.author-hero__bio { margin: 0 0 22px; font-size: 16.5px; line-height: 1.85; color: var(--on-d-2); max-width: 62ch; }
-.author-hero__actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.author-hero__follow { display: flex; align-items: center; gap: 8px; background: var(--red); color: #fff; border: 1px solid var(--red); padding: 11px 24px; border-radius: 26px; cursor: pointer; font-family: var(--font-ar); font-size: 15px; font-weight: 600; transition: background .15s, color .15s, border-color .15s; }
+.author-hero__name { margin: 0 0 14px; font-size: clamp(36px, 4.4vw, 50px); font-weight: 700; letter-spacing: -.02em; line-height: 1.05; }
+.author-hero__bio { margin: 0 0 24px; font-size: 16.5px; line-height: 1.85; color: var(--on-d-2); max-width: 56ch; font-weight: 300; }
+.author-hero__actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.author-hero__follow { display: flex; align-items: center; gap: 8px; background: var(--red); color: #fff; border: 1px solid var(--red); padding: 12px 26px; border-radius: 26px; cursor: pointer; font-family: var(--font-ar); font-size: 15px; font-weight: 600; transition: background .15s, color .15s, border-color .15s; }
+.author-hero__follow:hover { background: var(--red-dark); border-color: var(--red-dark); }
 .author-hero__follow-check { display: none; }
-.author-hero__follow.is-following { background: var(--paper); color: var(--ink); border-color: #fff; }
+.author-hero__follow.is-following { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 .author-hero__follow.is-following .author-hero__follow-check { display: block; }
-.author-hero__socials { display: flex; align-items: center; gap: 8px; }
-.author-hero__soc { width: 42px; height: 42px; border-radius: 50%; border: 1px solid #3a372f; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--on-d-2); transition: background .15s, border-color .15s, color .15s; }
-.author-hero__soc--lat { font-family: var(--font-lat); font-weight: 700; font-size: 15px; }
-.author-hero__soc:hover { background: var(--d-chip); border-color: var(--d-chip); color: #fff; }
+.author-hero__followers { font-size: 13.5px; color: var(--on-d-3); }
+.author-hero__followers b { color: #fff; font-weight: 700; font-family: var(--font-lat); margin-inline-end: 3px; }
+.author-hero__socials { display: flex; align-items: center; gap: 9px; }
+.author-hero__soc { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #3a372f; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--on-d-2); text-decoration: none; transition: background .15s, border-color .15s, color .15s; }
+.author-hero__soc svg { width: 17px; height: 17px; display: block; }
+.author-hero__soc:hover { background: var(--d-chip); border-color: #3a372f; color: #fff; }
+
+/* بطاقة الهيرو الجانبية — تملأ الفراغ وتعرّف الكاتب */
+.author-hero__card { flex: 0 0 282px; background: rgba(255,255,255,.045); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.10); border-radius: 18px; padding: 22px 24px; }
+.author-hero__card-kicker { display: block; font-family: var(--font-lat); font-size: 10.5px; font-weight: 600; letter-spacing: .2em; color: var(--gold); margin-bottom: 7px; }
+.author-hero__card-title { display: block; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 17px; }
+.author-hero__exp { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.author-hero__exp li { position: relative; padding-inline-start: 18px; font-size: 14px; color: var(--on-d-1); }
+.author-hero__exp li::before { content: ""; position: absolute; inset-inline-start: 0; top: 7px; width: 7px; height: 7px; border-radius: 2px; background: var(--red); }
+.author-hero__card-quote { margin: 0; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.10); font-size: 14px; line-height: 1.75; color: var(--on-d-3); }
 
 /* --- كارت الإحصائيات المتراكب --- */
-.author-stats { margin-top: -66px; position: relative; z-index: 2; background: var(--paper); border-radius: 20px; padding: 6px; box-shadow: 0 26px 60px -34px rgba(20,18,14,.5); display: grid; grid-template-columns: repeat(4, 1fr); }
-.author-stats__cell { padding: 24px 26px; }
-.author-stats__cell--div { border-inline-end: 1px solid #EFEAE2; }
-.author-stats__value { font-family: var(--font-lat); font-weight: 800; font-size: 34px; line-height: 1; }
+.author-stats { margin-top: -64px; position: relative; z-index: 2; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 4px; box-shadow: 0 28px 64px -36px rgba(20,18,14,.42); display: grid; grid-template-columns: repeat(4, 1fr); }
+.author-stats__cell { padding: 26px 28px; border-radius: 16px; transition: background .15s ease; }
+.author-stats__cell:hover { background: var(--bg); }
+.author-stats__cell--div { border-inline-end: 1px solid var(--line); }
+.author-stats__value { font-family: var(--font-lat); font-weight: 800; font-size: 38px; line-height: 1; letter-spacing: -.02em; }
 .author-stats__value--ink { color: var(--ink); }
 .author-stats__value--red { color: var(--red); }
 .author-stats__value--green { color: var(--green); }
-.author-stats__unit { font-size: 20px; }
-.author-stats__label { margin-top: 6px; font-size: 13.5px; color: var(--muted-2); }
+.author-stats__unit { font-size: 21px; margin-inline-start: 3px; }
+.author-stats__label { margin-top: 9px; font-size: 13px; color: var(--muted-2); letter-spacing: .01em; }
 
 /* --- شبكة جسم الصفحة --- */
-.author-body { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 36px; align-items: start; padding-top: 34px; padding-bottom: 60px; }
+.author-body { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; padding-top: 38px; padding-bottom: 64px; }
 .author-body__main { min-width: 0; }
 
 /* --- التبويبات --- */
-.author-tabs { display: flex; align-items: center; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
-.author-tabs__btn { position: relative; background: none; border: none; cursor: pointer; padding: 13px 18px; font-family: var(--font-ar); font-size: 15px; font-weight: 500; color: var(--muted-2); }
-.author-tabs__btn::after { content: ""; position: absolute; bottom: -1px; inset-inline: 14px; height: 3px; border-radius: 3px; background: transparent; }
+.author-tabs { display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 30px; }
+.author-tabs__btn { position: relative; background: none; border: none; cursor: pointer; padding: 14px 20px; font-family: var(--font-ar); font-size: 15.5px; font-weight: 500; color: var(--muted-2); transition: color .15s ease; }
+.author-tabs__btn:hover { color: var(--ink); }
+.author-tabs__btn::after { content: ""; position: absolute; bottom: -1px; inset-inline: 14px; height: 3px; border-radius: 3px; background: transparent; transition: background .18s ease; }
 .author-tabs__btn.is-active { font-weight: 700; color: var(--ink); }
 .author-tabs__btn.is-active::after { background: var(--red); }
 
@@ -1153,19 +1172,25 @@ button { font-family: var(--font-ar); }
 .author-panel { display: none; }
 .author-panel.is-active { display: block; animation: fadeUp .3s ease; }
 
-/* --- المقال المثبّت --- */
-.author-pinned { position: relative; display: flex; flex-direction: column; justify-content: flex-end; border-radius: 20px; overflow: hidden; background: var(--d-panel); min-height: 340px; margin-bottom: 22px; text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
-.author-pinned:hover { transform: translateY(-4px); box-shadow: 0 22px 48px -26px rgba(20,18,14,.42); }
-.author-pinned__img { filter: contrast(1.05) brightness(.94); }
-.author-pinned__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,13,10,.86) 0%, rgba(15,13,10,.3) 56%, transparent 82%); }
-.author-pinned__flag { position: absolute; top: 18px; inset-inline-start: 18px; z-index: 2; display: flex; align-items: center; gap: 7px; background: rgba(15,13,10,.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.16); color: #fff; font-size: 11.5px; font-weight: 600; padding: 5px 12px; border-radius: 20px; }
-.author-pinned__body { position: relative; padding: 32px 34px; }
-.author-pinned__cat { display: inline-block; background: var(--red); color: #fff; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; margin-bottom: 14px; }
-.author-pinned__title { margin: 0 0 12px; font-size: 30px; line-height: 1.34; font-weight: 700; color: #fff; letter-spacing: -.01em; max-width: 26ch; text-wrap: balance; }
-.author-pinned__meta { display: flex; align-items: center; gap: 13px; font-family: var(--font-lat); font-size: 13px; color: var(--on-d-3); }
+/* --- المقال المميّز (أفقي، توازن مع الشبكة) --- */
+.author-feat { display: grid; grid-template-columns: 1.05fr 1fr; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; margin-bottom: 30px; text-decoration: none; box-shadow: 0 1px 2px rgba(20,18,14,.04); transition: transform .2s ease, box-shadow .2s ease; }
+.author-feat:hover { transform: translateY(-4px); box-shadow: 0 24px 52px -28px rgba(20,18,14,.42); }
+.author-feat__media { position: relative; min-height: 280px; background: #E9E4DC; }
+.author-feat__media .mono { filter: contrast(1.05) brightness(.96); }
+.author-feat__flag { position: absolute; top: 14px; inset-inline-start: 14px; z-index: 2; display: flex; align-items: center; gap: 7px; background: rgba(15,13,10,.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.16); color: #fff; font-size: 11.5px; font-weight: 600; padding: 5px 12px; border-radius: 20px; }
+.author-feat__body { padding: 32px 34px; display: flex; flex-direction: column; justify-content: center; }
+.author-feat__cat { align-self: flex-start; background: var(--red); color: #fff; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; margin-bottom: 15px; }
+.author-feat__title { margin: 0 0 13px; font-size: 25px; line-height: 1.42; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.author-feat__excerpt { margin: 0 0 18px; font-size: 15px; line-height: 1.8; color: var(--muted); }
+.author-feat__meta { display: flex; align-items: center; gap: 12px; font-family: var(--font-lat); font-size: 13px; color: var(--muted-2); }
+
+/* رأس «أحدث المقالات» */
+.author-subhead { display: flex; align-items: baseline; justify-content: space-between; margin: 0 0 18px; }
+.author-subhead__title { margin: 0; font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.author-subhead__count { font-size: 13px; color: var(--muted-2); font-family: var(--font-lat); }
 
 /* --- شبكة مقالات الكاتب (تعيد استخدام .card) --- */
-.author-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.author-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .author-grid__link { color: inherit; text-decoration: none; }
 .author-grid__link:hover { color: var(--red); }
 
@@ -1190,63 +1215,77 @@ button { font-family: var(--font-ar); }
 .author-vid__dur { position: absolute; top: 13px; inset-inline-end: 13px; z-index: 2; background: rgba(15,13,10,.7); color: #fff; font-size: 11px; font-family: var(--font-lat); padding: 3px 8px; border-radius: 5px; }
 .author-vid__title { position: absolute; bottom: 0; z-index: 2; margin: 0; padding: 18px; font-size: 16px; line-height: 1.5; font-weight: 600; color: #fff; }
 
-/* --- نبذة + اقتباس --- */
-.author-about { background: var(--paper); border-radius: 18px; padding: 28px 30px; box-shadow: 0 1px 2px rgba(20,18,14,.05); margin-bottom: 20px; }
-.author-about__h { margin: 0 0 14px; font-size: 19px; font-weight: 700; }
+/* --- نبذة + تركيز تحريري + اقتباس --- */
+.author-about { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 30px 32px; box-shadow: 0 1px 2px rgba(20,18,14,.04); margin-bottom: 20px; }
+.author-about__h { margin: 0 0 14px; font-size: 20px; font-weight: 700; }
 .author-about__p { margin: 0 0 16px; font-size: 15.5px; line-height: 1.95; color: #2A2825; }
 .author-about__p--last { margin-bottom: 0; }
+.author-about__focus { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+.author-about__focus-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 13px; }
+.author-about__focus-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+.author-about__focus-tags span { background: var(--bg); border: 1px solid var(--line); padding: 7px 14px; border-radius: 20px; font-size: 13px; color: var(--ink); }
 .author-quote { margin: 0; position: relative; overflow: hidden; background: var(--d-panel); border-radius: 18px; padding: 34px 32px; color: #fff; }
 .author-quote__mark { position: absolute; top: 8px; inset-inline-start: 24px; font-size: 120px; line-height: 1; color: var(--d-line); font-family: Georgia, serif; }
 .author-quote__text { margin: 0 0 16px; position: relative; font-size: 23px; line-height: 1.7; font-weight: 600; max-width: 46ch; }
 .author-quote__by { font-size: 13.5px; color: var(--on-d-4); }
 
 /* --- الشريط الجانبي --- */
-.author-side { display: flex; flex-direction: column; gap: 18px; }
-.author-widget { background: var(--paper); border-radius: 18px; padding: 20px 22px; box-shadow: 0 1px 2px rgba(20,18,14,.05); }
-.author-widget__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.author-widget__title { font-size: 14.5px; font-weight: 700; }
-.author-widget__title--mb { margin-bottom: 14px; }
-.author-widget__note { font-size: 12px; color: var(--muted-2); }
+.author-side { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 96px; }
+.author-widget { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: 0 1px 2px rgba(20,18,14,.04); }
+.author-widget__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.author-widget__kicker { display: block; font-family: var(--font-lat); font-size: 10.5px; font-weight: 600; letter-spacing: .2em; color: var(--red); margin-bottom: 5px; }
+.author-widget__title { font-size: 15px; font-weight: 700; color: var(--ink); }
+.author-widget__note { font-size: 12px; color: var(--muted-2); white-space: nowrap; }
 
 /* خريطة نشاط النشر — تدرّجات أخضر بلا توكنز عدا المستوى الأعلى */
-.author-heat { display: grid; grid-template-rows: repeat(7, 11px); grid-auto-flow: column; gap: 4px; }
-.author-heat__cell { width: 11px; height: 11px; border-radius: 3px; background: #ECE7DF; transition: transform .12s ease; }
+.author-heat { display: grid; grid-template-rows: repeat(7, 12px); grid-auto-flow: column; gap: 4px; }
+.author-heat__cell { width: 12px; height: 12px; border-radius: 3px; background: #ECE7DF; transition: transform .12s ease; }
 .author-heat__cell:hover { transform: scale(1.35); }
 .author-heat__cell--0 { background: #ECE7DF; }
 .author-heat__cell--1 { background: #bcd6c6; }
 .author-heat__cell--2 { background: #6fa886; }
 .author-heat__cell--3 { background: var(--green); }
-.author-heat__legend { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 12px; font-size: 11px; color: var(--muted-2); }
-.author-heat__key { width: 11px; height: 11px; border-radius: 3px; }
+.author-heat__legend { display: flex; align-items: center; justify-content: flex-end; gap: 7px; margin-top: 16px; font-size: 11px; color: var(--muted-2); }
+.author-heat__key { width: 12px; height: 12px; border-radius: 3px; }
 .author-heat__key--0 { background: #ECE7DF; }
 .author-heat__key--1 { background: #bcd6c6; }
 .author-heat__key--2 { background: #6fa886; }
 .author-heat__key--3 { background: var(--green); }
 
 /* المحاور (chips) */
-.author-beats { display: flex; flex-wrap: wrap; gap: 9px; }
-.author-beat { display: flex; align-items: center; gap: 6px; background: var(--bg); padding: 7px 13px; border-radius: 20px; font-size: 13px; }
+.author-beats { display: flex; flex-wrap: wrap; gap: 10px; }
+.author-beat { display: flex; align-items: center; gap: 6px; background: var(--bg); border: 1px solid var(--line); padding: 8px 14px; border-radius: 20px; font-size: 13px; color: var(--ink); }
 .author-beat__hash { color: var(--red); font-family: var(--font-lat); }
 
-/* الاشتراك بالكاتب */
-.author-subscribe { background: linear-gradient(135deg, var(--green), var(--green-deep)); border-radius: 18px; padding: 22px; color: #fff; }
-.author-subscribe__title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.author-subscribe__desc { margin: 0 0 14px; font-size: 13px; line-height: 1.7; color: #cfe6da; }
-.author-subscribe__form { display: flex; flex-direction: column; gap: 8px; }
-.author-subscribe__input { border: none; border-radius: 10px; padding: 11px 14px; font-family: var(--font-ar); font-size: 13.5px; background: rgba(255,255,255,.92); }
-.author-subscribe__btn { background: var(--paper); color: var(--green-deep); border: none; border-radius: 10px; padding: 11px; font-weight: 700; font-family: var(--font-ar); font-size: 13.5px; cursor: pointer; }
+/* الاشتراك بالكاتب — كارت داكن أنيق بدل التدرّج الصاخب */
+.author-subscribe { position: relative; overflow: hidden; background: var(--d-panel); border-radius: 18px; padding: 24px; color: #fff; }
+.author-subscribe__rule { display: block; width: 34px; height: 3px; background: var(--green-bright); border-radius: 2px; margin-bottom: 15px; }
+.author-subscribe__title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+.author-subscribe__desc { margin: 0 0 16px; font-size: 13px; line-height: 1.7; color: var(--on-d-3); }
+.author-subscribe__form { display: flex; flex-direction: column; gap: 9px; }
+.author-subscribe__input { border: 1px solid var(--d-line); border-radius: 10px; padding: 11px 14px; font-family: var(--font-ar); font-size: 13.5px; background: var(--d-card-1); color: #fff; }
+.author-subscribe__input::placeholder { color: var(--on-d-5); }
+.author-subscribe__btn { background: var(--green-bright); color: #fff; border: none; border-radius: 10px; padding: 12px; font-weight: 700; font-family: var(--font-ar); font-size: 13.5px; cursor: pointer; transition: background .15s ease; }
+.author-subscribe__btn:hover { background: var(--green); }
 
 /* --- استجابة صفحة الكاتب --- */
 @media (max-width: 1024px) {
   .author-body { grid-template-columns: 1fr; }
+  .author-side { position: static; }
+  .author-hero__card { flex-basis: 100%; }
 }
 @media (max-width: 768px) {
+  .author-hero__inner { gap: 28px; padding-bottom: 118px; }
+  .author-hero__photo { width: 132px; height: 132px; }
   .author-hero__name { font-size: 32px; }
-  .author-stats { grid-template-columns: repeat(2, 1fr); }
+  .author-stats { grid-template-columns: repeat(2, 1fr); margin-top: -50px; }
   .author-stats__cell:nth-child(2) { border-inline-end: none; }
+  .author-feat { grid-template-columns: 1fr; }
+  .author-feat__media { min-height: 0; aspect-ratio: 16/9; }
   .author-grid,
   .author-videos { grid-template-columns: 1fr; }
 }
+
 
 /* ===== about.html ===== */
 /* صفحة «عن الشبكة» — تجربة عصرية بكروت متّسقة مع الهوم بيدج والمقال */
@@ -1538,60 +1577,6 @@ button { font-family: var(--font-ar); }
    صقل بريميوم للصفحات الداخلية (الكاتب/الأرشيف/عن الشبكة/تواصل)
    overrides بكلاسات كل صفحة — تتلو القواعد الأصلية فتفوز بالأسبقية.
    ====================================================================== */
-/* ===== refine: author.html ===== */
-
-/* أيقونات السوشيال في الهيرو — SVG حقيقية بنمط الفوتر (إزالة اعتماد الحروف) */
-.author-hero__socials { gap: 9px; }
-.author-hero__soc { width: 40px; height: 40px; text-decoration: none; }
-.author-hero__soc svg { width: 17px; height: 17px; display: block; }
-.author-hero__soc:hover { background: var(--d-chip); border-color: #3a372f; color: #fff; }
-
-/* كارت الإحصائيات المتراكب — تراكب أنعم، فاصل بالتوكن، هرمية وتنفّس أوضح */
-.author-stats { margin-top: -60px; padding: 4px; border: 1px solid var(--line); box-shadow: 0 28px 64px -36px rgba(20,18,14,.42); }
-.author-stats__cell { padding: 26px 28px; border-radius: 16px; transition: background .15s ease; }
-.author-stats__cell:hover { background: var(--bg); }
-.author-stats__cell--div { border-inline-end: 1px solid var(--line); }
-.author-stats__value { font-size: 36px; letter-spacing: -.01em; }
-.author-stats__label { margin-top: 8px; font-size: 13px; letter-spacing: .01em; }
-
-/* التبويبات — مساحة تنفّس وهرمية أوضح + حالة hover */
-.author-tabs { gap: 6px; margin-bottom: 30px; }
-.author-tabs__btn { padding: 14px 20px; font-size: 15.5px; transition: color .15s ease; }
-.author-tabs__btn:hover { color: var(--ink); }
-.author-tabs__btn::after { transition: background .18s ease; }
-
-/* المقال المثبّت — إيقاع داخلي أوسع وميتا أوضح */
-.author-pinned { min-height: 360px; margin-bottom: 26px; }
-.author-pinned__body { padding: 36px 38px; }
-.author-pinned__title { margin-bottom: 14px; }
-.author-pinned__meta { gap: 14px; }
-
-/* الشريط الجانبي — مطابقة معيار article.html: حد رفيع، التصاق، إيقاع متّسق */
-.author-side { gap: 22px; position: sticky; top: 96px; }
-.author-widget { border: 1px solid var(--line); padding: 22px 24px; box-shadow: 0 1px 2px rgba(20,18,14,.04); }
-.author-widget__head { margin-bottom: 16px; }
-.author-widget__title { font-size: 15px; }
-
-/* خريطة النشاط — تباعد أنظف للأسطورة */
-.author-heat__legend { margin-top: 14px; gap: 7px; }
-
-/* المحاور — رقاقات بحدّ خفيف وتباعد أوسع */
-.author-beats { gap: 10px; }
-.author-beat { border: 1px solid var(--line); padding: 8px 14px; }
-
-/* الاشتراك بالكاتب — إيقاع داخلي أوسع */
-.author-subscribe { padding: 24px; }
-.author-subscribe__form { gap: 9px; }
-.author-subscribe__btn { padding: 12px; }
-
-/* اتساق الإيقاع الرأسي على الموبايل */
-@media (max-width: 920px) {
-  .author-side { position: static; }
-}
-@media (max-width: 720px) {
-  .author-stats { margin-top: -48px; }
-}
-
 /* ===== refine: articles.html ===== */
 
 /* --- هيرو البحث: هرمية وتنفّس أعمق --- */
