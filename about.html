@@ -82,210 +82,319 @@
     </div>
   </header>
 
-  <!-- ===================== المانيفستو (Hero) ===================== -->
-  <section class="about__hero wrap">
-    <div class="about__eyebrow">
-      <span class="about__flag about__flag--red"></span>
-      <span class="about__flag about__flag--green"></span>
-      <span class="about__flag about__flag--ink"></span>
-      <span class="about__kicker">من نحن</span>
+  <!-- ===================== 01 — الهيرو ===================== -->
+  <section class="about__hero" id="about-hero">
+    <img class="about__hero-img" src="assets/img/news/ghzh-7.jpg" alt="من الميدان — أرشيف شبكة الصحافة الفلسطينية">
+    <div class="about__hero-shade"></div>
+    <div class="wrap about__hero-inner">
+      <div class="about__hero-main">
+        <span class="about__hero-rule"></span>
+        <span class="about__hero-kicker lat">PALESTINIAN PRESS · EST. 2014</span>
+        <h1 class="about__hero-title">نروي القصّة الفلسطينية كما هي</h1>
+        <p class="about__hero-tag">مهنية. مستقلّة. موثوقة.</p>
+        <p class="about__hero-lead">شبكة صحفية فلسطينية مستقلّة، تقدّم المعالجات والتحليلات العميقة المرتبطة بالشأن الفلسطيني، وتأثيراته إقليمياً ودولياً، عبر رواية تحريرية تركّز على الدقّة والسياق.</p>
+      </div>
+      <aside class="about__hero-stats">
+        <div class="about__hstat">
+          <span class="about__hstat-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
+          </span>
+          <span class="about__hstat-info">
+            <span class="about__hstat-top">منذ</span>
+            <span class="about__hstat-val lat">2014</span>
+            <span class="about__hstat-label">نغطّي الحدث كما يحدث</span>
+          </span>
+        </div>
+        <div class="about__hstat">
+          <span class="about__hstat-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></svg>
+          </span>
+          <span class="about__hstat-info">
+            <span class="about__hstat-top">أكثر من</span>
+            <span class="about__hstat-val lat">3,269</span>
+            <span class="about__hstat-label">تقرير وتحليل منشور</span>
+          </span>
+        </div>
+        <div class="about__hstat">
+          <span class="about__hstat-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 19v-1.4a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V19"/><circle cx="9" cy="7" r="3.2"/><path d="M22 19v-1.4a4 4 0 0 0-3-3.86M16 4.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span class="about__hstat-info">
+            <span class="about__hstat-val lat">12</span>
+            <span class="about__hstat-label">سنة من العمل الصحفي</span>
+          </span>
+        </div>
+      </aside>
     </div>
-    <h1 class="about__manifesto">نروي القصّة الفلسطينية كما هي — بمهنيّة وموضوعية لا تساوم.</h1>
-    <p class="about__lead">شبكة الصحافة الفلسطينية منصّة إخبارية مستقلّة تقدّم المعالجات والتحليلات المعمّقة المرتبطة بالشأن الفلسطيني وتأثيراته إقليمياً ودولياً، عبر قوالب تحريرية تركّز على الدقّة والسياق.</p>
   </section>
 
-  <!-- ===================== شريط الأرقام (count-up) ===================== -->
-  <section class="about__stats" data-counters>
+  <!-- ===================== 02 — رسالتنا ===================== -->
+  <section class="about__mission" id="about-mission">
+    <div class="wrap about__mission-grid">
+      <div class="about__mission-text about__reveal">
+        <h2 class="about__mission-title">رسالتنا</h2>
+        <p class="about__mission-p">نؤمن أنّ الخبر لا يكتمل دون سياقه، لذلك لا نكتفي بنقل الحدث، بل نبحث عن خلفيّته الكاملة، حقائقه الإنسانية، وأبعاده السياسية.</p>
+        <p class="about__mission-p">نعمل على تفكيك الخطاب، والتحقّق من المصادر، وتمكين الرواية الفلسطينية من الوصول إلى الجمهور العالمي بصورة متوازنة تحترم عقل القارئ.</p>
+      </div>
+      <figure class="about__mission-quote about__reveal">
+        <svg class="about__mission-qmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.4 6.5C6.3 6.5 4 9 4 12.3c0 2.8 1.9 4.9 4.4 4.9 1.6 0 2.8-1.1 2.8-2.6 0-1.4-1-2.4-2.3-2.4-.2 0-.5 0-.7.1.1-1.6 1.5-3 3.2-3.2zM18.6 6.5c-3.1 0-5.4 2.5-5.4 5.8 0 2.8 1.9 4.9 4.4 4.9 1.6 0 2.8-1.1 2.8-2.6 0-1.4-1-2.4-2.3-2.4-.2 0-.5 0-.7.1.1-1.6 1.5-3 3.2-3.2z"/></svg>
+        <blockquote class="about__mission-qtext">المهنية ليست حياداً في وجه الظلم، بل دفاعاً عن الحقيقة.</blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== 03 — مبادئنا التحريرية ===================== -->
+  <section class="about__principles" id="about-principles">
     <div class="wrap">
-      <div class="about__stats-eyebrow">
-        <span class="about__stats-eyebrow-line"></span>
-        <span class="about__stats-eyebrow-label">الشبكة في أرقام</span>
-      </div>
-    </div>
-    <div class="wrap about__stats-grid">
-      <div class="about__stat">
-        <div class="about__stat-value about__stat-value--white"><span data-count-to="12">٠</span></div>
-        <div class="about__stat-label">سنة من العمل الصحفي</div>
-      </div>
-      <div class="about__stat">
-        <div class="about__stat-value about__stat-value--gold"><span data-count-to="2480">٠</span></div>
-        <div class="about__stat-label">معالجة وتحليلاً منشوراً</div>
-      </div>
-      <div class="about__stat">
-        <div class="about__stat-value about__stat-value--red"><span data-count-to="3269">٠</span></div>
-        <div class="about__stat-label">خرقاً موثّقاً تحت الرصد</div>
-      </div>
-      <div class="about__stat">
-        <div class="about__stat-value about__stat-value--green"><span data-count-to="32">٠</span><span class="about__stat-suffix">ألف</span></div>
-        <div class="about__stat-label">متابع عبر المنصّات</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== رسالتنا ===================== -->
-  <section class="about__mission wrap">
-    <div class="about__mission-grid">
-      <h2 class="about__mission-title">رسالتنا<span class="about__mission-rule"></span></h2>
-      <div>
-        <p class="about__mission-p">نؤمن أنّ الخبر لا يكتمل دون سياقه. لذلك لا نكتفي بنقل الحدث، بل نضعه ضمن خلفيّته الكاملة حتى لا يُساء فهمه أو توظيفه. نعمل على تفكيك الخطاب، والتحقّق من المصادر، وتقديم صورة متوازنة تحترم عقل القارئ.</p>
-        <blockquote class="about__quote">
-          <p class="about__quote-text">«المهنية ليست ترفاً في زمن التضليل، بل هي خطّ الدفاع الأول عن الحقيقة.»</p>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== خطّنا التحريري (القيم) ===================== -->
-  <section class="about__values wrap">
-    <div class="sec-head">
-      <h2 class="sec-head__title">خطّنا التحريري</h2>
-    </div>
-    <div class="about__values-grid">
-      <div class="about__value">
-        <div class="about__value-icon about__value-icon--red">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3 class="about__value-title">الاستقلالية</h3>
-        <p class="about__value-desc">قرارنا التحريري مستقلّ، لا يخضع لأجندات أو ضغوط.</p>
-      </div>
-      <div class="about__value">
-        <div class="about__value-icon about__value-icon--green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>
-        </div>
-        <h3 class="about__value-title">التحقّق</h3>
-        <p class="about__value-desc">لا ننشر قبل التأكّد من المصادر وتقاطع المعلومات.</p>
-      </div>
-      <div class="about__value">
-        <div class="about__value-icon about__value-icon--ink">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg>
-        </div>
-        <h3 class="about__value-title">الموضوعية</h3>
-        <p class="about__value-desc">نقدّم الصورة كاملة بعيداً عن الإثارة والانحياز.</p>
-      </div>
-      <div class="about__value">
-        <div class="about__value-icon about__value-icon--red">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 7h18M5 7l2 6a3 3 0 0 1-4 0zm14 0l2 6a3 3 0 0 1-4 0z"/></svg>
-        </div>
-        <h3 class="about__value-title">العدل</h3>
-        <p class="about__value-desc">نمنح كلّ طرف حقّه في الردّ والتوضيح.</p>
+      <header class="about__sec-head">
+        <span class="about__sec-kicker lat">EDITORIAL PRINCIPLES</span>
+        <h2 class="about__sec-title">مبادئنا التحريرية</h2>
+      </header>
+      <div class="about__principles-grid">
+        <article class="about__principle about__reveal">
+          <span class="about__principle-num lat">01</span>
+          <span class="about__principle-ic about__principle-ic--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <h3 class="about__principle-title">الاستقلالية</h3>
+          <p class="about__principle-desc">نحافظ على استقلالنا الكامل في التغطية والتحرير والقرار.</p>
+        </article>
+        <article class="about__principle about__reveal">
+          <span class="about__principle-num lat">02</span>
+          <span class="about__principle-ic about__principle-ic--ink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg>
+          </span>
+          <h3 class="about__principle-title">الموضوعية</h3>
+          <p class="about__principle-desc">نقدّم الأخبار والتحليلات وفقاً للمعايير المهنية بعيداً عن الإثارة.</p>
+        </article>
+        <article class="about__principle about__reveal">
+          <span class="about__principle-num lat">03</span>
+          <span class="about__principle-ic about__principle-ic--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="m8.4 12.4 2.4 2.4 4.8-5"/></svg>
+          </span>
+          <h3 class="about__principle-title">التحقّق</h3>
+          <p class="about__principle-desc">ندقّق المعلومات من مصادرها الأصلية قبل نشرها، لأن الحقيقة مسؤوليتنا.</p>
+        </article>
+        <article class="about__principle about__reveal">
+          <span class="about__principle-num lat">04</span>
+          <span class="about__principle-ic about__principle-ic--ink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l3 6a3 3 0 0 1-6 0z"/><path d="M8.5 21h7"/></svg>
+          </span>
+          <h3 class="about__principle-title">العدل</h3>
+          <p class="about__principle-desc">نمنح كلّ طرف حقّه في المعرفة، ونروي كلّ قصّة من أكثر من زاوية.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===================== كيف نعمل (Workflow) ===================== -->
-  <section class="about__flow">
-    <div class="wrap about__flow-pad">
-      <div class="about__flow-head">
-        <span class="about__flow-kicker">EDITORIAL WORKFLOW</span>
-        <h2 class="about__flow-title">كيف نعمل داخل الغرفة</h2>
-      </div>
-      <div class="about__flow-grid">
-        <span class="about__flow-rail"></span>
-        <div class="about__step">
-          <div class="about__step-num">٠١</div>
-          <h3 class="about__step-title">الرصد</h3>
-          <p class="about__step-desc">متابعة دقيقة للأحداث والمصادر على مدار الساعة.</p>
-        </div>
-        <div class="about__step">
-          <div class="about__step-num">٠٢</div>
-          <h3 class="about__step-title">التحقّق</h3>
-          <p class="about__step-desc">تقاطع المعلومة عبر أكثر من مصدر قبل أي نشر.</p>
-        </div>
-        <div class="about__step">
-          <div class="about__step-num">٠٣</div>
-          <h3 class="about__step-title">المعالجة</h3>
-          <p class="about__step-desc">وضع الحدث في سياقه وتحليله بعمق ومسؤولية.</p>
-        </div>
-        <div class="about__step">
-          <div class="about__step-num about__step-num--red">٠٤</div>
-          <h3 class="about__step-title">النشر</h3>
-          <p class="about__step-desc">تقديم القصّة بقوالب واضحة عبر كل المنصّات.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== محطّات في مسيرتنا ===================== -->
-  <section class="about__miles wrap">
-    <div class="sec-head">
-      <h2 class="sec-head__title">محطّات في مسيرتنا</h2>
-    </div>
-    <div class="about__timeline">
-      <span class="about__timeline-rail"></span>
-      <div class="about__mile">
-        <span class="about__mile-dot about__mile-dot--red"></span>
-        <div class="about__mile-year">٢٠١٤</div>
-        <h3 class="about__mile-title">انطلاق الشبكة</h3>
-        <p class="about__mile-desc">تأسيس شبكة الصحافة الفلسطينية كمنصّة إخبارية مستقلّة تركّز على الشأن الفلسطيني.</p>
-      </div>
-      <div class="about__mile">
-        <span class="about__mile-dot about__mile-dot--green"></span>
-        <div class="about__mile-year">٢٠١٨</div>
-        <h3 class="about__mile-title">توسّع التغطية</h3>
-        <p class="about__mile-desc">إطلاق أقسام التحليلات المعمّقة والقصة في أرقام لتقديم قراءات أعمق للحدث.</p>
-      </div>
-      <div class="about__mile">
-        <span class="about__mile-dot about__mile-dot--ink"></span>
-        <div class="about__mile-year">٢٠٢٢</div>
-        <h3 class="about__mile-title">الوسائط المتعدّدة</h3>
-        <p class="about__mile-desc">توسيع الإنتاج المرئي والمسموع عبر قسم ميديا والتحقيقات التلفزيونية.</p>
-      </div>
-      <div class="about__mile">
-        <span class="about__mile-dot about__mile-dot--red"></span>
-        <div class="about__mile-year">٢٠٢٦</div>
-        <h3 class="about__mile-title">الصحافة المدعومة بالذكاء الاصطناعي</h3>
-        <p class="about__mile-desc">إطلاق الموجز الصوتي اليومي والملخّصات الذكية لتجربة قراءة أحدث.</p>
+  <!-- ===================== 04 — داخل غرفة الأخبار ===================== -->
+  <section class="about__news" id="about-news">
+    <div class="wrap">
+      <header class="about__sec-head about__sec-head--light">
+        <h2 class="about__sec-title">داخل غرفة الأخبار</h2>
+        <p class="about__sec-sub">رحلة الخبر من الميدان إلى القارئ</p>
+      </header>
+      <div class="about__flow">
+        <article class="about__step about__reveal">
+          <div class="about__step-media">
+            <img class="about__step-img" src="assets/img/news/ghzh-7.jpg" alt="الرصد">
+            <span class="about__step-shade"></span>
+            <span class="about__step-num lat">01</span>
+          </div>
+          <div class="about__step-body">
+            <h3 class="about__step-title">الرصد</h3>
+            <p class="about__step-desc">نرصد الحدث لحظة وقوعه من مصادر ميدانية موثوقة.</p>
+          </div>
+        </article>
+        <span class="about__flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></span>
+        <article class="about__step about__reveal">
+          <div class="about__step-media">
+            <img class="about__step-img" src="assets/img/news/img_20240814_131221_687.jpg" alt="التحقّق">
+            <span class="about__step-shade"></span>
+            <span class="about__step-num lat">02</span>
+          </div>
+          <div class="about__step-body">
+            <h3 class="about__step-title">التحقّق</h3>
+            <p class="about__step-desc">تتحقّق من المعلومات والصور عبر شبكة واسعة من المصادر.</p>
+          </div>
+        </article>
+        <span class="about__flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></span>
+        <article class="about__step about__reveal">
+          <div class="about__step-media">
+            <img class="about__step-img" src="assets/img/news/photo-2026-01-13-13-33-02.jpg" alt="التحرير">
+            <span class="about__step-shade"></span>
+            <span class="about__step-num lat">03</span>
+          </div>
+          <div class="about__step-body">
+            <h3 class="about__step-title">التحرير</h3>
+            <p class="about__step-desc">يعمل محرّرونا على المعالجة والتحليل في سياق مهني دقيق.</p>
+          </div>
+        </article>
+        <span class="about__flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></span>
+        <article class="about__step about__reveal">
+          <div class="about__step-media">
+            <img class="about__step-img" src="assets/img/news/102946-mpg-00-19-30-16-still003.webp" alt="النشر">
+            <span class="about__step-shade"></span>
+            <span class="about__step-num lat">04</span>
+          </div>
+          <div class="about__step-body">
+            <h3 class="about__step-title">النشر</h3>
+            <p class="about__step-desc">ننشر الخبر والتحليل بأسلوب واضح ومسؤول عبر كل منصّاتنا.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===================== ماذا نغطّي ===================== -->
-  <section class="about__coverage wrap">
-    <div class="sec-head">
-      <h2 class="sec-head__title">ماذا نغطّي</h2>
-    </div>
-    <div class="about__coverage-grid">
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">معالجات اخبارية</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">تحليلات وآراء</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">القصة في أرقام</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">القصة في صور</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">ميديا والتحقيقات</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <a href="articles.html" class="about__sec">
-        <span class="about__sec-label">تغطية تفاعلية</span>
-        <svg class="about__sec-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
+  <!-- ===================== 05 — ماذا نغطّي ===================== -->
+  <section class="about__coverage" id="about-coverage">
+    <div class="wrap">
+      <header class="about__sec-head">
+        <span class="about__sec-kicker lat">SECTIONS</span>
+        <h2 class="about__sec-title">ماذا نغطّي</h2>
+      </header>
+      <div class="about__coverage-grid">
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/rfh.jpg" alt="">
+            <span class="about__cov-ic about__cov-ic--red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h13v15a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2zM17 9h3v10a2 2 0 0 1-3 1.73M7 9h6M7 13h6M7 17h4"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">معالجات إخبارية</h3>
+            <p class="about__cov-desc">أحدث الأخبار والتطوّرات على مدار الساعة.</p>
+          </div>
+        </a>
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/abd-alaaty.jpg" alt="">
+            <span class="about__cov-ic about__cov-ic--ink">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">تحليلات وآراء</h3>
+            <p class="about__cov-desc">رؤى معمّقة من كتّاب ومحلّلين متخصّصين.</p>
+          </div>
+        </a>
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/jrghwn.jpg" alt="">
+            <span class="about__cov-ic about__cov-ic--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18"/><rect x="5" y="11" width="3" height="7"/><rect x="10.5" y="6" width="3" height="12"/><rect x="16" y="9" width="3" height="9"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">القصة في أرقام</h3>
+            <p class="about__cov-desc">تقارير رقمية ورسوم بيانية توضّح الصورة.</p>
+          </div>
+        </a>
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/mstshfyat.webp" alt="">
+            <span class="about__cov-ic about__cov-ic--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="m21 16-5-5L5 19.5"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">القصة في صور</h3>
+            <p class="about__cov-desc">توثيق بصري للحدث من قلب الميدان.</p>
+          </div>
+        </a>
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/102946-mpg-00-19-30-16-still003.webp" alt="">
+            <span class="about__cov-ic about__cov-ic--red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">ميديا والتحقيقات</h3>
+            <p class="about__cov-desc">تقارير مرئية ومواد وثائقية من الميدان.</p>
+          </div>
+        </a>
+        <a class="about__cov about__reveal" href="articles.html">
+          <div class="about__cov-media">
+            <img src="assets/img/news/almqawmh.webp" alt="">
+            <span class="about__cov-ic about__cov-ic--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m9 3-6 3v15l6-3 6 3 6-3V3l-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
+            </span>
+          </div>
+          <div class="about__cov-body">
+            <h3 class="about__cov-title">تغطية تفاعلية</h3>
+            <p class="about__cov-desc">خرائط وبيئات تفاعلية لفهم الحدث بعمق.</p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== CTA ===================== -->
-  <section class="about__cta-sec wrap">
-    <div class="about__cta">
-      <div class="about__cta-tex"></div>
-      <div class="about__cta-row">
-        <div class="about__cta-text">
-          <h2 class="about__cta-title">عندك قصّة أو معلومة تستحقّ النشر؟</h2>
-          <p class="about__cta-desc">نستقبل البلاغات والوثائق بسرّية تامّة، ونلتزم بحماية مصادرنا. تواصل مع غرفة التحرير.</p>
-        </div>
-        <div class="about__cta-actions">
-          <a class="about__cta-btn" href="contact.html">تواصل معنا
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg>
-          </a>
-          <a class="ghost-btn about__cta-ghost" href="about.html">السياسة التحريرية</a>
+  <!-- ===================== 06 — محطّات في مسيرتنا ===================== -->
+  <section class="about__timeline" id="about-timeline">
+    <div class="wrap">
+      <header class="about__sec-head">
+        <span class="about__sec-kicker lat">OUR JOURNEY</span>
+        <h2 class="about__sec-title">محطّات في مسيرتنا</h2>
+      </header>
+      <ol class="about__tl">
+        <li class="about__tl-item about__reveal">
+          <span class="about__tl-dot about__tl-dot--red"></span>
+          <span class="about__tl-year lat">2014</span>
+          <div class="about__tl-card">
+            <div class="about__tl-media"><img src="assets/img/news/almqawmh.webp" alt=""></div>
+            <h3 class="about__tl-title">انطلاق الشبكة</h3>
+            <p class="about__tl-desc">تأسيس شبكة الصحافة الفلسطينية كمنصّة إخبارية مستقلّة تركّز على الشأن الفلسطيني.</p>
+          </div>
+        </li>
+        <li class="about__tl-item about__reveal">
+          <span class="about__tl-dot about__tl-dot--green"></span>
+          <span class="about__tl-year lat">2018</span>
+          <div class="about__tl-card">
+            <div class="about__tl-media"><img src="assets/img/news/img_20240814_131221_687.jpg" alt=""></div>
+            <h3 class="about__tl-title">توسّع التغطية</h3>
+            <p class="about__tl-desc">إطلاق أقسام التحليلات المعمّقة والقصة في أرقام لقراءات أعمق للحدث.</p>
+          </div>
+        </li>
+        <li class="about__tl-item about__reveal">
+          <span class="about__tl-dot about__tl-dot--ink"></span>
+          <span class="about__tl-year lat">2022</span>
+          <div class="about__tl-card">
+            <div class="about__tl-media"><img src="assets/img/news/102946-mpg-00-19-30-16-still003.webp" alt=""></div>
+            <h3 class="about__tl-title">الوسائط المتعدّدة</h3>
+            <p class="about__tl-desc">إطلاق منصّات الفيديو والبودكاست والتحقيقات التلفزيونية.</p>
+          </div>
+        </li>
+        <li class="about__tl-item about__reveal">
+          <span class="about__tl-dot about__tl-dot--red"></span>
+          <span class="about__tl-year lat">2026</span>
+          <div class="about__tl-card">
+            <div class="about__tl-media"><img src="assets/img/news/thumbs-b-c-a0e7fa30afe671de3b70ba1ede15467f.jpg" alt=""></div>
+            <h3 class="about__tl-title">الصحافة المدعومة بالذكاء الاصطناعي</h3>
+            <p class="about__tl-desc">دمج أدوات الذكاء الاصطناعي لتعزيز الدقّة وسرعة الوصول للمعلومة.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== الدعوة (CTA) ===================== -->
+  <section class="about__cta-sec" id="about-cta">
+    <div class="wrap">
+      <div class="about__cta">
+        <div class="about__cta-tex"></div>
+        <div class="about__cta-row">
+          <div class="about__cta-text">
+            <span class="about__cta-rule"></span>
+            <h2 class="about__cta-title">عندك قصّة أو معلومة تستحقّ النشر؟</h2>
+            <p class="about__cta-desc">نستقبل البلاغات والوثائق بسرّية تامّة، ونلتزم بحماية مصادرنا. تواصل مع غرفة التحرير.</p>
+          </div>
+          <div class="about__cta-actions">
+            <a class="about__cta-btn" href="contact.html">تواصل معنا
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg>
+            </a>
+            <a class="about__cta-ghost" href="about.html">السياسة التحريرية</a>
+          </div>
         </div>
       </div>
     </div>

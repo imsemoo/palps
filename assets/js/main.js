@@ -1117,3 +1117,28 @@
     }
   }
 })();
+
+/* ===== about.html — scroll reveal (CSS-driven, guarded, honors reduced-motion) ===== */
+(function () {
+  'use strict';
+  var nodes = document.querySelectorAll('.about__reveal');
+  if (!nodes.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    nodes.forEach(function (n) { n.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        var el = en.target;
+        var sibs = el.parentNode ? el.parentNode.querySelectorAll('.about__reveal') : [el];
+        var idx = Array.prototype.indexOf.call(sibs, el);
+        el.style.transitionDelay = (idx > 0 ? Math.min(idx, 5) * 0.08 : 0) + 's';
+        el.classList.add('is-in');
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+  nodes.forEach(function (n) { io.observe(n); });
+})();
